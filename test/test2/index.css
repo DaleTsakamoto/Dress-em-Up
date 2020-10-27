@@ -1,0 +1,39 @@
+body{
+  background-color: #00c2bf;
+}
+
+.clothes_container{
+  width: 100%;
+  height: 100%;
+}
+
+.clothes_1 {
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: relative;
+  animation: move_right 2s 1;
+  animation-fill-mode: forwards;
+  animation-direction: linear;
+}
+
+.clothes_2 {
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: relative;
+  right: -500px;
+  animation: move_left 2s 1;
+  animation-fill-mode: forwards;
+  animation-direction: linear;
+}
+
+@keyframes move_right {
+  0%   {transform: translateX(0)}
+  100% {transform: translateX(43.53vw)}
+  }
+
+@keyframes move_left {
+  0%   {transform: translateX(0)}
+  100% {transform: translateX(-43.53vw)}
+}
