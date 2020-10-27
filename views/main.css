@@ -54,6 +54,11 @@ h1{
   padding: 0px 10px;
 }
 
+.hanger_image{
+  height: 90px;
+  width: 130px
+}
+
 .hanger:hover{
   -webkit-transform-origin: 50% 0;
   transform-origin: 50% 0;
