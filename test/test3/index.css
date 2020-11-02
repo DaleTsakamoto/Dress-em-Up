@@ -1,8 +1,71 @@
 body{
-  background-color: #00c2bf;
+  background-color: #FFFFFF;
+  font-family: Roboto, sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-h1{
+p{
+  font-size: small;
+  color: #FFFFFF;
+}
+
+.about_carousel{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.about_carousel_circles > div{
+  display: inline-block;
+  width: .5rem;
+  height: .5rem;
+  background: pink;
+  border-radius: 50%;
+  position: relative;
+}
+.about_carousel_circles > div:hover {
+  background: green;
+}
+
+.about_carousel_screens{
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  background: #dc386c;
+}
+
+.about_carousel_screens > div {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  position: relative;
+}
+
+.about_carousel_screens::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+  /* display: none; */
+}
+
+.about_carousel_screens::-webkit-scrollbar-track{
+  background: black;
+}
+
+.about_carousel_screens::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+.about{
   color: #dc386c;
   text-align: center;
   opacity: 0;
@@ -11,7 +74,7 @@ h1{
   animation-fill-mode: forwards;
 	animation-timing-function: ease-in;
   animation-duration: 1s;
-  animation-delay: 2s;
+  animation-delay: 1.5s;
 }
 
 .clothes_container{
@@ -23,9 +86,9 @@ h1{
 
 .clothes_1 {
   align-self: center;
-  width: 150px;
-  height: 200px;
-  animation: move_right 1s 1;
+  width: 3rem;
+  height: 5rem;
+  animation: move_right .75s 1;
   animation-fill-mode: forwards;
   animation-direction: linear;
 }
@@ -33,11 +96,11 @@ h1{
 .clothes_2 {
   display:flex;
   align-self: center;
-  width: 100px;
-  height: 150px;
+  width: 2rem;
+  height: 3.5rem;
   visibility: hidden;
-  animation: move_left 1s 1;
-  animation-delay: 1s;
+  animation: move_left .75s 1;
+  animation-delay: .75s;
   animation-fill-mode: forwards;
   animation-direction: linear;
 }
@@ -61,7 +124,7 @@ h1{
   animation-fill-mode: forwards;
 	animation-timing-function: ease-in;
   animation-duration: 1s;
-  animation-delay: 2s;
+  animation-delay: 1.5s;
 }
 
 .log-in{
@@ -70,7 +133,7 @@ h1{
 }
 
 .sign-up{
-  background-color: #00c2bf;
+  background-color: #FFFFFF;
   color: #dc386c;
 }
 
