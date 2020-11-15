@@ -1,8 +1,23 @@
 body{
   background-color: #FFFFFF;
   font-family: Roboto, sans-serif;
-  overflow: hidden;
+  /* overflow: hidden; */
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
+}
+
+.header{
+  position: fixed;
+  height: 10vh;
+  width: 100%;
+  background-color: white;
+}
+
+.header_title{
+  width: 100%;
+  margin-top: 1em;
+  text-align: center;
 }
 
 p{
@@ -14,8 +29,7 @@ p{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* margin: 2rem 0; */
-  height: 100%;
+  height: 80vh;
   width: 100%;
   text-align: center;
   overflow: hidden;
@@ -25,26 +39,31 @@ p{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: .5em 0;
 }
 
 .circle{
-  display: inline-block;
+  /* display: inline-block; */
   width: .5rem;
   height: .5rem;
   background: pink;
+  margin: 0 .1em;
   border-radius: 50%;
-  position: relative;
 }
+
 .circle:hover {
   background: green;
 }
 
 .about_carousel_screens{
+  margin-top: 20px;
   display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  height: 100%;
+  width: 100%;
   background: #dc386c;
 }
 
@@ -55,6 +74,10 @@ p{
   height: 100%;
   padding: 10px;
   position: relative;
+}
+
+.about_carousel_screens > div > p{
+  margin-top: 10vh;
 }
 
 .about_carousel_screens::-webkit-scrollbar{
@@ -71,23 +94,13 @@ p{
   background: transparent;
 }
 
-.about{
-  color: #dc386c;
-  text-align: center;
-  opacity: 0;
-	animation-name: fadeh1;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-	animation-timing-function: ease-in;
-  animation-duration: 1s;
-  animation-delay: 1.5s;
-}
-
 .clothes_container{
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .clothes_1 {
@@ -111,21 +124,30 @@ p{
   animation-direction: linear;
 }
 
+.buttons_holder{
+  position: fixed;
+  width: 100%;
+  height: 20vh;
+  bottom: 0;
+}
+
 .button_container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 
 .buttons{
   opacity: 0;
-  border-radius: 2em;
+  border-radius: .75em;
   border: .1em solid #dc386c;
   box-sizing: border-box;
-  width: 15em;
-  padding: .5em;
-  margin: .5em;
+  width: 10em;
+  padding: 1em;
+  margin: 0 .5em;
 	animation-name: fadeh1;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
