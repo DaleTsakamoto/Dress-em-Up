@@ -30,7 +30,8 @@ export const login = (user) => async (dispatch) => {
 }
 
 export const signup = (user) => async (dispatch) => {
-  const { email, username, password, firstName, lastName, helpType, address, city, state, zipCode } = user;
+  const { email, username, password, firstName, lastName } = user;
+  const userType = true;
   const res = await fetch('/api/users', {
     method: 'POST',
     body: JSON.stringify({
@@ -39,11 +40,7 @@ export const signup = (user) => async (dispatch) => {
       password,
       firstName,
       lastName,
-      helpType,
-      address,
-      city,
-      state,
-      zipCode
+      userType
     }),
   })
   dispatch(setUser(res.data.user))

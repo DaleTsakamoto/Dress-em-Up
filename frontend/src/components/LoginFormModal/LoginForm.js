@@ -8,6 +8,7 @@ function LoginForm({open}) {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [redirect, setRedirect] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +19,22 @@ function LoginForm({open}) {
       }
     );
   };
+
+  const demoUser = () => {
+    let credential = 'Demo_user'
+    let password = 'password'
+    return dispatch(sessionActions.login({
+    credential, password
+    }))
+  }
+
+  const demoDesigner = () => {
+    let credential = 'Demo_designer'
+    let password = 'password'
+    return dispatch(sessionActions.login({
+    credential, password
+    }))
+  }
 
   return (
     <div className={`pattern-diagonal-stripes-lg ${open ? 'login-form-holder-open' : 'login-form-holder-close'}`}>
@@ -50,6 +67,8 @@ function LoginForm({open}) {
         </div>
         <div className='login-button-holder'>
           <button type="submit" className="login-button">Log In</button>
+          <button className='login-form-demo-user-button' onClick={demoUser} type='button'>Demo User Log In</button>
+          <button className='login-form-demo-designer-button' onClick={demoDesigner} type='button'>Demo Designer Log In</button>
         </div>
         </form>
     </div>

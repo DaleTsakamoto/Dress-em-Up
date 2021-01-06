@@ -1,16 +1,16 @@
-.login-form-holder-open {
+.signup-form-holder-open {
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 15px 15px 0 0;
-  height: 30vh;
+  height: 38vh;
   width: 100%;
   left: 0; 
   right: 0; 
   bottom: 0; 
-  animation-name: login-slide-up;
+  animation-name: signup-slide-up;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 	animation-timing-function: linear;
@@ -18,24 +18,24 @@
   z-index: 3;
 }
 
-@keyframes login-slide-up {
-  0%   {bottom: -30vh}
+@keyframes signup-slide-up {
+  0%   {bottom: -38vh}
   100% {bottom: 0vh}
   }
 
-.login-form-holder-close {
+.signup-form-holder-close {
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 15px 15px 0 0;
-  height: 30vh;
+  height: 38vh;
   width: 100%;
   left: 0; 
   right: 0; 
   bottom: 0; 
-  animation-name: login-slide-down;
+  animation-name: signup-slide-down;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-timing-function: linear;
@@ -43,9 +43,9 @@
   z-index: 3;
 }
 
-@keyframes login-slide-down {
+@keyframes signup-slide-down {
   0%   {bottom: 0vh}
-  100% {bottom: -30vh}
+  100% {bottom: -38vh}
   }
 
 .pattern-diagonal-stripes-lg{
@@ -53,14 +53,14 @@
   color: whitesmoke;
 }
 
-.login-form-title{
+.signup-form-title{
   color: #DD356E;
   font-size: 50px;
   margin-top: 4vh;
   margin-bottom: 1vh;
 }
 
-.login-form {
+.signup-form {
   height: 100%; 
   width: 100%; 
   border-radius: 15px 15px 0 0;
@@ -69,34 +69,57 @@
   z-index: 3;
 }
 
-.login-input-holder{
+.signup-input-holder{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: .8vh;
+  margin: .6vh;
 }
 
-.login-input{
-  height: 3vh; 
-  width: 75vw; 
+.signup-input-container-name{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.signup-input-holder-name{
+  width: 70vw; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: .6vh;
+}
+
+.signup-input{
+  height: 2.8vh; 
+  width: 70vw; 
   box-sizing: border-box; 
   border: .5px solid #DD356E;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.login-input:focus{
+.signup-input-name{
+  height: 2.8vh; 
+  width: 34vw; 
+  box-sizing: border-box; 
+  border: .5px solid #DD356E;
+  padding: 10px; 
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.signup-input:focus, .signup-input-name:focus{
   background: white; 
 }
 
-.login-button-holder{
+.signup-button-holder{
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1vh;
 }
 
-.login-button{
+.signup-button{
   margin-top: .8vh;
   margin-left: 1vw;
   height: 3vh; 
@@ -111,7 +134,7 @@
   cursor: pointer;  
 }
 
-.login-form-demo-user-button, .login-form-demo-designer-button{
+.signup-form-demo-user-button, .signup-form-demo-designer-button{
   margin-top: .5vh;
   height: 3vh; 
   width: 45vw; 
@@ -125,7 +148,7 @@
   cursor: pointer;  
 }
 
-.login-button:hover, .login-form-demo-user-button:hover, .login-form-demo-designer-button:hover {
+.signup-button:hover, .signup-form-demo-user-button:hover, .signup-form-demo-designer-button:hover {
   background:#F3EC13;
 }
 
