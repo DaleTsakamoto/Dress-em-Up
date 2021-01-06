@@ -1,0 +1,8 @@
+        <footer>
+          <div className='github-about-container'>
+            <a className='navlink-to-github' href='https://daletsakamoto.github.io/'>
+              <img className='github-image'src='/images/github-logo.png' />
+              <div className='github-about-text'>Learn more about me</div>
+            </a>
+          </div>
+        </footer>
