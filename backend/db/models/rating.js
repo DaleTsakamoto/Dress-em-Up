@@ -2,16 +2,16 @@
 module.exports = (sequelize, DataTypes) => {
   const Rating = sequelize.define('Rating', {
     designerRating: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     userId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {model: 'Users'}
     },
     designerId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {model: 'Users'}
     },

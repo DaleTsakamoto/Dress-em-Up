@@ -2,20 +2,20 @@
 module.exports = (sequelize, DataTypes) => {
   const Recommendation = sequelize.define('Recommendation', {
     name: {
-      type: Sequelize.STRING(255),
+      type: DataTypes.STRING(255),
       allowNull: false
     },
     hyperlinks: {
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     userId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'Users' }
     },
     designerId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {model: 'Users'}
     },

@@ -2,18 +2,18 @@
 module.exports = (sequelize, DataTypes) => {
   const Image = sequelize.define('Image', {
     name: {
-      type: Sequelize.STRING(255),
+      type: DataTypes.STRING(255),
       allowNull: false
     },
     imageId: {
-      type: Sequelize.BIGINT,
+      type: DataTypes.BIGINT,
       allowNull: false
     },
     thumbnailId: {
-      type: Sequelize.BIGINT
+      type: DataTypes.BIGINT
     },
     requestId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {model: 'Requests'}
     },
