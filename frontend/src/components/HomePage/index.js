@@ -1,14 +1,14 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {useHistory} from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
-import LoginFormModal from '../LoginFormModal'
+import LoginFormModal from '../../components/LoginFormModal'
+
 import './HomePage.css';
 
 function HomePage() {
-  const loginModal = useRef(null)
-  const dispatch = useDispatch()
   const history = useHistory()
+  const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -25,7 +25,6 @@ function HomePage() {
 
   return (
     <>
-    <LoginFormModal />
     <div className="homepage-main">
       <div id="overlay-1">
         <img className="homepage-dresser-door-left" src= "./images/Dresser-door-left.png" />
@@ -86,7 +85,7 @@ function HomePage() {
       </div>
       <div className="homepage-buttons_holder">
           <div className="homepage-button_container">
-            <button className="homepage-buttons log-in" type="button"><p>LOG IN</p></button>
+            <LoginFormModal />
             <button className="homepage-buttons sign-up" type="button" onClick={signUpClick }><p>SIGN UP</p></button>
         </div>
         <div className='homepage-designers-join'>

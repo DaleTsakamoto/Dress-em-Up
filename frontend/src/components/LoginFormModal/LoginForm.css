@@ -1,0 +1,134 @@
+.login-form-holder-open {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px 15px 0 0;
+  height: 30vh;
+  width: 100%;
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  animation-name: login-slide-up;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+	animation-timing-function: linear;
+  animation-duration: .4s;
+  z-index: 3;
+}
+
+@keyframes login-slide-up {
+  0%   {bottom: -30vh}
+  100% {bottom: 0vh}
+  }
+
+.login-form-holder-close {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px 15px 0 0;
+  height: 30vh;
+  width: 100%;
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  animation-name: login-slide-down;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-duration: .4s;
+  z-index: 3;
+}
+
+@keyframes login-slide-down {
+  0%   {bottom: 0vh}
+  100% {bottom: -30vh}
+  }
+
+.pattern-diagonal-stripes-lg{
+  background-color: white;
+  color: whitesmoke;
+}
+
+.login-form-title{
+  color: #DD356E;
+  font-size: 50px;
+  margin-top: 4vh;
+  margin-bottom: 1vh;
+}
+
+.login-form {
+  height: 100%; 
+  width: 100%; 
+  border-radius: 15px 15px 0 0;
+  box-sizing: border-box; 
+  padding: 10px 30px;
+  z-index: 3;
+}
+
+.login-input-holder{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1vh;
+}
+
+.login-input{
+  height: 3vh; 
+  width: 75vw; 
+  box-sizing: border-box; 
+  border: .5px solid #DD356E;
+  padding: 10px; 
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-input:focus{
+  background: white; 
+}
+
+.login-button-holder{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5vh;
+}
+
+.login-button{
+  margin-top: 1.5vh;
+  height: 4vh; 
+  width: 50vw; 
+  border-radius: 3px; 
+  box-sizing:border-box;
+  background:#DD356E;
+  color: white;
+  font-weight:bold;
+  font-size: 20pt;
+  transition: background-color 0.4s;
+  cursor: pointer;  
+}
+
+.login-button:hover {
+  background:#F3EC13;
+}
+
+.button-modal{
+  height: 50px; 
+  width: 240px; 
+  border-radius: 3px; 
+  border: rgba(0,0,0,0.3) 0px solid; 
+  box-sizing:border-box;
+  padding:10px; 
+  background:#f1bc8f;
+  color:#FFF;
+  font-weight:bold;
+  font-size: 12pt;
+  transition: background-color 0.4s;
+  cursor: pointer;  
+}
+
+.button-modal:hover {
+  background:#da4339;
+}
