@@ -27,16 +27,26 @@ app.use(helmet({
   contentSecurityPolicy: false
 }));
 
-// Set the _csrf token and create req.csrfToken method
+function disableCSURF(fn) {
+  return function(req, res, next) {
+    if (req.path === '/api/uploads') {
+        next();
+    } else {
+        fn(req, res, next);
+    }
+  }
+}
+
+// // Set the _csrf token and create req.csrfToken method
 app.use(
-  csurf({
+  disableCSURF(csurf({
     cookie: {
       secure: isProduction,
       sameSite: isProduction && "Lax",
       httpOnly: true,
     },
   })
-);
+))
 
 app.use(routes); // Connect all the routes
 

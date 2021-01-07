@@ -8,10 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      imageId: {
-        type: Sequelize.INTEGER,
+      image: {
+        type: Sequelize.TEXT,
         allowNull: false,
-        references: {model: 'Images'}
       },
       description: {
         type: Sequelize.TEXT

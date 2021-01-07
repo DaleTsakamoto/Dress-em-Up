@@ -14,7 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.823.0",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "csurf": "^1.11.0",
@@ -26,11 +28,16 @@
     "helmet": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "multer": "^1.4.2",
     "per-env": "^1.0.2",
     "pg": "^8.4.2",
+    "react-dropzone-uploader": "^2.11.0",
+    "react-image-gallery": "^1.0.8",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "sharp": "^0.27.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "dotenv-cli": "^4.0.0",

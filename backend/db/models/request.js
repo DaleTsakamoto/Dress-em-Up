@@ -1,10 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Request = sequelize.define('Request', {
-    imageId: {
-      type: DataTypes.INTEGER,
+    image: {
+      type: DataTypes.TEXT,
       allowNull: false,
-      references: {model: 'Images'}
     },
     description: {
       type: DataTypes.TEXT
@@ -25,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Request.associate = function(models) {
-    Request.hasMany(models.Image, {foreignKey: 'requestId'})
   };
   return Request;
 };

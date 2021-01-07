@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory, Redirect } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
+import OpengraphReactComponent from 'opengraph-react'
 
 import * as sessionActions from '../../store/session';
 
@@ -33,15 +34,12 @@ const logout = (e) => {
 
   return (
     <>
-    <div className="homepage-main">
-      <div className="homepage-buttons_holder">
-          <div className="homepage-button_container">
-          <button onClick={logout}>Log Out</button>
-          </div>
-        <div className='homepage-designers-join'>
-          <p>Want to join our team of designers? <a>Help dress 'em up</a> </p>
-        </div>
-      </div>
+      <div className="homepage-main">
+      {/* <OpengraphReactComponent  
+        site='https://www.cnn.com/2021/01/06/politics/california-stimulus-check-https://bananarepublicfactory.gapfactory.com/browse/product.do?pid=652909001&grid=pds_1_5_1&rrec=true#pdp-page-contentproposal/index.html'  
+        // appId=
+        size='small'   
+        /> */}
       </div>
       </>
   )

@@ -14,4 +14,12 @@ module.exports = {
   googleAPI: {
     key: process.env.GOOGLE_API
   },
+  AWS: {
+    key: process.env.AWS_ACCESS_KEY_ID,
+    secret: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.REGION
+  },
+  openGraph: {
+    key: process.env.OPEN_GRAPH_API
+  }
 };

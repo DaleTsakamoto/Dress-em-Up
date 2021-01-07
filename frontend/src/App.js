@@ -7,6 +7,10 @@ import * as sessionActions from "./store/session";
 import Navigation from './components/Navigation'
 import SplashPage from './components/SplashPage'
 import HomePage from './components/HomePage'
+import Orders from './components/Orders'
+import Search from './components/Search'
+import Account from './components/Account'
+import Header from './components/Header'
 
 
 function App() {
@@ -21,12 +25,27 @@ function App() {
     <>
       <Switch>
         <Route path="/signup">
-          <Navigation isLoaded={isLoaded}/>
           <SignupFormPage />
+        </Route>
+        <Route path="/orders">
+          <Orders />
+          <Navigation />
+        </Route>
+        <Route path="/search">
+          <Search />
+          <Navigation />
+        </Route>
+        <Route path="/account">
+          <Account />
+          <Navigation />
         </Route>
         <Route path="/">
           {sessionUser ? 
-            <HomePage />
+            <>
+              <Header />
+              <HomePage />
+              <Navigation />
+            </>
             :
             <SplashPage />
         }
