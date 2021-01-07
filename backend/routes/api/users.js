@@ -2,8 +2,9 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
+
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie } = require('../../utils/auth');
+const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 const router = express.Router();
@@ -59,16 +60,16 @@ router.post(
 
 /****************** USERS PAGE **************************/
 
-// router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-//   const userId = parseInt(req.params.id, 10)
-//   const user = await User.findByPk(userId)
-//   if (user) {
-//     return res.json({
-//       user
-//     })
-//   }
-//     return res.json('No User Found!');
-//   }))
+router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10)
+  const user = await User.findByPk(userId)
+  if (user) {
+    return res.json({
+      user
+    })
+  }
+    return res.json('No User Found!');
+  }))
 
 
 module.exports = router;

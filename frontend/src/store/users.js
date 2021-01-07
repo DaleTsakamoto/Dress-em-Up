@@ -1,57 +1,53 @@
 import { fetch } from './csrf'
 
-const FIND_PERSON = 'session/findPerson'
-const FIND_USERS = 'tasks/findUsers'
+const FIND_USER = 'session/findUser'
+const FIND_DESIGNERS = 'tasks/findDesigners'
 
-const findUsers = (users) => {
+const findDesigners = (designers) => {
   return {
-    type: FIND_USERS,
-    users
+    type: FIND_DESIGNERS,
+    designers
   }
 }
 
-const findPerson = (person) => {
+const findUser = (user) => {
   return {
-    type: FIND_PERSON,
-    person
+    type: FIND_USER,
+    user
   }
 }
 
-export const searchPerson = (urlId) => async (dispatch) => {
-  const res = await fetch(`/api/people/${urlId}`, {
+export const searchUser = (urlId) => async (dispatch) => {
+  const res = await fetch(`/api/users/${urlId}`, {
     method: 'GET',
   })
-  dispatch(findPerson(res.data.person));
+  dispatch(findUser(res.data.user));
   return res
 }
 
 
 
-export const searchPeople = (coords) => async (dispatch) => {
+export const searchDesigners = (coords) => async (dispatch) => {
   const { lat, lng } = coords;
-  const res = await fetch(`/api/people`, {
+  const res = await fetch(`/api/users`, {
     method: 'POST',
     body: JSON.stringify({
       lat,
       lng
     }),
   })
-  dispatch(findUsers(res.data.users));
+  dispatch(findDesigners(res.data.users));
   return res
 }
 
-const initialState = { people: null }
+const initialState = { user: null }
 
 const usersReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case FIND_USERS:
+    case FIND_USER:
       newState = Object.assign({}, state)
-      newState.users = action.users;
-      return newState;
-    case FIND_PERSON:
-      newState = Object.assign({}, state)
-      newState.person = action.person;
+      newState.user = action.user;
       return newState;
     default:
       return state;

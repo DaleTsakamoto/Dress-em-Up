@@ -10,11 +10,11 @@ const Header = () => {
 
   return (
     <div className='header-container pattern-cross-dots-lg'>
-      <NavLink className='header-navlinks' to="/user">
+      {/* <NavLink className='header-navlinks' to="/user">
         <div className='header-home-category'>
           <i className="fas fa-user-circle"></i>
         </div>
-      </NavLink>
+      </NavLink> */}
       <NavLink className='header-navlinks' to="/new-request">
         <div className='header-home-category'>
           <i className="fab fa-shopify"></i>

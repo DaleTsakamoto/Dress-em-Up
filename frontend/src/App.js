@@ -36,6 +36,7 @@ function App() {
           <Navigation />
         </Route>
         <Route path="/account">
+          <Header />
           <Account />
           <Navigation />
         </Route>

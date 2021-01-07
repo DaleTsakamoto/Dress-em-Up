@@ -1,0 +1,84 @@
+.account-header-info{
+  padding-top: 8vh;
+  top: 8vh;
+  height: 35vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-header-info > i{
+  font-size: 160px;
+}
+
+.account-header-info > h1{
+  margin-top: 2vh;
+  font-size: 72px;
+}
+
+.account-header-info > p{
+  margin-top: 1.5vh;
+  font-size: 32px;
+  color: #23BDBC;
+}
+
+.account-places{
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 42px;
+  height: 4vh;
+  width: 100vw;
+  background-color: #fef0bc;
+}
+
+.pattern-cross-dots-lg{
+  color: #23BDBC;
+  background-color: #fef0bc
+}
+
+.account-places > p{
+  margin-left: 5vw;
+  color: black;
+}
+
+.account-places-home{
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 5vw;
+}
+
+.account-places-home > i{
+  font-size: 48px;
+}
+
+.account-places-home-header{
+  margin-left: 5vw;
+  font-size: 36px;
+}
+
+.account-places-home-address{
+  margin-left: 10vw;
+  font-size: 32px;
+}
+
+.account-places-spacer{
+height: 2vh;
+width: 100vw;
+}
+
+.account-logout{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 8vh;
+  font-size: 44px;
+  margin-left: 5vw;
+}
+
+.account-bottom{
+  height: 38vh;
+}

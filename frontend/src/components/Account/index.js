@@ -13,7 +13,6 @@ function Account() {
   const [isLoaded, setIsLoaded] = useState(false);
   
   const logout = (e) => {
-    e.preventDefault();
     dispatch(sessionActions.logout());
     let path = '/'
     return history.push(path);
@@ -22,10 +21,31 @@ function Account() {
   return (
     <>
       <div className="account-main">
-      <button onClick={logout}>Log Out</button>
-        ACCOUNT!!!!
+        <div className='account-header-info'>
+          <i className="fas fa-user-circle"></i>
+          <h1>{sessionUser.firstName} {sessionUser.lastName}</h1>
+          <p>Edit Account</p>
+        </div>
+        <div className='account-places pattern-cross-dots-lg'>
+          <p>Saved Locations</p>
+        </div>
+        <div className='account-places-home'>
+          <i className="fas fa-home"></i>
+          <p className='account-places-home-header'>Home</p>
+          {sessionUser.address ? 
+            <div className='account-places-home-address'>
+              <p>{sessionUser.address}<br />
+              {sessionUser.city}, {sessionUser.state}, {sessionUser.zipCode}</p>
+            </div>
+            :
+            null
+        }
+        </div>
+        <div className='account-places-spacer pattern-cross-dots-lg'></div>
+        <div className='account-logout' onClick={logout}><p>Log Out</p></div>
+        <div className='account-bottom pattern-cross-dots-lg'></div>
       </div>
-      </>
+    </>
   )
 }
 
