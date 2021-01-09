@@ -1,14 +1,22 @@
 .homepage-container{
   height: 92vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .homepage-feed{
-  margin-top: 8vh;
+  margin-top: 9vh;
+  font-size: 32px;
+  display: grid;
+  grid-template-columns: 2.5fr 7.5fr;
   height: 100%;
-  width: 60vw;
-  color: red;
-  z-index: 1000;
+  width: 92vw;
+  color: #DD356E;
+}
+
+.homepage-feed-names{
+  grid-column: 2/3;
 }
 
 /* .pattern-horizontal-stripes-xl{

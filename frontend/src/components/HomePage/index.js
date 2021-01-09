@@ -41,9 +41,10 @@ function HomePage() {
   
 
   return isLoaded && isLoaded2 &&(
-      <div className="homepage-container">
-      {console.log(designers['2'].firstName)}
-      <p className='homepage-feed'>{designers['2'].firstName}{ designers['2'].lastName}recommended clothes for</p>
+    <div className="homepage-container">
+      <div className='homepage-feed'>
+        <p className='homepage-feed-names'>{designers['3'].firstName} {designers['3'].lastName} found clothes for { recommendations[0].userFirstName} { recommendations[0].userLastName}</p>
+      </div>
       </div>
   )
 }
