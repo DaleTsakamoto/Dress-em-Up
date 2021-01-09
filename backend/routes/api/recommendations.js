@@ -2,10 +2,9 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
-
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Recommendation, Sequelize } = require('../../db/models');
+const { User, Recommendation, Sequelize, sequelize } = require('../../db/models');
 
 const router = express.Router();
 
@@ -65,15 +64,20 @@ const Op = Sequelize.Op;
 /****************** GET RECOMMENDATIONS **************************/
 
 router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-    const user = parseInt(req.params.id, 10)
-    const recommendations = await Recommendation.findAll({
-      where: {
-        userId: {
-          [Op.ne]: user
-        },
-      }
-    })
-  
+    const user = req.params.id
+    // const recommendations = await User.findAll({
+    //   where: {
+    //     id: {
+    //       [Op.ne]: user
+    //     },
+    //     attributes: ['id', 'firstName', 'lastName'],
+    //     include: Recommendation
+    //   }
+    // })
+  // console.log("THIS IS SEQUELISE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", sequelize.query)
+  let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "apparelChoice", description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE NOT "userId"=${user}`);
+  // UNION SELECT name, "apparelChoice", description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id
+  let recommendations = oldRecommendations[0];
     return res.json({ recommendations });
     }))
   

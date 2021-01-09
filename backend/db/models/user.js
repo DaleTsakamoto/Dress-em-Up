@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsToMany(models.User, {through: "Recommendations", as: "designerRecommendations", foreignKey: "userId", otherKey: "designerId"});
       User.belongsToMany(models.User, {through: "Recommendations", as: "userRecommendations", foreignKey: "designerId", otherKey: "userId" });
       User.belongsToMany(models.User, {through: "Requests", as: "designerRequests", foreignKey: "userId", otherKey: "designerId"});
-      User.belongsToMany(models.User, {through: "Requests", as: "userRequests", foreignKey: "designerId", otherKey: "userId" });
+      User.belongsToMany(models.User, { through: "Requests", as: "userRequests", foreignKey: "designerId", otherKey: "userId" });
     }
   };
   User.init(
