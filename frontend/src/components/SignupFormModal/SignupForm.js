@@ -30,7 +30,7 @@ function SignupForm({open}) {
   };
 
   return (
-    <div className={`pattern-diagonal-stripes-lg ${open ? 'signup-form-holder-open' : 'signup-form-holder-close'}`}>
+    <div className={`pattern-cross-dots-lg ${open ? 'signup-form-holder-open' : 'signup-form-holder-close'}`}>
         <h1 className='signup-form-title'>Sign-Up</h1>
         <form onSubmit={handleSubmit} className="signup-form">
             <ul>

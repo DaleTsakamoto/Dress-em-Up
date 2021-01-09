@@ -37,23 +37,23 @@ function LoginForm({open}) {
   }
 
   return (
-    <div className={`pattern-diagonal-stripes-lg ${open ? 'login-form-holder-open' : 'login-form-holder-close'}`}>
+    <div className={`pattern-cross-dots-lg ${open ? 'login-form-holder-open' : 'login-form-holder-close'}`}>
         <h1 className='login-form-title'>Login</h1>
         <form onSubmit={handleSubmit} className="login-form">
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-        </ul>
+          <ul>
+              {errors.map((error, idx) => (
+                  <li key={idx}>{error}</li>
+              ))}
+          </ul>
         <div className='login-input-holder'>
-              <input 
-                  type="text"
-                  value={credential}
-                  placeholder='Username or Email'
-                  onChange={(e) => setCredential(e.target.value)}
-                  required
-                  className="login-input"
-              />
+          <input 
+              type="text"
+              value={credential}
+              placeholder='Username or Email'
+              onChange={(e) => setCredential(e.target.value)}
+              required
+              className="login-input"
+          />
         </div>
         <div className='login-input-holder'>
                 <input 

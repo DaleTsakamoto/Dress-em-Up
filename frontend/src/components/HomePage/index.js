@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Redirect } from 'react-router-dom'
-import OpengraphReactComponent from 'opengraph-react'
+import { useHistory } from 'react-router-dom'
 
 import * as sessionActions from '../../store/session';
+import * as userActions from '../../store/users';
+import * as recommendationActions from '../../store/recommendations';
 
 import './HomePage.css';
 
@@ -11,7 +12,21 @@ function HomePage() {
   const history = useHistory()
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
+  const recommendations = useSelector(state => state.recommendations.recommendations);
+  const designers = useSelector(state => state.users.designers);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded2, setIsLoaded2] = useState(false);
+
+  useEffect(() => {
+      dispatch(userActions.searchDesigners())
+        .then(() => setIsLoaded(true))
+  }, [dispatch])
+  
+  useEffect(() => {
+    let id = sessionUser.id
+    dispatch(recommendationActions.searchRecommendations(id))
+      .then(() => setIsLoaded2(true))
+},[dispatch])
 
 //   let logInClick = () => {
 //     let path = '/login'
@@ -22,26 +37,14 @@ function HomePage() {
 //     let path = '/signup'
 //     history.push(path);
 // }
-  
-const logout = (e) => {
-  e.preventDefault();
-  dispatch(sessionActions.logout());
-  return (
-    <Redirect to='/' />
-  )
-};
+
   
 
-  return (
-    <>
-      <div className="homepage-main">
-      {/* <OpengraphReactComponent  
-        site='https://www.cnn.com/2021/01/06/politics/california-stimulus-check-https://bananarepublicfactory.gapfactory.com/browse/product.do?pid=652909001&grid=pds_1_5_1&rrec=true#pdp-page-contentproposal/index.html'  
-        // appId=
-        size='small'   
-        /> */}
+  return isLoaded && isLoaded2 &&(
+      <div className="homepage-container">
+      {console.log(designers['2'].firstName)}
+      <p className='homepage-feed'>{designers['2'].firstName}{ designers['2'].lastName}recommended clothes for</p>
       </div>
-      </>
   )
 }
 

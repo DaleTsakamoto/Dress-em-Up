@@ -12,6 +12,14 @@ module.exports = {
         type: Sequelize.STRING(255),
         allowNull: false
       },
+      apparelChoice: {
+        type: Sequelize.STRING(255),
+        allowNull: false
+      },
+      description: {
+        type: Sequelize.STRING(255),
+        allowNull: false
+      },
       hyperlinks: {
         type: Sequelize.TEXT,
         allowNull: false

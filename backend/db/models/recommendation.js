@@ -5,6 +5,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       allowNull: false
     },
+    apparelChoice: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
     hyperlinks: {
       type: DataTypes.TEXT,
       allowNull: false

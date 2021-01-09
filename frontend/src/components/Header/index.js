@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+import NewRequestModal from '../NewRequest/index.js'
+
 import './Header.css'
 
 const Header = () => {
@@ -15,12 +17,7 @@ const Header = () => {
           <i className="fas fa-user-circle"></i>
         </div>
       </NavLink> */}
-      <NavLink className='header-navlinks' to="/new-request">
-        <div className='header-home-category'>
-          <i className="fab fa-shopify"></i>
-          <p>Request</p>
-        </div>
-      </NavLink>
+      <NewRequestModal />
     </div>
   );
 }

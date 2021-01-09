@@ -27,20 +27,17 @@ export const searchUser = (urlId) => async (dispatch) => {
 
 
 
-export const searchDesigners = (coords) => async (dispatch) => {
-  const { lat, lng } = coords;
+export const searchDesigners = () => async (dispatch) => {
+  console.log("STORE IS WORKING!!!!!!!!!")
   const res = await fetch(`/api/users`, {
-    method: 'POST',
-    body: JSON.stringify({
-      lat,
-      lng
-    }),
+    method: 'GET',
   })
-  dispatch(findDesigners(res.data.users));
+  dispatch(findDesigners(res.data.designers));
+  console.log("STORE RES!!!!", res)
   return res
 }
 
-const initialState = { user: null }
+const initialState = { user: null, designers: null }
 
 const usersReducer = (state = initialState, action) => {
   let newState;
@@ -48,6 +45,10 @@ const usersReducer = (state = initialState, action) => {
     case FIND_USER:
       newState = Object.assign({}, state)
       newState.user = action.user;
+      return newState;
+    case FIND_DESIGNERS:
+      newState = Object.assign({}, state)
+      newState.designers = action.designers;
       return newState;
     default:
       return state;

@@ -48,9 +48,9 @@
   100% {bottom: -30vh}
   }
 
-.pattern-diagonal-stripes-lg{
-  background-color: white;
-  color: whitesmoke;
+.pattern-cross-dots-lg{
+  color: #23BDBC;
+  background-color: #fef0bc
 }
 
 .login-form-title{

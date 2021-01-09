@@ -1,6 +1,14 @@
-.homepage-main{
+.homepage-container{
   height: 92vh;
   width: 100vw;
+}
+
+.homepage-feed{
+  margin-top: 8vh;
+  height: 100%;
+  width: 60vw;
+  color: red;
+  z-index: 1000;
 }
 
 /* .pattern-horizontal-stripes-xl{

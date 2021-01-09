@@ -72,4 +72,20 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
   }))
 
 
+/****************** GET DESIGNERS **************************/
+
+router.get('/', requireAuth, asyncHandler(async (req, res) => {
+  const oldDesigners = await User.findAll({
+    where: {
+      userType: false,
+    }
+  })
+  let designers = {}
+  for (let i = 0; i < oldDesigners.length; i++) {
+    designers[oldDesigners[i].id] = oldDesigners[i]
+  }
+    return res.json({ designers });
+    }))
+  
+
 module.exports = router;

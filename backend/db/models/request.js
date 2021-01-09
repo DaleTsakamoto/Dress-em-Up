@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       references: {model: 'Users'}
     },
   }, {});
-  Request.associate = function(models) {
+  Request.associate = function (models) {
   };
   return Request;
 };

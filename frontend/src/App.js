@@ -24,14 +24,16 @@ function App() {
   return isLoaded && (
     <>
       <Switch>
-        <Route path="/signup">
+        {/* <Route path="/signup">
           <SignupFormPage />
-        </Route>
+        </Route> */}
         <Route path="/orders">
+          <Header />
           <Orders />
           <Navigation />
         </Route>
         <Route path="/search">
+          <Header />
           <Search />
           <Navigation />
         </Route>
