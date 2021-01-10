@@ -1,6 +1,8 @@
 import { fetch } from './csrf'
 
 const SET_USER = 'session/setUser'
+const SET_USER_REQUESTS = 'session/setUserRequests'
+const SET_USER_RECOMMENDATIONS = 'session/setUserRecommendations'
 const REMOVE_USER = 'session/removeUser'
 
 const setUser = (user) => {
@@ -10,11 +12,41 @@ const setUser = (user) => {
   }
 }
 
+const setUserRequests = (requests) => {
+  return {
+    type: SET_USER_REQUESTS,
+    requests,
+  }
+}
+
+const setUserRecommendations = (recommendations) => {
+  return {
+    type: SET_USER_RECOMMENDATIONS,
+    recommendations,
+  }
+}
+
 const removeUser = () => {
   return {
     type: REMOVE_USER,
   };
 };
+
+export const searchUserRequests = (id) => async (dispatch) => {
+  const res = await fetch(`/api/session/${id}/requests`, {
+    method: 'GET',
+  })
+  dispatch(setUserRequests(res.data.requests));
+  return res
+}
+
+export const searchUserRecommendations = (id) => async (dispatch) => {
+  const res = await fetch(`/api/session/${id}/recommendations`, {
+    method: 'GET',
+  })
+  dispatch(setUserRecommendations(res.data.recommendations));
+  return res
+}
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -55,7 +87,7 @@ export const logout = () => async (dispatch) => {
   return res;
 };
 
-const initialState = { user:null }
+const initialState = { user:null, requests:null, recommendations:null }
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -63,6 +95,14 @@ const sessionReducer = (state = initialState, action) => {
     case SET_USER:
       newState = Object.assign({}, state);
       newState.user = action.user;
+      return newState;
+    case SET_USER_REQUESTS:
+      newState = Object.assign({}, state);
+      newState.requests = action.requests;
+      return newState;
+    case SET_USER_RECOMMENDATIONS:
+      newState = Object.assign({}, state);
+      newState.recommendations = action.recommendations;
       return newState;
     case REMOVE_USER:
       newState = Object.assign({}, state);

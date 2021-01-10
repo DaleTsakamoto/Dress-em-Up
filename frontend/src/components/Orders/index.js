@@ -8,46 +8,39 @@ import Gallery from '../../imageUploader/Gallery'
 
 import './Orders.css';
 
-function transformUploads(uploads) {
-  return uploads.map(u => ({
-    original: u.imageUrl,
-    thumbnail: u.thumbnailUrl
-  }));
-}
-
 function Orders() {
   const history = useHistory()
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
+  const userRequests = useSelector(state => state.session.requests)
+  const userRecommendations = useSelector(state => state.session.recommendations)
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded2, setIsLoaded2] = useState(false);
   const [images, setImages] = useState(null);
-
-  const fetchUploads = useCallback(() => {
-    fetch('/api/uploads')
-      .then(response => response.json().then(data => setImages(transformUploads(data))))
-      .catch(console.error)
-  }, []);
+  const id = sessionUser.id
 
   useEffect(() => {
-    fetchUploads();
-  }, [fetchUploads])
+    dispatch(sessionActions.searchUserRequests(id))
+    .then(() => setIsLoaded(true))
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(sessionActions.searchUserRecommendations(id))
+    .then(() => setIsLoaded2(true))
+  }, [dispatch])
   
 
-  return (
-    <>
-      <div className="container">
+  return isLoaded && isLoaded2 &&(
+    <div className='orders-container'>
+      <div className="orders-requests-container">
         <div className="upload-container">
-          <Upload fetchUploads={fetchUploads} />
         </div>
       </div>
-      <div className="container">
+      <div className="orders-recommendations-container">
         <div className="gallery-container">
-          {images && images.length ? (
-            <Gallery images={images} />
-          ) : null}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

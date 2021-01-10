@@ -1,13 +1,12 @@
-.container {
-  display: flex; /* or inline-flex */
-  justify-content: center;
-  margin-bottom: 50px;
+.orders-container{
+  height: 92vh;
+  width: 100vw;
 }
 
-.upload-container {
-  width: 600px;
-}
-
-.gallery-container {
-  max-width: 700px;
+.orders-requests-container{
+  height: 92vh;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  
 }

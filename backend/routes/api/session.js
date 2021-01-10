@@ -3,8 +3,8 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
+const { User, Request, Recommendation } = require('../../db/models');
 
 const router = express.Router();
 
@@ -20,6 +20,38 @@ const validateLogin = [
     .withMessage('Please provide a password.'),
   handleValidationErrors,
 ];
+
+
+// /****************** GET USER REQUESTS **************************/
+
+router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10)
+  const requests = await Request.findAll({
+    where: {
+      userId: userId,
+    },
+    order: [
+      ['createdAt', 'ASC']
+    ],
+  })
+    return res.json({ requests });
+}))
+  
+// /****************** GET USER RECOMMENDATIONS **************************/
+
+router.get('/:id(\\d+)/recommendations', requireAuth, asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10)
+  const recommendations = await Recommendation.findAll({
+    where: {
+      userId: userId,
+    },
+    order: [
+      ['createdAt', 'ASC']
+    ],
+  })
+    return res.json({ recommendations });
+  }))
+
 
 /****************** LOGIN **************************/
 
