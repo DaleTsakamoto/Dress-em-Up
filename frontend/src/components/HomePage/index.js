@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 
 import * as sessionActions from '../../store/session';
 import * as userActions from '../../store/users';
@@ -39,13 +39,27 @@ function HomePage() {
 // }
 
   
+  let hyperlinksArray;
+  let clothes;
+  let random = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
   return isLoaded && isLoaded2 &&(
     <div className="homepage-container">
       {Object.values(recommendations).map((rec, idx) => {
+        {
+          hyperlinksArray = rec.hyperlinks.split(',');
+          clothes = rec.apparelChoice.split(',');
+          clothes.pop();
+          hyperlinksArray.pop();
+          console.log(random(0, 3))
+          console.log(clothes, hyperlinksArray)}
         return (
-        <>
-          <div className='homepage-feed-box'>
+          <>
+            <div key={ idx } className='homepage-feed-box'>
             <img className='homepage-feed-image' src={`${designers[`${rec.designerId}`].avatar}`} />
             <div className='homepage-feed-text'>
               <p className='homepage-feed-names'>{designers[`${rec.designerId}`].firstName} {designers[`${rec.designerId}`].lastName} found clothes for {rec.userFirstName} {rec.userLastName}</p>
@@ -54,9 +68,16 @@ function HomePage() {
             </div>
             </div>
             <div className='homepage-feed-likes-comments'>
-              <img src='../images/dress-stand.ico' className='homepage-feed-dress' />
+              {hyperlinksArray.map(function (link) {
+                let item = clothes[random(0, (clothes.length - 1))]
+                  return (
+                    <a href={`${link}`}>
+                      <img src={`../images/${item}.ico`} className='homepage-feed-icons' />
+                    </a>
+                  )
+              })}
           </div>
-          <div className='homepage-feed-line' />
+            <div className={`homepage-feed-line ${(recommendations.length - 1 === idx) ? 'homepage-feed-spacer' : null}`} />
         </>
         )
       })}

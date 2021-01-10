@@ -8,9 +8,9 @@
 }
 
 .new-request-header > i {
-    font-size: 50px;
+    font-size: 64px;
     color: #23BDBC;
-    padding-right: 1vh;
+    padding-right: 2vh;
 }
 
 .new-request-form-holder-open {
