@@ -33,7 +33,8 @@ function Orders() {
   return isLoaded && isLoaded2 &&(
     <div className='orders-container'>
       <div className="orders-requests-container">
-        <div className="upload-container">
+        <div className="orders-request-ind">
+          <h2>Request to designer.firstName designer.lastName</h2>
         </div>
       </div>
       <div className="orders-recommendations-container">
