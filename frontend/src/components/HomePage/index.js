@@ -42,9 +42,24 @@ function HomePage() {
 
   return isLoaded && isLoaded2 &&(
     <div className="homepage-container">
-      <div className='homepage-feed'>
-        <p className='homepage-feed-names'>{designers['3'].firstName} {designers['3'].lastName} found clothes for { recommendations[0].userFirstName} { recommendations[0].userLastName}</p>
-      </div>
+      {Object.values(recommendations).map((rec, idx) => {
+        return (
+        <>
+          <div className='homepage-feed-box'>
+            <img className='homepage-feed-image' src={`${designers[`${rec.designerId}`].avatar}`} />
+            <div className='homepage-feed-text'>
+              <p className='homepage-feed-names'>{designers[`${rec.designerId}`].firstName} {designers[`${rec.designerId}`].lastName} found clothes for {rec.userFirstName} {rec.userLastName}</p>
+              <p className='homepage-feed-title'>{rec.name}</p>
+              <p className='homepage-feed-description'>{rec.description}</p>
+            </div>
+            </div>
+            <div className='homepage-feed-likes-comments'>
+              <img src='../images/dress-stand.ico' className='homepage-feed-dress' />
+          </div>
+          <div className='homepage-feed-line' />
+        </>
+        )
+      })}
       </div>
   )
 }

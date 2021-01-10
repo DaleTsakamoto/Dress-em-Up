@@ -1,22 +1,74 @@
 .homepage-container{
-  height: 92vh;
+  height: 90vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
+  margin-top: 10vh;
+  overflow: scroll;
 }
 
-.homepage-feed{
-  margin-top: 9vh;
-  font-size: 32px;
+.homepage-feed-box{
+  height: 14vh;
+  margin-left: 10vw;
+  font-size: 28px;
   display: grid;
-  grid-template-columns: 2.5fr 7.5fr;
-  height: 100%;
-  width: 92vw;
-  color: #DD356E;
+  grid-template-columns: 2.1fr 7.9fr;
+}
+
+.homepage-feed-image{
+  grid-column: 1/2;
+  height: 5vh;
+  width: 5vh;
+  border-radius: 50%;
+}
+
+.homepage-feed-text{
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+  margin-left: -4vw;
+  margin-right: 7vw;
 }
 
 .homepage-feed-names{
+  height: 2vh;
+  padding-top: .75vh;
+  color: rgb(54, 47, 47)
+}
+
+.homepage-feed-title{
   grid-column: 2/3;
+  color: #23BDBC;
+  font-size: 28px;
+}
+
+.homepage-feed-description{
+  margin-top: 2vh;
+  font-size: 22px;
+}
+
+.homepage-feed-likes-comments{
+  font-size: 28px;
+  align-self: flex-end;
+  width: 75vw;
+  margin-bottom: 1.5vh;
+}
+
+.homepage-feed-likes{
+  margin-right: 2vw;
+}
+
+.homepage-feed-dress{
+  height: 64px;
+  width: 64px;
+  margin-bottom: -11px;
+}
+
+.homepage-feed-line{
+  align-self: flex-end;
+  width: 75vw;
+  border-bottom: .5px solid #23BDBC;
+  margin-bottom: 2vh;
 }
 
 /* .pattern-horizontal-stripes-xl{

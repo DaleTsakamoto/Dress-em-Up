@@ -16,12 +16,6 @@ function NewRequest({open, onClose}) {
   const[images, setImages] = useState([])
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState('')
-  const [outerwear, setOuterwear] = useState(false)
-  const [dress, setDress] = useState(false)
-  const [pants, setPants] = useState(false)
-  const [shirt, setShirt] = useState(false)
-  const [other, setOther] = useState(false)
-  const[checked, setChecked] = useState(false)
   const [apparelChoice, setApparelChoice] = useState([])
   const[designerId, setDesignerId] = useState(null)
   const [errors, setErrors] = useState([])
