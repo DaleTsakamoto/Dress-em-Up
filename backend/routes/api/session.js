@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { User, Request, Recommendation } = require('../../db/models');
+const { User, Request, Recommendation, sequelize } = require('../../db/models');
 
 const router = express.Router();
 
@@ -26,14 +26,16 @@ const validateLogin = [
 
 router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
-  const requests = await Request.findAll({
-    where: {
-      userId: userId,
-    },
-    order: [
-      ['createdAt', 'ASC']
-    ],
-  })
+  // const requests = await Request.findAll({
+  //   where: {
+  //     userId: userId,
+  //   },
+  //   order: [
+  //     ['createdAt', 'ASC']
+  //   ],
+  // })
+  let oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );
+  let requests = oldRequests[0];
     return res.json({ requests });
 }))
   
@@ -41,14 +43,16 @@ router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => 
 
 router.get('/:id(\\d+)/recommendations', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
-  const recommendations = await Recommendation.findAll({
-    where: {
-      userId: userId,
-    },
-    order: [
-      ['createdAt', 'ASC']
-    ],
-  })
+  // const recommendations = await Recommendation.findAll({
+  //   where: {
+  //     userId: userId,
+  //   },
+  //   order: [
+  //     ['createdAt', 'ASC']
+  //   ],
+  // })
+  let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"`);
+  let recommendations = oldRecommendations[0];
     return res.json({ recommendations });
   }))
 

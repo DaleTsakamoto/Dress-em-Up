@@ -8,21 +8,31 @@ import Upload from '../../imageUploader/Upload'
 import Gallery from '../../imageUploader/Gallery'
 
 import * as requestActions from '../../store/requests';
+import * as userActions from '../../store/users';
 
 function NewRequest({open, onClose}) {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const designers = useSelector(state => state.users.designers)
-  const[images, setImages] = useState([])
+  const [images, setImages] = useState([])
+  const [imagesArray, setImagesArray] = useState([])
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState('')
   const [apparelChoice, setApparelChoice] = useState([])
-  const[designerId, setDesignerId] = useState(null)
+  const [designerId, setDesignerId] = useState(null)
   const [errors, setErrors] = useState([])
   const [message, setMessage] = useState('')
   const [file, setFile] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const userId = sessionUser.id
+
+  useEffect(() => {
+    dispatch(userActions.searchDesigners())
+      .then((res) => {
+        setDesignerId(Object.values(res.data.designers)[0].id)
+      })
+      .then(() => setIsLoaded(true))
+}, [])
 
   const getImage = e => {
     const files = e.target.files;
@@ -57,6 +67,7 @@ function NewRequest({open, onClose}) {
           setTimeout(()=>{
             setMessage('');
             setImage(realKey)
+            setImagesArray([...images, realKey])
             document.querySelector('#upload-image').value='';
           }, 2000)
         })
@@ -72,7 +83,8 @@ function NewRequest({open, onClose}) {
     const options2 = {
       params: {
         Key: image,
-        ContentType: 'image/jpeg'
+        ContentType: 'image/jpeg',
+        expires: 31536000,
       }
     };
 
@@ -90,7 +102,7 @@ function NewRequest({open, onClose}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-        dispatch(requestActions.requestAdd({ userId, images, description, designerId, apparelChoice }))
+        dispatch(requestActions.requestAdd({ userId, imagesArray, description, designerId, apparelChoice }))
         .catch(res => {
           if (res.data && res.data.errors) {
             setErrors(res.data.errors)

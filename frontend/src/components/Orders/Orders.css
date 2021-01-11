@@ -1,11 +1,11 @@
 .orders-container{
-  height: 92vh;
+  height: 90vh;
   width: 100vw;
 }
 
 .orders-requests-container{
   margin-top: 10vh;
-  height: 92vh;
+  height: 90vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -13,6 +13,38 @@
 }
 
 .orders-request-ind{
-  height: 14vh;
+  max-height: 24vh;
   width: 80vw;
+}
+
+.orders-request-ind > h2{
+  margin-top: .75vh;
+  font-size: 32px;
+  color: #DD356E;
+  font-weight: bold;
+}
+
+.order-requests-ind-message{
+  margin-top: 1.25vh;
+  font-size: 28px;
+}
+
+.order-requests-ind-message-description{
+  margin-top: .75vh;
+  font-size: 22px;
+  /* line-height: .2vh; */
+}
+
+.orders-requests-line{
+  align-self: flex-end;
+  width: 100vw;
+  border-bottom: .5px solid #DD356E;
+  margin-bottom: 2vh;
+}
+
+.orders-request-single-image{
+  margin-top: 1.5vh;
+  margin-bottom: 1.5vh;
+  max-height: 10vh;
+  max-width: 10vh;
 }

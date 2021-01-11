@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.TEXT
     },
+    isCompleted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
     apparelChoice: {
       type: DataTypes.STRING(255),
       allowNull: false

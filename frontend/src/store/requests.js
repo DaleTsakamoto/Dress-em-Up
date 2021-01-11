@@ -42,11 +42,13 @@ const updateRequests = (request) => {
 // }
 
 export const requestAdd = (request) => async (dispatch) => {
-  const { userId, images, description, designerId, apparelChoice } = request;
-  let image = images;
+  const { userId, imagesArray, description, designerId, apparelChoice } = request;
+  let image = imagesArray;
+  let isCompleted = false
   const res = await fetch(`/api/requests/${userId}`, {
     method: 'POST',
     body: JSON.stringify({
+      isCompleted,
       image,
       description,
       designerId,

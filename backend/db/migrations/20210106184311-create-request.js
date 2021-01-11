@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      isCompleted: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       image: {
         type: Sequelize.TEXT,
         allowNull: false,

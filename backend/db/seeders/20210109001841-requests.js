@@ -4,20 +4,22 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Requests', [
       {
-        image: 'https://dress-em-up.s3.us-west-1.amazonaws.com/fafb8dff-6f18-4634-8ffc-8c56eb752415.png?AWSAccessKeyId=AKIAISW47K5FXEIWWESA&Expires=1610139368&Signature=3KKJI8uEylybnXg%2BCsfnrJFmXIg%3D',
-        description: 'I LOVE MY WIFE AND WANT TO GET HER THIS DRESS',
-        apparelChoice: 'outerwear,pants,',
+        image: 'e188c395-d347-4a54-8577-7b2ff05bcf40.jpg',
+        description: 'My wife love sthis color dress and looks fantastic in it!  I hope you can find something like it!',
+        apparelChoice: 'dress,other',
+        isCompleted: false,
         userId: 1,
-        designerId: 2,
+        designerId: 5,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        image: 'https://dress-em-up.s3.us-west-1.amazonaws.com/46c01624-beeb-43b6-871c-cdeb67c3dccd.png?AWSAccessKeyId=AKIAISW47K5FXEIWWESA&Expires=1610142531&Signature=CJ3LzycgeAtni8167oQHzJUZlag%3D',
-        description: 'The great gal in the world!!!!!',
-        apparelChoice: 'dress,outerwear,',
+        image: '709f8d41-a778-4e6a-8901-b0d9da524e52.jpg',
+        description: 'My son wears this jacket all the time.  He loves it, and wants some like it in other colors.  He also loves blue dress shirts!',
+        apparelChoice: 'outerwear,shirt',
+        isCompleted: false,
         userId: 1,
-        designerId: 11,
+        designerId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },

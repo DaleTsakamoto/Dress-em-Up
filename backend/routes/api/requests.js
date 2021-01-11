@@ -33,12 +33,12 @@ router.post(
   validateRequest,
   requireAuth,
   asyncHandler(async (req, res) => {
-    let { image, description, designerId, apparelChoice } = req.body;
+    let { image, description, designerId, apparelChoice, isCompleted } = req.body;
     const userId = req.params.id
+    console.log("THIS IS THE IMAGE!!!!!!!!!", image)
     image = image.join(',')
     apparelChoice = apparelChoice.join(',')
-    const request = await Request.build({ image, description, designerId, apparelChoice, userId });
-    console.log("BACKEND REQUEST", request)
+    const request = await Request.build({ image, description, designerId, apparelChoice, userId, isCompleted });
     await request.save();
     return res.json({
       request,
