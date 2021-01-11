@@ -55,8 +55,8 @@ function HomePage() {
           clothes = rec.apparelChoice.split(',');
           clothes.pop();
           hyperlinksArray.pop();
-          console.log(random(0, 3))
-          console.log(clothes, hyperlinksArray)}
+        }
+        
         return (
           <>
             <div key={ idx } className='homepage-feed-box'>

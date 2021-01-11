@@ -123,15 +123,15 @@ function NewRequest({open, onClose}) {
   }
 
   return (
-      <div className={`pattern-cross-dots-xl ${open ? 'new-request-form-holder-open' : 'new-request-form-holder-close'}`}>
+      <div className={`${open ? 'new-request-form-holder-open' : 'new-request-form-holder-close'}`}>
         <div className='new-request-header'>
           <i class="fas fa-arrow-left" onClick={onClose}></i>
       </div>
       <h1 className='new-request-form-title'>New Request</h1>
-      <div className='new-request-form-container-background'>
-        <div className='new-request-form-container'>
-        <div className='new-request-upload-container'>
+      <div className='pattern-cross-dots-lg new-request-form-container-background'>
         <h1 className='new-request-form-subtitle'>Upload Images</h1>
+        {/* <div className='new-request-form-container'> */}
+        <div className='new-request-upload-container'>
         <input
           id='upload-image'
           type='file'
@@ -154,8 +154,8 @@ function NewRequest({open, onClose}) {
           )}
             </div>
           </div>
-          <div className='new-request-main-form-container'>
           <h1 className='new-request-form-subtitle-2'>More Details</h1>
+          <div className='new-request-main-form-container'>
         <form onSubmit={handleSubmit} className="new-request-form">
             <ul>
                 {errors.map((error, idx) => (
@@ -174,37 +174,47 @@ function NewRequest({open, onClose}) {
           />
         </div>
           <h2 className='new-request-clothing-type'>Type of Clothing</h2>
-          <div className='new-request-input-holder'>
-          <label htmlFor='outerwear'>Outerwear</label>
-          <input
-            onChange={e => checkedApparel(e)}
-            name='outerwear'
-            type='checkbox'
-          />
-          <label htmlFor='dress'>Dress</label>
-          <input
-            onChange={e => checkedApparel(e)}
-            name='dress'
-            type='checkbox'
-          />
-          <label htmlFor='pants'>Pants</label>
-          <input
-            onChange={e => checkedApparel(e)}
-            name='pants'
-            type='checkbox'
-          />
-          <label htmlFor='shirt'>Shirt</label>
-          <input
-            onChange={e => checkedApparel(e)}
-            name='shirt'
-            type='checkbox'
-          />
-          <label htmlFor='other'>Other</label>
-           <input
-            onChange={e => checkedApparel(e)}
-            name='other'
-            type='checkbox'
-            />
+            <div className='new-request-input-holder'>
+              <div className='new-request-input-holder-ind'>
+                <label htmlFor='outerwear'>Outerwear</label>
+                <input
+                  onChange={e => checkedApparel(e)}
+                  name='outerwear'
+                  type='checkbox'
+                />
+              </div>
+              <div className='new-request-input-holder-ind'>
+                <label htmlFor='dress'>Dress</label>
+                <input
+                  onChange={e => checkedApparel(e)}
+                  name='dress'
+                  type='checkbox'
+                />
+              </div>
+              <div className='new-request-input-holder-ind'>
+                <label htmlFor='pants'>Pants</label>
+                <input
+                onChange={e => checkedApparel(e)}
+                name='pants'
+                type='checkbox'
+                />
+              </div>
+              <div className='new-request-input-holder-ind'>
+                <label htmlFor='shirt'>Shirt</label>
+                <input
+                  onChange={e => checkedApparel(e)}
+                  name='shirt'
+                  type='checkbox'
+                />
+              </div>
+              <div className='new-request-input-holder-ind'>
+                <label htmlFor='other'>Other</label>
+                <input
+                  onChange={e => checkedApparel(e)}
+                  name='other'
+                  type='checkbox'
+                />
+              </div>
         </div>
         <div className='new-request-designers'>
         <p id='new-request-designers-label'> Choose a Designer: </p>
@@ -225,7 +235,7 @@ function NewRequest({open, onClose}) {
             </form>
             </div>
       </div>
-      </div>
+      {/* </div> */}
       </div>
 );
 }

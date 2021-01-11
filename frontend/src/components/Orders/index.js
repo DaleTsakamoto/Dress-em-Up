@@ -23,7 +23,8 @@ function Orders() {
 
   useEffect(() => {
     dispatch(sessionActions.searchUserRequests(id))
-    .then(() => setIsLoaded(true))
+      .then(() => setIsLoaded(true))
+      // .then(() => getAWSImage())
   }, [dispatch])
 
   useEffect(() => {
@@ -31,15 +32,15 @@ function Orders() {
     .then(() => setIsLoaded2(true))
   }, [dispatch])
 
-  const getAWSImage = () => {
+  const getAWSImage = async (key) => {
     const generateGetUrl = 'api/uploads/get-url';
     const options2 = {
       params: {
-        Key: userRequests[0].image,
+        Key: key,
         ContentType: 'image/jpeg',
         expires: 31536000,
       }
-    };
+    }; 
   
     axios.get(generateGetUrl, options2).then(res => {
       const { data: getURL } = res;
@@ -49,23 +50,55 @@ function Orders() {
         return getURL
       }
     });
-}
+  }
+  
+  let renderImages = async () => {
+    Object.values(userRequests).map( async (req, idx) => {
+      // await getAWSImage(req.image)
+      return(
+    <>
+      <div className="orders-request-ind" key={idx }>
+        <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
+        <p className='order-requests-ind-message'>Message:</p>
+        <p className='order-requests-ind-message-description'>{req.description}</p>
+        <div className='orders-requests-images'>
+          { console.log("THIS IS THE IMAGE!!!!!!!!", req.image) }
+        <img className='orders-request-single-image' src={currentImageKey} />
+        </div>
+      </div>
+      <div className='orders-requests-line'></div>
+    </>
+    )})
+  }
 
   return isLoaded && isLoaded2 && (
     <div className='orders-container'>
+      <h1 className='orders-main-header'>Orders</h1>
       <div className="orders-requests-container">
-        <div className="orders-request-ind">
-          <h2>Request to {userRequests[0].designerFirstName} {userRequests[0].designerLastName}</h2>
-          <p className='order-requests-ind-message'>Message:</p>
-          <p className='order-requests-ind-message-description'>{userRequests[0].description}</p>
-          <div className='orders-requests-images'>
-            { console.log("THIS IS THE IMAGE!!!!!!!!", userRequests[0].image) }
-          <img className='orders-request-single-image' src={currentImageKey} />
+        <div className='orders-requests-header-container pattern-cross-dots-lg'>
+          <h1 className='orders-requests-header'>Requests</h1>
         </div>
-        </div>
-        <div className='orders-requests-line'></div>
+        {Object.values(userRequests).map((req, idx) => {
+          // getAWSImage(req.image)
+          return(
+        <>
+          <div className="orders-request-ind" key={idx }>
+            <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
+            <p className='order-requests-ind-message'>Message:</p>
+            <p className='order-requests-ind-message-description'>{req.description}</p>
+            <div className='orders-requests-images'>
+              { console.log("THIS IS THE IMAGE!!!!!!!!", req.image) }
+            <img className='orders-request-single-image' src={currentImageKey} />
+            </div>
+          </div>
+          <div className='orders-requests-line'></div>
+        </>
+        )})}
       </div>
       <div className="orders-recommendations-container">
+        <div className='orders-recommendations-header-container pattern-cross-dots-lg'>
+          <h1 className='orders-recommendations-header'>Recommendations</h1>
+        </div>
         <div className="gallery-container">
         </div>
       </div>

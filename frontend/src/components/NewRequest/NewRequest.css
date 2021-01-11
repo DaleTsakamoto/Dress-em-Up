@@ -15,6 +15,7 @@
 
 .new-request-form-holder-open {
   position: absolute;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,6 +39,7 @@
 
 .new-request-form-holder-close {
   position: absolute;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,33 +61,22 @@
   100% {left: -102vw}
   }
 
-.pattern-cross-dots-xl{
-    color: black;
-    background-color: white;
-  }
-
 .new-request-form-title{
   color: #DD356E;
-  font-size: 62px;
+  font-size: 66px;
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
 
-.new-request-form-subtitle{
-  font-size: 42px;
-  padding-bottom: 2vh;
+.new-request-form-subtitle, .new-request-form-subtitle-2{
+  margin-top: 4vh;
+  font-size: 48px;
+  padding-bottom: 1.5vh;
+  padding-top: 1.5vh;
   text-align: center;
-  border-bottom: 1px solid #23BDBC;
-  margin-bottom: 2vh;
-}
-
-.new-request-form-subtitle-2{
-  font-size: 42px;
-  padding-bottom: 2vh;
-  text-align: center;
-  border-bottom: 1px solid #23BDBC;
-  margin-bottom: 2vh;
-  margin-top: 5vh;
+  color: black;
+  background-color: white;
+  width: 100%;
 }
 
 .new-request-form-container-background{
@@ -94,34 +85,46 @@
   align-items: center;
   margin-top: 2vh;
   height: 75vh;
-  width: 100vw;
-  background-color: #fef0bc;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 25px;
-  opacity: .9;
+  width: 100%;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 25px; */
 }
 
-/* .pattern-cross-dots-lg{
+.pattern-cross-dots-lg{
   color: #23BDBC;
   background-color: #fef0bc
-} */
+}
 
 .new-request-form-container{
-  margin: 4vh;
-  padding: 4vh;
+  margin: 1vh 0 4vh 0;
+  padding: 1vh 0 4vh 0;
   height: 100%;
   width: 60vw;
+  font-size: 20px;
   border-radius: 15px;
   /* border: 2px solid #23BDBC;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 15px; */
 }
 
 .new-request-upload-container{
+  margin-top: 1vh;
   height: 25vh;
+  color: #DD356E;
+  /* font-size: 20px */
+}
+
+.new-request-main-form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .new-request-form {
   height: 100%; 
   width: 100%; 
+  color: #DD356E;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 15px 15px 0 0;
   box-sizing: border-box; 
   padding: 10px 30px;
@@ -134,7 +137,7 @@
 
 .new-request-textarea-holder{
   height: 9vh;
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -147,9 +150,27 @@
 }
 .new-request-input-holder{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  margin: .6vh;
+  align-items: center;
+  width: 60%;
+  /* margin: .6vh; */
+}
+
+.new-request-input-holder-ind{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 15vw;
+}
+
+.new-request-input-holder > div > input{
+  width: 1vw;
+}
+
+.new-request-input-holder > div > label{
+  padding-right: 2vw;
+  max-width: 8vw;
 }
 
 .new-request-preview-container{
@@ -170,12 +191,13 @@
 }
 
 #description-label{
-  margin-bottom: .5vh;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
   font-size: 24px;
 }
 
 .new-request-clothing-type{
-  margin-bottom: .5vh;
+  margin-bottom: 1vh;
   margin-top: 2vh;
   font-size: 22px;
   text-align: center;

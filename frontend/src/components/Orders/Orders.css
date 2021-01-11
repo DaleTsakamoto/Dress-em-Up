@@ -1,15 +1,44 @@
 .orders-container{
   height: 90vh;
   width: 100vw;
+  margin-top: 10vh;
+  /* text-align: center; */
+}
+
+.orders-main-header{
+text-align: center;
+font-size: 66px;
+color: #DD356E;
 }
 
 .orders-requests-container{
-  margin-top: 10vh;
-  height: 90vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.pattern-cross-dots-lg{
+  color: #23BDBC;
+  background-color: #fef0bc
+}
+
+.orders-requests-header-container{
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 48px;
+  margin: 2vh 0 2.5vh 0;
+  /* padding-left: 10vw; */
+}
+
+.orders-requests-header{
+  padding: .5vh 0 .5vh 0;
+  color: black;
+  padding-left: 10vw;
 }
 
 .orders-request-ind{
@@ -47,4 +76,23 @@
   margin-bottom: 1.5vh;
   max-height: 10vh;
   max-width: 10vh;
+}
+
+
+.orders-recommendations-header-container{
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 48px;
+  margin: -2vh 0 2.5vh 0;
+  /* padding-left: 10vw; */
+}
+
+.orders-recommendations-header{
+  padding: .5vh 0 .5vh 0;
+  color: black;
+  padding-left: 10vw;
 }
