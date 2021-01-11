@@ -7,6 +7,10 @@
   overflow: scroll;
 }
 
+.homepage-container::-webkit-scrollbar{
+  display: none;
+}
+
 .homepage-feed-box{
   height: 14vh;
   margin-left: 8vw;

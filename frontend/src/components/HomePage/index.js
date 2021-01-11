@@ -56,7 +56,6 @@ function HomePage() {
           clothes.pop();
           hyperlinksArray.pop();
         }
-        
         return (
           <>
             <div key={ idx } className='homepage-feed-box'>

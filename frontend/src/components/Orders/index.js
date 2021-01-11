@@ -52,23 +52,31 @@ function Orders() {
     });
   }
   
-  let renderImages = async () => {
-    Object.values(userRequests).map( async (req, idx) => {
-      // await getAWSImage(req.image)
-      return(
-    <>
-      <div className="orders-request-ind" key={idx }>
-        <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
-        <p className='order-requests-ind-message'>Message:</p>
-        <p className='order-requests-ind-message-description'>{req.description}</p>
-        <div className='orders-requests-images'>
-          { console.log("THIS IS THE IMAGE!!!!!!!!", req.image) }
-        <img className='orders-request-single-image' src={currentImageKey} />
-        </div>
-      </div>
-      <div className='orders-requests-line'></div>
-    </>
-    )})
+  // let renderImages = async () => {
+  //   Object.values(userRequests).map( async (req, idx) => {
+  //     // await getAWSImage(req.image)
+  //     return(
+  //   <>
+  //     <div className="orders-request-ind" key={idx }>
+  //       <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
+  //       <p className='order-requests-ind-message'>Message:</p>
+  //       <p className='order-requests-ind-message-description'>{req.description}</p>
+  //       <div className='orders-requests-images'>
+  //         { console.log("THIS IS THE IMAGE!!!!!!!!", req.image) }
+  //       <img className='orders-request-single-image' src={currentImageKey} />
+  //       </div>
+  //     </div>
+  //     <div className='orders-requests-line'></div>
+  //   </>
+  //   )})
+  // }
+
+  let hyperlinksArray;
+  let clothes;
+  let random = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   return isLoaded && isLoaded2 && (
@@ -99,10 +107,41 @@ function Orders() {
         <div className='orders-recommendations-header-container pattern-cross-dots-lg'>
           <h1 className='orders-recommendations-header'>Recommendations</h1>
         </div>
-        <div className="gallery-container">
+        {Object.values(userRecommendations).map((rec, idx) => {
+        {
+          hyperlinksArray = rec.hyperlinks.split(',');
+          clothes = rec.apparelChoice.split(',');
+          clothes.pop();
+          hyperlinksArray.pop();
+        }
+          return (
+          <>
+          <div className='orders-recommendations-feed'>
+            <div key={ idx } className='orders-recommendations-feed-box'>
+            <div className='orders-recommendations-feed-text'>
+              <p className='orders-recommendations-feed-names'>{rec.designerFirstName} {rec.designerLastName} recommended clothes for you!</p>
+              <p className='orders-recommendations-feed-title'>{rec.name}</p>
+              <p className='orders-recommendations-feed-description'>{rec.description}</p>
+            </div>
+            </div>
+            <div className='orders-recommendations-feed-likes-comments'>
+              {hyperlinksArray.map(function (link) {
+                let item = clothes[random(0, (clothes.length - 1))]
+                  return (
+                    <a href={`${link}`}>
+                      <img src={`../images/${item}.ico`} className='orders-recommendations-feed-icons' />
+                    </a>
+                  )
+              })}
+          </div>
+        </div>
+              <div className={`orders-recommendations-feed-line ${(userRecommendations.length - 1 === idx) ? 'orders-recommendations-feed-spacer' : null}`} />
+              </>
+        )
+      })}
         </div>
       </div>
-    </div>
+    // </div>
   );
 }
 
