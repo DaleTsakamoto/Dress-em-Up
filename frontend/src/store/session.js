@@ -15,7 +15,7 @@ const setUser = (user) => {
 
 const setUserDesigners = (designers) => {
   return {
-    type: SET_USER_Designers,
+    type: SET_USER_DESIGNERS,
     designers,
   }
 }
@@ -119,6 +119,10 @@ const sessionReducer = (state = initialState, action) => {
     case SET_USER_RECOMMENDATIONS:
       newState = Object.assign({}, state);
       newState.recommendations = action.recommendations;
+      return newState;
+    case SET_USER_DESIGNERS:
+      newState = Object.assign({}, state);
+      newState.designers = action.designers;
       return newState;
     case REMOVE_USER:
       newState = Object.assign({}, state);

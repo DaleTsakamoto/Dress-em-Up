@@ -138,3 +138,8 @@
   font-size: 60px;
   background-color: white;
 }
+
+.search-my-designers-container{
+  min-height: 15vh;
+  background-color: white;
+}

@@ -12,9 +12,17 @@ function Search() {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
   const designersSearch = useSelector(state => state.users.designers);
+  const userDesigners = useSelector(state => state.session.designers)
   const [keywordSearch, setKeywordSearch] = useState('')
   const [isLoaded, setIsLoaded] = useState(false);
-  
+  const [isLoaded2, setIsLoaded2] = useState(false);
+  let id = sessionUser.id;
+
+  useEffect(() => {
+    dispatch(sessionActions.searchUserDesigners(id))
+    .then(setIsLoaded2(true))
+  },[])
+
   useEffect(() => {
     dispatch(userActions.designerPurge())
     .then(setIsLoaded(true))
@@ -25,7 +33,7 @@ function Search() {
     dispatch(userActions.searchDesigners(keywordSearch))
   }
 
-  return isLoaded &&(
+  return isLoaded && isLoaded2 &&(
     <div className='search-container pattern-cross-dots-lg'>
       <div className="search-bar-container">
           <h1 className='search-bar-title'>Search for a Designer</h1>
@@ -59,8 +67,26 @@ function Search() {
       }
       </div>
       <div className="search-bar-spacer"></div>
+      <div className='search-my-designers-container'>
       <h1 className='search-my-designers-header'>My Designers</h1>
-        <div></div>
+        {userDesigners ?
+            Object.values(userDesigners).map((person, idx) => {
+              return (
+                <div key={idx} className='results-container__body__local'>
+                  {console.log(person)}
+                  <NavLink className='navlinks' to={`/users/${person.designerId}`}>
+                    <div className='results-local-header'>
+                      <img className='results-local-header__image' src={person.designerAvatar} />
+                      <h1 className='results-local-username'>{person.designerFirstName} { person.designerLastName }</h1>
+                    </div>
+                    <p>{person.designerBio}</p>
+                  </NavLink>
+                </div>
+              )
+            })
+          :
+          null}
+      </div>
     </div>
   )
 }
