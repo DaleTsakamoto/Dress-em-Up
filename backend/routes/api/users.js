@@ -5,9 +5,11 @@ const { check } = require('express-validator');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Sequelize } = require('../../db/models');
 
 const router = express.Router();
+
+const Op = Sequelize.Op
 
 
 /****************** SIGNUP ERRORS MIDDLEWARE **************************/
@@ -61,6 +63,7 @@ router.post(
 /****************** USERS PAGE **************************/
 
 router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+  console.log("THIS IS NOT THE RIGHT ROUTE AHHHHHHH!!!!!!!")
   const userId = parseInt(req.params.id, 10)
   const user = await User.findByPk(userId)
   if (user) {
@@ -69,21 +72,64 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     })
   }
     return res.json('No User Found!');
-  }))
-
+}))
+  
 
 /****************** GET DESIGNERS **************************/
 
 router.get('/', requireAuth, asyncHandler(async (req, res) => {
-  const oldDesigners = await User.findAll({
-    where: {
-      userType: false,
-    }
-  })
-  let designers = {}
-  for (let i = 0; i < oldDesigners.length; i++) {
-    designers[oldDesigners[i].id] = oldDesigners[i]
-  }
+  console.log("THIS IS THE LENGTH!!!!!!!", req.params)
+  console.log("BUT THIS IS THE QUERY", req.query)
+  let designers;
+  if (!req.query['q0']) {
+    const oldDesigners = await User.findAll({
+      where: {
+        userType: false,
+      }
+    })
+    designers = {}
+    for (let i = 0; i < oldDesigners.length; i++) {
+      designers[oldDesigners[i].id] = oldDesigners[i]
+    } 
+  } 
+  else if (!req.query['q1']) {
+    console.log("FIRST CONSTRUCTION!!!!")
+    let keywordSearch = req.query['q0']
+    designers = await User.findAll({
+      where: {
+        userType: false,
+        [Op.or]: [{firstName: {
+          [Op.iLike]: '%'+keywordSearch+'%'
+        }}, {lastName: {
+          [Op.iLike]: '%'+keywordSearch+'%'
+        }}, {email: {
+          [Op.iLike]: '%'+keywordSearch+'%'
+        }}, {username: {
+          [Op.iLike]: '%'+keywordSearch+'%'
+        }}]
+      }
+    })
+    // console.log("THIS IS THE DESIGNER", res.json(designers))
+  } 
+  // else {
+  //   console.log("UNDER CONSTRUCTION!!!!!!!")
+    // let keywordSearches = req.query;
+    // designers = [];
+    // designers = Object.keys(keywordSearches).map((keywordSearch) => {
+    //   designers = await User.findAll({
+    //     where: {
+    //       userType: false,
+    //       [Op.or]: [{firstName: {
+    //         [Op.iLike]: '%'+keywordSearch+'%'
+    //       }}, {lastName: {
+    //         [Op.iLike]: '%'+keywordSearch+'%'
+    //       }}, {email: {
+    //         [Op.iLike]: '%'+keywordSearch+'%'
+    //       }}]
+    //     }
+    //   })
+    // })
+  // }
     return res.json({ designers });
     }))
   

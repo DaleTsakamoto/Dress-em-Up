@@ -10,7 +10,7 @@ import Gallery from '../../imageUploader/Gallery'
 import * as requestActions from '../../store/requests';
 import * as userActions from '../../store/users';
 
-function NewRequest({open, onClose}) {
+function NewRequest({open, onClose, designerId, setDesignerId}) {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const designers = useSelector(state => state.users.designers)
@@ -19,7 +19,7 @@ function NewRequest({open, onClose}) {
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState('')
   const [apparelChoice, setApparelChoice] = useState([])
-  const [designerId, setDesignerId] = useState(null)
+  // const [designerId, setDesignerId] = useState(null)
   const [errors, setErrors] = useState([])
   const [message, setMessage] = useState('')
   const [file, setFile] = useState(null)
@@ -29,6 +29,7 @@ function NewRequest({open, onClose}) {
   useEffect(() => {
     dispatch(userActions.searchDesigners())
       .then((res) => {
+        console.log("THIS IS THE RES!!??!!?!?!?!??!", res)
         setDesignerId(Object.values(res.data.designers)[0].id)
       })
       .then(() => setIsLoaded(true))

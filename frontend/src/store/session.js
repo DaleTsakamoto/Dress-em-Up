@@ -3,12 +3,20 @@ import { fetch } from './csrf'
 const SET_USER = 'session/setUser'
 const SET_USER_REQUESTS = 'session/setUserRequests'
 const SET_USER_RECOMMENDATIONS = 'session/setUserRecommendations'
+const SET_USER_DESIGNERS = 'session/setUserDesigners'
 const REMOVE_USER = 'session/removeUser'
 
 const setUser = (user) => {
   return {
     type: SET_USER,
     user,
+  }
+}
+
+const setUserDesigners = (designers) => {
+  return {
+    type: SET_USER_Designers,
+    designers,
   }
 }
 
@@ -31,6 +39,14 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
+export const searchUserDesigners = (id) => async (dispatch) => {
+  const res = await fetch(`/api/session/${id}/designers`, {
+    method: 'GET',
+  })
+  dispatch(setUserDesigners(res.data.designers));
+  return res
+}
 
 export const searchUserRequests = (id) => async (dispatch) => {
   const res = await fetch(`/api/session/${id}/requests`, {
@@ -87,7 +103,7 @@ export const logout = () => async (dispatch) => {
   return res;
 };
 
-const initialState = { user:null, requests:null, recommendations:null }
+const initialState = { user:null, requests:null, recommendations:null, designers:null }
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
