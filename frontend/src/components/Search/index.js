@@ -4,6 +4,7 @@ import { NavLink, useHistory, Redirect } from 'react-router-dom'
 
 import * as sessionActions from '../../store/session';
 import * as userActions from '../../store/users'
+import * as ratingActions from '../../store/ratings'
 
 import './Search.css';
 
@@ -13,18 +14,50 @@ function Search() {
   const sessionUser = useSelector(state => state.session.user);
   const designersSearch = useSelector(state => state.users.designers);
   const userDesigners = useSelector(state => state.session.designers)
+  const designerRatings = useSelector(state => state.ratings.ratings)
   const [keywordSearch, setKeywordSearch] = useState('')
   const [isLoaded, setIsLoaded] = useState(false);
   let id = sessionUser.id;
 
   useEffect(() => {
-    dispatch(sessionActions.searchUserDesigners(id))
-  },[])
-
-  useEffect(() => {
     dispatch(userActions.designerPurge())
-    .then(setIsLoaded(true))
-  },[])
+    dispatch(sessionActions.searchUserDesigners(id))
+    dispatch(ratingActions.searchRatings())
+    .then(() => setIsLoaded(true))
+  }, [dispatch])
+  
+  // useEffect(() => {
+  //   console.log("THE RATINGS USE EFFECT IS WORKING!!")
+  //   dispatch(ratingActions.searchRatings(2))
+  // },[])
+
+  // useEffect(() => {
+  //   dispatch(userActions.designerPurge())
+  //   .then(setIsLoaded(true))
+  // },[])
+
+  const halfRatings = (num) => {
+    return (Math.round(num * 2) / 2).toFixed(1)
+  }
+  let currentRating;
+  const renderRatings = (num) => {
+    let finalRatings =[]
+    currentRating = halfRatings(num)
+    if (currentRating % 1 === 0) {
+      for (let i = 0; i < currentRating; i++) {
+        finalRatings.push(<img src='../images/Dress-color.png' />)
+      }
+    } else {
+      for (let i = 0; i < Math.floor(currentRating); i++) {
+        finalRatings.push(<img src='../images/Dress-color.png' />)
+      }
+        finalRatings.push(<img id='search-my-designers-ratings-half-dress' src='../images/Dress-half-color.png' />)
+    }
+    for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
+      finalRatings.push(<img id='search-my-designers-ratings-1' src='../images/Dress.png' />)
+    }
+    return finalRatings;
+  }
 
   const activateSearch = () => {
     console.log(keywordSearch)
@@ -58,11 +91,7 @@ function Search() {
             <div className='search-my-designers-name-rating'>
               <h1 className='search-my-designers-name'>{person.firstName} {person.lastName}</h1>
               <div className='search-my-designers-ratings-container'>
-                <img id='search-my-designers-ratings-1' src='../images/Dress.png' />
-                <img id='search-my-designers-ratings-2' src='../images/Dress.png' />
-                <img id='search-my-designers-ratings-3' src='../images/Dress.png' />
-                <img id='search-my-designers-ratings-4' src='../images/Dress.png' />
-                <img id='search-my-designers-ratings-5' src='../images/Dress.png' />
+              {renderRatings(designerRatings[`${person.id}`].avgRating)}
               </div>
             </div>
           </div>
@@ -82,21 +111,17 @@ function Search() {
             Object.values(userDesigners).map((person, idx) => {
               return (
                 <div key={idx} className='search-my-designers-individual'>
-                  <NavLink className='search-my-designers-navlinks' to={`/users/${person.designerId}`}>
                     <div className='search-my-designers-header'>
+                  <NavLink className='search-my-designers-navlinks' to={`/users/${person.designerId}`}>
                       <img className='search-my-designers-image' src={person.designerAvatar} />
+                      </NavLink>
                       <div className='search-my-designers-name-rating'>
                         <h1 className='search-my-designers-name'>{person.designerFirstName} {person.designerLastName}</h1>
-                        <div className='search-my-designers-ratings-container'>
-                          <img id='search-my-designers-ratings-1' src='../images/Dress.png' />
-                          <img id='search-my-designers-ratings-2' src='../images/Dress.png' />
-                          <img id='search-my-designers-ratings-3' src='../images/Dress.png' />
-                          <img id='search-my-designers-ratings-4' src='../images/Dress.png' />
-                          <img id='search-my-designers-ratings-5' src='../images/Dress.png' />
+                      <div className='search-my-designers-ratings-container'>
+                        {renderRatings(designerRatings[`${person.designerId}`].avgRating)}
                         </div>
                       </div>
                     </div>
-                  </NavLink>
                 </div>
               )
             })

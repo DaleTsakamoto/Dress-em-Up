@@ -170,6 +170,7 @@
 .search-my-designers-name{
   font-size: 28px;
   padding-left: 2vw;
+  color: black;
 }
 
 .search-my-designers-individual{
@@ -193,6 +194,12 @@
   height: 1.5vh;
   width: 1.5vh;
   margin-right: -.75vw;
+}
+
+.search-my-designers-ratings-container > #search-my-designers-ratings-half-dress{
+  height: 1.5vh;
+  width: .75vh;
+  margin-right: .25vw;
 }
 
 .pattern-cross-dots-lg{

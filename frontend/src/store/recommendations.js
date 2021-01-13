@@ -74,7 +74,6 @@ export const searchRecommendations = (id) => async (dispatch) => {
     method: 'GET',
   })
   dispatch(findRecommendations(res.data.recommendations));
-  console.log("STORE RES!!!!", res)
   return res
 }
 

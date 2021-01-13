@@ -4,6 +4,7 @@ import sessionReducer from './session';
 import usersReducer from './users'
 import requestsReducer from './requests'
 import recommendationsReducer from './recommendations';
+import ratingsReducer from './ratings'
 
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   users: usersReducer,
   requests: requestsReducer,
   recommendations: recommendationsReducer,
+  ratings: ratingsReducer,
 })
 
 let enhancer;

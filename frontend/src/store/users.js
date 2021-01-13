@@ -62,7 +62,6 @@ export const searchDesigners = (keywordSearch) => async (dispatch) => {
     res = await fetch(keywordUrl)
   }
   dispatch(findDesigners(res.data.designers));
-  console.log("STORE RES!!!!", res)
   return res
 }
 

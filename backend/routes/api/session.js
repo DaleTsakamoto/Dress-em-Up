@@ -61,8 +61,9 @@ router.get('/:id(\\d+)/recommendations', requireAuth, asyncHandler(async (req, r
 router.get('/:id(\\d+)/designers', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
   let oldDesigners = await sequelize.query(`SELECT "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName", "Users"."avatar" AS "designerAvatar", "Users"."bio" AS "designerBio" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId}`);
+  // let oldDesigners = await sequelize.query(`SELECT "Recommendations"."designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName", "Users"."avatar" AS "designerAvatar", "Users"."bio" AS "designerBio", AVG("Ratings"."designerRating") AS ratings GROUP BY "Ratings"."designerRating" FROM "Recommendations" JOIN "Users" ON "Recommendations"."designerId" = "Users".id JOIN "Ratings" ON "Ratings"."designerId" = "Recommendations"."designerId" WHERE "Recommendations"."userId"=${userId}`);
   let designers = oldDesigners[0];
-  console.log("DESIGNERS ARE USERS ARE HERE !!?!?!?!?!?!?!?!?!?!??!", designers)
+  // console.log("DESIGNERS ARE USERS ARE HERE !!?!?!?!?!?!?!?!?!?!??!", designers)
     return res.json({ designers });
   }))
 

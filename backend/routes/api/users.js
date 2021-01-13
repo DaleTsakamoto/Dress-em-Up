@@ -78,8 +78,8 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
 /****************** GET DESIGNERS **************************/
 
 router.get('/', requireAuth, asyncHandler(async (req, res) => {
-  console.log("THIS IS THE LENGTH!!!!!!!", req.params)
-  console.log("BUT THIS IS THE QUERY", req.query)
+  // console.log("THIS IS THE LENGTH!!!!!!!", req.params)
+  // console.log("BUT THIS IS THE QUERY", req.query)
   let designers;
   if (!req.query['q0']) {
     const oldDesigners = await User.findAll({
