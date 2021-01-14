@@ -13,7 +13,7 @@ import * as userActions from '../../store/users';
 function NewRequest({open, onClose, designerId, setDesignerId}) {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
-  const designers = useSelector(state => state.users.designers)
+  const designers = useSelector(state => state.users.newRequest)
   const [images, setImages] = useState([])
   const [imagesArray, setImagesArray] = useState([])
   const [image, setImage] = useState(null);
@@ -27,13 +27,12 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
   const userId = sessionUser.id
 
   useEffect(() => {
-    dispatch(userActions.searchDesigners())
+    dispatch(userActions.searchNewRequestDesigners())
       .then((res) => {
-        console.log("THIS IS THE RES!!??!!?!?!?!??!", res)
         setDesignerId(Object.values(res.data.designers)[0].id)
       })
       .then(() => setIsLoaded(true))
-}, [])
+}, [dispatch])
 
   const getImage = e => {
     const files = e.target.files;
@@ -91,11 +90,9 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
 
     axios.get(generateGetUrl, options2).then(res => {
       const { data: getURL } = res;
-      console.log("THIS IS THE RETURNED URL", getURL)
       if (!getURL.message) {
         setImages([getURL, ...images])
       }
-      console.log(images.message)
       setIsLoaded(true)
     });
   }, [image]);
@@ -117,16 +114,18 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
   const checkedApparel = (e) => {
     if (e.target.checked) {
       setApparelChoice([...apparelChoice, e.target.name])
-      console.log('ON CHECK', e.target.name)
     } else {
       apparelChoice.splice(apparelChoice.indexOf(e.target.name), 1)
     }
   }
 
-  return (
-      <div className={`${open ? 'new-request-form-holder-open' : 'new-request-form-holder-close'}`}>
+  return isLoaded &&(
+    <div className={`${open ? 'new-request-form-holder-open' : 'new-request-form-holder-close'}`}>
         <div className='new-request-header'>
-          <i class="fas fa-arrow-left" onClick={onClose}></i>
+        <i class="fas fa-arrow-left" onClick={() => {
+          onClose()
+        }
+        }></i>
       </div>
       <h1 className='new-request-form-title'>New Request</h1>
       <div className='pattern-cross-dots-lg new-request-form-container-background'>
@@ -220,7 +219,7 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
         <div className='new-request-designers'>
         <p id='new-request-designers-label'> Choose a Designer: </p>
           <select id='designer' onChange={e => setDesignerId(e.target.value)} name="designer">
-          {designers ? Object.values(designers).map((person, idx) => {
+                {designers ? Object.values(designers).map((person, idx) => {
         return (
           <option key={idx} value={person.id}>{person.firstName} {person.lastName}</option>
         )

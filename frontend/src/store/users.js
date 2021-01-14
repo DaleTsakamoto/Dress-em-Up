@@ -1,12 +1,20 @@
 import { fetch } from './csrf'
 
 const FIND_USER = 'session/findUser'
-const FIND_DESIGNERS = 'tasks/findDesigners'
+const FIND_DESIGNERS = 'find/findDesigners'
 const PURGE_DESIGNERS = 'purge/designers'
+const FIND_NEW_REQUEST_DESIGNERS = 'find/findNewRequestDesigners'
 
 const findDesigners = (designers) => {
   return {
     type: FIND_DESIGNERS,
+    designers
+  }
+}
+
+const findNewRequestDesigners = (designers) => {
+  return {
+    type: FIND_NEW_REQUEST_DESIGNERS,
     designers
   }
 }
@@ -65,7 +73,15 @@ export const searchDesigners = (keywordSearch) => async (dispatch) => {
   return res
 }
 
-const initialState = { user: null, designers: null }
+export const searchNewRequestDesigners = () => async (dispatch) => {
+  const res = await fetch(`/api/users/`, {
+    method: 'GET',
+  })
+  dispatch(findNewRequestDesigners(res.data.designers));
+  return res
+}
+
+const initialState = { user: null, designers: null, newRequest: null }
 
 const usersReducer = (state = initialState, action) => {
   let newState;
@@ -81,6 +97,10 @@ const usersReducer = (state = initialState, action) => {
     case FIND_DESIGNERS:
       newState = Object.assign({}, state)
       newState.designers = action.designers;
+      return newState;
+    case FIND_NEW_REQUEST_DESIGNERS:
+      newState = Object.assign({}, state)
+      newState.newRequest = action.designers;
       return newState;
     default:
       return state;

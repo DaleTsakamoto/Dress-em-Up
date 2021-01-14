@@ -12,19 +12,10 @@ function NewRequestModal() {
     const [showModal, setShowModal] = useState(false); 
     const [designerId, setDesignerId] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-  
-    const activateDesigners = async() => {
-          dispatch(userActions.searchDesigners())
-            .then((res) => {
-              console.log("THIS IS THE RES!!??!!?!?!?!??!", res)
-              setDesignerId(Object.values(res.data.designers)[0].id)
-            })
-}
 
     return(
         <>
             <div onClick={() => {
-                activateDesigners()
                 setShowModal(true)
             }} className='header-home-category'>
               <i className="fab fa-shopify"></i>
