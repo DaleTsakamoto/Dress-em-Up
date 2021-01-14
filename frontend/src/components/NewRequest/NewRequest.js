@@ -123,6 +123,16 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
     }
   }
 
+
+  const submitClear = () => {
+    setImages([])
+    setImagesArray([])
+    setImage(null)
+    setDescription('')
+    setApparelChoice([])
+    onClose()
+  }
+
   return isLoaded &&(
     <div className={`${open ? 'new-request-form-holder-open' : hidden ? 'new-request-form-holder-close new-request-hide' : 'new-request-form-holder-close'}`}>
         <div className='new-request-header'>
@@ -163,7 +173,11 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
           </div>
           <h1 className='new-request-form-subtitle-2'>More Details</h1>
           <div className='new-request-main-form-container'>
-        <form onSubmit={handleSubmit} className="new-request-form">
+          <form onSubmit={() => {
+            handleSubmit()
+            submitClear()
+          }
+          } className="new-request-form">
             <ul>
                 {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>

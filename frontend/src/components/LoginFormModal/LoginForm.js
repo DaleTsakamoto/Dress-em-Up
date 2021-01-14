@@ -3,7 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
 
-function LoginForm({open}) {
+function LoginForm({open, hidden, setHidden}) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +12,9 @@ function LoginForm({open}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (hidden) {
+      setHidden(false)
+    }
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password })).catch(
       (res) => {
@@ -37,7 +40,7 @@ function LoginForm({open}) {
   }
 
   return (
-    <div className={`pattern-cross-dots-lg ${open ? 'login-form-holder-open' : 'login-form-holder-close'}`}>
+    <div className={`pattern-cross-dots-lg ${open ? 'login-form-holder-open' : hidden ? 'login-form-holder-close login-hide' : 'login-form-holder-close'}`}>
         <h1 className='login-form-title'>Login</h1>
         <form onSubmit={handleSubmit} className="login-form">
           <ul>
