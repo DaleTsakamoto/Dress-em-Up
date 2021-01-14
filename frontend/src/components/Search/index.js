@@ -36,25 +36,42 @@ function Search() {
   //   .then(setIsLoaded(true))
   // },[])
 
-  const halfRatings = (num) => {
-    return (Math.round(num * 2) / 2).toFixed(1)
+  const addRating = (e) => {
+    let designerRating;
+    if (e.target.classList[1] === 'ratings-0') {
+      designerRating = 1;
+    } else if (e.target.classList[1] === 'ratings-1'){
+      designerRating = 2;
+    } else if (e.target.classList[1] === 'ratings-2') {
+      designerRating = 3;
+    } else if (e.target.classList[1] === 'ratings-3') {
+      designerRating = 4;
+    } else {
+      designerRating = 5;
+    }
+    console.log("THIS IS THE TARGET!!!!?!?!?!", designerRating)
   }
+
+  // const halfRatings = (num) => {
+  //   return (Math.round(num * 2) / 2).toFixed(1)
+  // }
+
   let currentRating;
   const renderRatings = (num) => {
     let finalRatings =[]
-    currentRating = halfRatings(num)
-    if (currentRating % 1 === 0) {
+    currentRating = Math.round(num)
+    // if (currentRating % 1 === 0) {
       for (let i = 0; i < currentRating; i++) {
-        finalRatings.push(<img src='../images/Dress-color.png' />)
+        finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${i}`} src='../images/Dress-color.png' />)
       }
-    } else {
-      for (let i = 0; i < Math.floor(currentRating); i++) {
-        finalRatings.push(<img src='../images/Dress-color.png' />)
-      }
-        finalRatings.push(<img id='search-my-designers-ratings-half-dress' src='../images/Dress-half-color.png' />)
-    }
+    // } else {
+    //   for (let i = 0; i < Math.floor(currentRating); i++) {
+    //     finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${i}`} src='../images/Dress-color.png' />)
+    //   }
+    //     finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${Math.floor(currentRating)}`} id='search-my-designers-ratings-half-dress' src='../images/Dress-half-color.png' />)
+    // }
     for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
-      finalRatings.push(<img id='search-my-designers-ratings-1' src='../images/Dress.png' />)
+      finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
     }
     return finalRatings;
   }

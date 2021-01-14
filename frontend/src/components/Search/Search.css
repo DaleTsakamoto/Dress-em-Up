@@ -195,12 +195,40 @@
   width: 1.5vh;
   margin-right: -.75vw;
 }
+/* 
+.rate{
+  display: flex;
+  cursor: pointer;
+} */
+
+/* .ratings-4{order: 1}
+.ratings-4:hover + .ratings-3{background-color: red} */
+
+/* .ratings-4:hover ~ .rate:nth-child(n - 1) {background-color: red} */
+
+/* .rate:nth-child(-n + 5) ~ .rate:hover{
+  background-color: red;
+} */
+
+.rate:hover{
+  animation: dress .5s;
+}
+
+@keyframes dress{
+  0%, 100%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(2);
+  }
+}
 
 .search-my-designers-ratings-container > #search-my-designers-ratings-half-dress{
   height: 1.5vh;
   width: .75vh;
   margin-right: .25vw;
 }
+
 
 .pattern-cross-dots-lg{
   color: #23BDBC;
