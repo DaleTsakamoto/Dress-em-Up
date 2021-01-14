@@ -49,7 +49,12 @@ function Search() {
     } else {
       designerRating = 5;
     }
-    console.log("THIS IS THE TARGET!!!!?!?!?!", designerRating)
+    // console.log("THIS IS THE TARGET!!!!?!?!?!", e.target.parentNode.classList[0].slice(3))
+    const designerId = parseInt(e.target.parentNode.classList[0].slice(3))
+    let userId = id
+    designerRating = parseInt(designerRating)
+    let designer = { userId, designerId, designerRating }
+    dispatch(ratingActions.ratingAdd(designer))
   }
 
   // const halfRatings = (num) => {
@@ -76,8 +81,26 @@ function Search() {
     return finalRatings;
   }
 
+  const renderRatings2 = (num) => {
+    let finalRatings =[]
+    currentRating = Math.round(num)
+    // if (currentRating % 1 === 0) {
+      for (let i = 0; i < currentRating; i++) {
+        finalRatings.push(<img className={`ratings-${i}`} src='../images/Dress-color.png' />)
+      }
+    // } else {
+    //   for (let i = 0; i < Math.floor(currentRating); i++) {
+    //     finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${i}`} src='../images/Dress-color.png' />)
+    //   }
+    //     finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${Math.floor(currentRating)}`} id='search-my-designers-ratings-half-dress' src='../images/Dress-half-color.png' />)
+    // }
+    for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
+      finalRatings.push(<img className={`ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
+    }
+    return finalRatings;
+  }
+
   const activateSearch = () => {
-    console.log(keywordSearch)
     dispatch(userActions.searchDesigners(keywordSearch))
   }
 
@@ -107,8 +130,8 @@ function Search() {
           <img className='search-my-designers-image' src={person.avatar} />
             <div className='search-my-designers-name-rating'>
               <h1 className='search-my-designers-name'>{person.firstName} {person.lastName}</h1>
-              <div className='search-my-designers-ratings-container'>
-              {renderRatings(designerRatings[`${person.id}`].avgRating)}
+                <div className={`did${designerRatings[`${person.id}`].designerId} search-my-designers-ratings-container`}>
+              {renderRatings2(designerRatings[`${person.id}`].avgRating) }
               </div>
             </div>
           </div>
@@ -134,7 +157,7 @@ function Search() {
                       </NavLink>
                       <div className='search-my-designers-name-rating'>
                         <h1 className='search-my-designers-name'>{person.designerFirstName} {person.designerLastName}</h1>
-                      <div className='search-my-designers-ratings-container'>
+                      <div className={`did${designerRatings[`${person.designerId}`].designerId} search-my-designers-ratings-container`}>
                         {renderRatings(designerRatings[`${person.designerId}`].avgRating)}
                         </div>
                       </div>

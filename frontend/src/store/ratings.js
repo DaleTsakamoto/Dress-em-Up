@@ -1,6 +1,6 @@
 import { fetch } from './csrf'
 
-const ADD_RATINGS = 'requests/addRatings'
+const ADD_RATING = 'requests/addRating'
 const UPDATE_RATINGS = 'requests/updateRatings'
 const FIND_RATINGS = 'requests/findRatings'
 const DELETE_RATINGS = 'requests/deleteRatings'
@@ -12,38 +12,42 @@ const findRatings = (ratings) => {
   }
 }
 
-const addRatings = (ratings) => {
+const addRating = (rating) => {
   return {
-    type: ADD_RATINGS,
-    ratings,
+    type: ADD_RATING,
+    rating,
   }
 }
 
-const updateRatings = (ratings) => {
+const updateRatings = (rating) => {
   return {
     type: UPDATE_RATINGS,
-    ratings,
+    rating,
   }
 }
 
-// export const taskUpdate = (task) => async (dispatch) => {
-//   const { taskId, urlId, name, userId } = task
-//   const res = await fetch(`/api/users/${urlId}/tasks`, {
-//     method: 'PATCH',
-//     body: JSON.stringify({
-//       taskId,
-//       urlId,
-//       userId,
-//       name
-//     }),
-//   })
-//   dispatch(updateTask(res.data.task));
-//   return res
-// }
+export const ratingAdd = (rating) => async (dispatch) => {
+  const { designerId, userId, designerRating } = rating
+  const res = await fetch(`/api/ratings/`, {
+    method: 'POST',
+    body: JSON.stringify({
+      designerRating,
+      designerId,
+      userId,
+    }),
+  })
+  if (!res.data) {
+    console.log("THE RES IS NOTHING!!!!!!!")
+    return
+  }
+  console.log("RETURENED DATA FROM THE STORE!!!!!!!!", Object.keys(res.data.ratingUpdate)[0])
+  dispatch(addRating(res.data.ratingUpdate));
+  return res
+}
 
 export const searchRatings = () => async (dispatch) => {
   const res = await fetch(`/api/ratings`)
-  console.log("RESPONSE FROM THE RATINGS BACKEND!!?!?!?!??!?!?!?", res);
+  // console.log("THIS IS WHAT RATINGS LOOK LIKE!!?!?!", res.data.ratings)
   dispatch(findRatings(res.data.ratings));
   return res
 }
@@ -67,14 +71,19 @@ const ratingsReducer = (state = initialState, action) => {
       newState = Object.assign({}, state)
       newState.ratings = action.ratings;
       return newState;
-    // case ADD_RATINGS:
-    //   newState = Object.assign({}, state)
-    //   if (newState.ratings) {
-    //     newState.ratings[newState.ratings.length] = action.ratings
-    //   } else {
-    //     newState.ratings[0] = action.ratings
-    //   }
-    //   return newState;
+    case ADD_RATING:
+      return { ratings: {...state.ratings, ...action.rating }}
+      // console.log("IST IT POSSIBLE TO CONOSLSE LOG HERE!?!?!??!?!??!?", newState.ratings['5'])
+      // for (let key in newState.ratings) {
+        // console.log("THIS IS A NEWSTATE", key)
+        // if (key === Object.keys(action.rating)[0]) {
+        //   console.log("OK IS THIS WORKING NOW!?!?!?!", action.rating[key])
+          // newState.ratings[action.rating.designerId] = action.rating
+        // } else {
+        //   newState.ratings[key] = newState.ratings[key]
+        // }
+      // }
+      // return newState;
     // case UPDATE_TASK:
     //   newState = Object.assign({}, state)
     //   console.log(newState.tasks)
