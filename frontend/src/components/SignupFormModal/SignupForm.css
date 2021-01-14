@@ -170,3 +170,7 @@
 .button-modal:hover {
   background:#da4339;
 }
+
+.sign-up-hide{
+  display: none;
+}

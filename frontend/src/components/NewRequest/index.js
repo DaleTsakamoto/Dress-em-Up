@@ -12,6 +12,7 @@ function NewRequestModal() {
     const [showModal, setShowModal] = useState(false); 
     const [designerId, setDesignerId] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
+    // const [hidden, setHidden] = useState(true);
 
     return(
         <>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect} from 'react-router-dom'
 import './SignupForm.css';
 
-function SignupForm({open}) {
+function SignupForm({open, hidden, setHidden}) {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const [firstName, setFirstName] = useState('')
@@ -17,6 +17,9 @@ function SignupForm({open}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (hidden) {
+      setHidden(false)
+    }
     if (password === confirmPassword) {
       setErrors([]);
       return (
@@ -30,7 +33,7 @@ function SignupForm({open}) {
   };
 
   return (
-    <div className={`pattern-cross-dots-lg ${open ? 'signup-form-holder-open' : 'signup-form-holder-close'}`}>
+    <div className={`pattern-cross-dots-lg ${open ? 'signup-form-holder-open' : hidden ? 'signup-form-holder-close sign-up-hide' : 'signup-form-holder-close'}`}>
         <h1 className='signup-form-title'>Sign-Up</h1>
         <form onSubmit={handleSubmit} className="signup-form">
             <ul>

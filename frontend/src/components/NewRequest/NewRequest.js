@@ -24,6 +24,7 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
   const [message, setMessage] = useState('')
   const [file, setFile] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [hidden, setHidden] = useState(true)
   const userId = sessionUser.id
 
   useEffect(() => {
@@ -100,6 +101,9 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (hidden) {
+      setHidden(false)
+    }
         dispatch(requestActions.requestAdd({ userId, imagesArray, description, designerId, apparelChoice }))
         .catch(res => {
           if (res.data && res.data.errors) {
@@ -120,9 +124,12 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
   }
 
   return isLoaded &&(
-    <div className={`${open ? 'new-request-form-holder-open' : 'new-request-form-holder-close'}`}>
+    <div className={`${open ? 'new-request-form-holder-open' : hidden ? 'new-request-form-holder-close new-request-hide' : 'new-request-form-holder-close'}`}>
         <div className='new-request-header'>
         <i class="fas fa-arrow-left" onClick={() => {
+          if (hidden) {
+            setHidden(false)
+          }
           onClose()
         }
         }></i>
