@@ -1,6 +1,7 @@
 import { fetch } from './csrf'
 
 const SET_USER = 'session/setUser'
+// const EDIT_USER = 'session/editUser'
 const SET_USER_REQUESTS = 'session/setUserRequests'
 const SET_USER_RECOMMENDATIONS = 'session/setUserRecommendations'
 const SET_USER_DESIGNERS = 'session/setUserDesigners'
@@ -12,6 +13,13 @@ const setUser = (user) => {
     user,
   }
 }
+
+// const editUser = (user) => {
+//   return {
+//     type: EDIT_USER,
+//     user,
+//   }
+// }
 
 const setUserDesigners = (designers) => {
   return {
@@ -89,6 +97,25 @@ export const signup = (user) => async (dispatch) => {
       firstName,
       lastName,
       userType
+    }),
+  })
+  dispatch(setUser(res.data.user))
+  return res;
+}
+
+export const userUpdate = (user) => async (dispatch) => {
+  const { email, username, firstName, lastName, address, city, state, zipCode, id } = user;
+  const res = await fetch(`/api/users/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      email,
+      username,
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zipCode
     }),
   })
   dispatch(setUser(res.data.user))

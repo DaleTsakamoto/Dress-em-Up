@@ -43,14 +43,6 @@ router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => 
 
 router.get('/:id(\\d+)/recommendations', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
-  // const recommendations = await Recommendation.findAll({
-  //   where: {
-  //     userId: userId,
-  //   },
-  //   order: [
-  //     ['createdAt', 'ASC']
-  //   ],
-  // })
   let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"`);
   let recommendations = oldRecommendations[0];
     return res.json({ recommendations });

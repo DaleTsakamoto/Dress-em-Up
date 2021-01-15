@@ -31,9 +31,43 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
     .withMessage('Password must be 6 characters or more.'),
-  check('userType')
+  check('firstName')
     .exists({ checkFalsy: true })
-    .withMessage('Choose either user or developer'),
+    .withMessage('You must include a first name'),
+  check('lastName')
+    .exists({ checkFalsy: true })
+    .withMessage('You must include a last name'),
+  handleValidationErrors,
+];
+
+const validateEdit = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .isEmail()
+    .withMessage('Please provide a valid email.'),
+  check('username')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 4 })
+    .withMessage('Please provide a username with at least 4 characters.'),
+  check('username')
+    .not()
+    .isEmail()
+    .withMessage('Username cannot be an email.'),
+  check('address')
+    .exists({ checkFalsy: true })
+    .withMessage('You must have an address'),
+  check('city')
+    .exists({ checkFalsy: true })
+    .withMessage('You must have a city'),
+  check('state')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 2, max: 2 })
+    .withMessage('You must have a valid state code'),
+  check('zipCode')
+    .exists({ checkFalsy: true })
+    .isNumeric()
+    .isLength({ min: 5 })
+    .withMessage('You must have a valid zip code'),
   check('firstName')
     .exists({ checkFalsy: true })
     .withMessage('You must include a first name'),
@@ -54,6 +88,27 @@ router.post(
 
     await setTokenCookie(res, user);
 
+    return res.json({
+      user,
+    });
+  }),
+);
+
+/****************** UPDATE USER **************************/
+
+router.put(
+  '/:id(\\d+)',
+  requireAuth,
+  validateEdit,
+  asyncHandler(async (req, res) => {
+    const id = req.params.id
+    const { email, username, firstName, lastName, address, city, state, zipCode } = req.body;
+    const oldUser = await User.update({ email, username, firstName, lastName, address, city, state, zipCode }, {
+      where: {
+        id: id
+      },
+    });
+    let user = await User.scope('currentUser').findByPk(id);
     return res.json({
       user,
     });

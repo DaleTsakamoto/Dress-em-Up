@@ -76,6 +76,18 @@
 .account-places-home-address{
   margin-left: 10vw;
   font-size: 32px;
+  line-height: 1.5;
+}
+
+.account-places-email{
+  margin-left: 10vw;
+  font-size: 32px;
+}
+
+.account-places-email > p{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 36px;
+  box-sizing: border-box; 
 }
 
 .account-places-spacer{
@@ -123,13 +135,14 @@ width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* margin: .6vh; */
+  margin-top: 2vh;
 }
 
 .account-input-first-name, .account-input-last-name{
   font-family: 'Open Sans', sans-serif;
   font-size: 72px;
   border: none;
+  padding: 0;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -137,10 +150,51 @@ width: 100vw;
   font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   box-sizing: border-box; 
-  border: .5px solid #DD356E;
+  border: none;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.account-input-email{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 36px;
+  box-sizing: border-box; 
+  border: none;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
 .account-input-username:focus, .account-input-name:focus{
   background: white; 
+}
+
+.account-input-holder-address{
+  /* width: 70vw;  */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.account-input-address{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 32px;
+  width: 40vw;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.account-input-city, .account-input-state, .account-input-zipcode{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 32px;
+  border: none;
+  width: 10vw;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.account-input-state{
+  width: 6vw;
+}
+
+.account-input-city{
+  width: 12vw;
 }
