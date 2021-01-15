@@ -135,7 +135,7 @@ width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 2vh;
+  margin-top: 1.4vh;
 }
 
 .account-input-first-name, .account-input-last-name{
@@ -152,6 +152,7 @@ width: 100vw;
   box-sizing: border-box; 
   border: none;
   padding: 0;
+  margin-left: 6vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
 

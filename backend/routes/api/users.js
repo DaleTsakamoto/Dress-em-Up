@@ -118,7 +118,7 @@ router.put(
 /****************** USERS PAGE **************************/
 
 router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-  console.log("THIS IS NOT THE RIGHT ROUTE AHHHHHHH!!!!!!!")
+  // console.log("THIS IS NOT THE RIGHT ROUTE AHHHHHHH!!!!!!!")
   const userId = parseInt(req.params.id, 10)
   const user = await User.findByPk(userId)
   if (user) {
@@ -166,25 +166,32 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     })
     // console.log("THIS IS THE DESIGNER", res.json(designers))
   } 
-  // else {
-  //   console.log("UNDER CONSTRUCTION!!!!!!!")
-    // let keywordSearches = req.query;
-    // designers = [];
-    // designers = Object.keys(keywordSearches).map((keywordSearch) => {
-    //   designers = await User.findAll({
-    //     where: {
-    //       userType: false,
-    //       [Op.or]: [{firstName: {
-    //         [Op.iLike]: '%'+keywordSearch+'%'
-    //       }}, {lastName: {
-    //         [Op.iLike]: '%'+keywordSearch+'%'
-    //       }}, {email: {
-    //         [Op.iLike]: '%'+keywordSearch+'%'
-    //       }}]
-    //     }
-    //   })
-    // })
-  // }
+  else {
+    let keywordSearches = req.query;
+    // console.log("THESE ARE KEYWORD SEARCHES", keywordSearches)
+    let queries = Object.values(keywordSearches).map((keywordSearch) => {
+      return `%${keywordSearch}%`
+    })
+    designers = await User.findAll({
+      where: {
+        userType: false,
+        firstName: {
+          [Op.iLike]: {[Op.any]: queries}
+        },
+        lastName: {
+          [Op.iLike]: {[Op.any]: queries}
+        },
+        email: {
+          [Op.iLike]: {[Op.any]: queries}
+        },
+        username: {
+          [Op.iLike]: {[Op.any]: queries}
+          }
+        }
+    })
+    // console.log("THESE ARE THE MULTIPLE DESIGNERS YAHOO!!!!!!!", queries)
+    // console.log("THESE ARE THE DESIGNERS!!!!!", designers)
+  }
     return res.json({ designers });
     }))
   

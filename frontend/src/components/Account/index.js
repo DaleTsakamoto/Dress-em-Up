@@ -60,14 +60,14 @@ function Account() {
                   className='account-input-first-name'
                   value={firstName}
                   type='text'
-                  placeholder='First Name'
+                  placeholder='first'
                   onChange={ e => setFirstName(e.target.value) }
               />
                 <input
                   className='account-input-last-name'
                   value={lastName}
                   type='text'
-                  placeholder='Last Name'
+                  placeholder='last'
                   onChange={ e => setLastName(e.target.value) }
                 />
                 </div>
