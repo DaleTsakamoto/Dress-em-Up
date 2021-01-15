@@ -30,10 +30,16 @@ function Account() {
   };
 
   const editAccount = () => {
+    setErrors([])
     setEdit(true);
   }
 
   const updateProfile = () => {
+    if (username !== 'Demo_user' && username !== 'Demo_designer') {
+      setEdit(false);
+      setUsername(sessionUser.username)
+      return setErrors(['You may not change the demo_user username!!'])
+    }
     dispatch(sessionActions.userUpdate({ firstName, lastName, email, username, address, city, state, zipCode, id }))
       .catch(res => {
       if (res.data && res.data.errors) setErrors(res.data.errors);
@@ -46,11 +52,6 @@ function Account() {
       <div className="account-main pattern-cross-dots-lg">
         <div className='account-header-info'>
         <i className="fas fa-user-circle"></i>
-        <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-        </ul>
           {edit ? 
           <>
             <div className='account-input-container-name'>
@@ -87,6 +88,11 @@ function Account() {
             <p onClick={editAccount}>Edit Account</p>
           </>
         }
+          <ul>
+          {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+          ))}
+        </ul>
         </div>
         <div className='account-places'>
           <p>Saved Emails</p>
