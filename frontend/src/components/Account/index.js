@@ -11,6 +11,14 @@ function Account() {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [edit, setEdit] = useState(false)
+  const [firstName, setFirstName] = useState(sessionUser.firstName)
+  const [lastName, setLastName] = useState(sessionUser.lastName)
+  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState(sessionUser.username)
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [errors, setErrors] = useState([])
   
   const logout = (e) => {
     dispatch(sessionActions.logout());
@@ -18,15 +26,60 @@ function Account() {
     return history.push(path);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
-    <>
-      <div className="account-main">
+      <div className="account-main pattern-cross-dots-lg">
         <div className='account-header-info'>
           <i className="fas fa-user-circle"></i>
-          <h1>{sessionUser.firstName} {sessionUser.lastName}</h1>
+          {edit ? 
+          <>
+            <div className='account-input-container-name'>
+            <div className='account-input-holder-name'>
+                <input
+                  className='account-input-first-name'
+                  value={firstName}
+                  type='text'
+                  onChange={ e => setFirstName(e.target.value) }
+              />
+                <input
+                  className='account-input-last-name'
+                  value={lastName}
+                  type='text'
+                  onChange={ e => setLastName(e.target.value) }
+                />
+                </div>
+              </div>
+            <div className='account-input-holder-username'>
+              <input
+                className='account-input-username'
+                value={username}
+                type='text'
+                onChange={ e => setUsername(e.target.value) }
+              />
+            </div>
+          </>
+          :
+          <>
+            <h1>{sessionUser.firstName} {sessionUser.lastName}</h1>
+            <h2>{sessionUser.username}</h2>
+          </>
+        }
           <p>Edit Account</p>
         </div>
-        <div className='account-places pattern-cross-dots-lg'>
+        <div className='account-places'>
+          <p>Saved Emails</p>
+          </div>
+        <div className='account-places-home'>
+        <i class="far fa-envelope"></i>
+          <p className='account-places-home-header'>Primary</p>
+            <div className='account-places-home-address'>
+              <p>{sessionUser.email}</p>
+            </div>
+        </div>
+        <div className='account-places'>
           <p>Saved Locations</p>
         </div>
         <div className='account-places-home'>
@@ -43,9 +96,7 @@ function Account() {
         </div>
         <div className='account-places-spacer pattern-cross-dots-lg'></div>
         <div className='account-logout' onClick={logout}><p>Log Out</p></div>
-        <div className='account-bottom pattern-cross-dots-lg'></div>
       </div>
-    </>
   )
 }
 
