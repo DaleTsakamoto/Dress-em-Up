@@ -12,18 +12,6 @@ const Header = () => {
   const userSession = useSelector(state => state.session.user)
   const dispatch = useDispatch()
 
-  // const [designerId, setDesignerId] = useState(null)
-  // const [isLoaded, setIsLoaded] = useState(false)
-
-  // useEffect(() => {
-  //   dispatch(userActions.searchDesigners())
-  //     .then((res) => {
-  //       console.log("THIS IS THE RES!!??!!?!?!?!??!", res)
-  //       setDesignerId(Object.values(res.data.designers)[0].id)
-  //     })
-  //     .then(() => setIsLoaded(true))
-  // }, [])
-
   return (
     <div className='header-container pattern-cross-dots-lg'>
       {/* <NavLink className='header-navlinks' to="/user">

@@ -81,3 +81,44 @@
 .homepage-feed-spacer{
   margin-bottom: 10vh;
 }
+
+
+ /************** @MEDIA QUERIES  ***************/
+
+@media screen and (min-aspect-ratio: 1/1){
+	.homepage-container {
+    width: 500px;
+    height: 90vh;
+    background-color: white;
+    opacity: 1;
+  }
+  .homepage-feed-box{
+    height: 14vh;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+
+  .homepage-feed-image{
+    grid-column: 1/2;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+
+  .homepage-feed-text{
+    margin-left: -4vw;
+    margin-right: 8vw;
+    margin-bottom: 1vh;
+  }
+
+  .homepage-feed-names{
+    font-weight: bold;
+    height: 5vh;
+    padding-top: 1.8vh;
+    color: rgb(54, 47, 47)
+  }
+
+  .homepage-feed-title{
+    font-size: 14px;
+  }
+}

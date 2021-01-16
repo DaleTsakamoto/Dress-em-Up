@@ -45,3 +45,18 @@
   text-decoration: none;
   color: black;
 }
+
+@media screen and (min-aspect-ratio: 1/1){
+	.header-container {
+    width: 500px;
+    height: 70px;
+  }
+  
+  .fa-shopify{
+    font-size: 22px;
+  }
+
+  .header-home-category > p{
+    font-size: 22px;
+  }
+}

@@ -42,3 +42,21 @@
   text-decoration: none;
   color: black;
 }
+
+@media screen and (min-aspect-ratio: 1/1){
+	.navigation-container {
+    width: 500px;
+    height: 70px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .navigation-home-category > i{
+    font-size: 22px;
+  }
+
+  .navigation-home-category > p{
+    font-size: 22px;
+  }
+  
+}
