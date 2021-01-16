@@ -57,8 +57,8 @@ function HomePage() {
           hyperlinksArray.pop();
         }
         return (
-          <>
-            <div key={ idx } className='homepage-feed-box'>
+          <div key={ idx } className="homepage-container-inside">
+            <div className='homepage-feed-box'>
             <img className='homepage-feed-image' src={`${designers[`${rec.designerId}`].avatar}`} />
             <div className='homepage-feed-text'>
               <p className='homepage-feed-names'>{designers[`${rec.designerId}`].firstName} {designers[`${rec.designerId}`].lastName} found clothes for {rec.userFirstName} {rec.userLastName}</p>
@@ -77,7 +77,7 @@ function HomePage() {
               })}
           </div>
             <div className={`homepage-feed-line ${(recommendations.length - 1 === idx) ? 'homepage-feed-spacer' : null}`} />
-        </>
+        </div>
         )
       })}
       </div>

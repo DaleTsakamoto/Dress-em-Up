@@ -54,9 +54,11 @@
   
   .fa-shopify{
     font-size: 22px;
+    margin-right: -30px;
   }
 
   .header-home-category > p{
+    margin-right: -30px;
     font-size: 22px;
   }
 }

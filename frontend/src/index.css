@@ -49,6 +49,7 @@ table {
 		flex-direction: column;
 		align-items: center;
 		margin: 0 auto;
-		background-color: rgba(0, 0, 0, 0.6);;
+		/* height: 100%; */
+		background-color: rgba(0, 0, 0, 0.6);
 	}
 }

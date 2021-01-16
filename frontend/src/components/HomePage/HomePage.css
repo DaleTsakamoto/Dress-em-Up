@@ -7,6 +7,11 @@
   overflow: scroll;
 }
 
+.homepage-container{
+  height: 100%;
+  width: 100%
+}
+
 .homepage-container::-webkit-scrollbar{
   display: none;
 }
@@ -87,13 +92,20 @@
 
 @media screen and (min-aspect-ratio: 1/1){
 	.homepage-container {
+    margin-top: 70px;
+    padding-top: 20px;
+    margin-bottom: 50px;
     width: 500px;
-    height: 90vh;
+    height: 85vh;
     background-color: white;
-    opacity: 1;
   }
+
+  .homepage-container-inside {
+    width: 500px;
+  }
+
   .homepage-feed-box{
-    height: 14vh;
+    height: 130px;
     margin-left: 20px;
     font-size: 14px;
   }
@@ -106,19 +118,51 @@
   }
 
   .homepage-feed-text{
-    margin-left: -4vw;
-    margin-right: 8vw;
-    margin-bottom: 1vh;
+    margin-left: -40px;
+    margin-right: 80px;
+    /* margin-bottom: 1vh; */
   }
 
   .homepage-feed-names{
     font-weight: bold;
-    height: 5vh;
-    padding-top: 1.8vh;
+    height: 35px;
+    /* padding-top: 20px; */
     color: rgb(54, 47, 47)
   }
 
   .homepage-feed-title{
     font-size: 14px;
+  }
+
+  .homepage-feed-description{
+    margin-top: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .homepage-feed-likes-comments{
+    height: 50px;
+    /* width: 75vw; */
+    margin-left: 72px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .homepage-feed-icons{
+    /* align-self: center; */
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@media screen and (min-aspect-ratio: 2/1){
+  .homepage-container {
+    height: 77vh;
+  }
+}
+
+@media screen and (min-aspect-ratio: 3/1){
+  .homepage-container {
+    height: 66vh;
   }
 }
