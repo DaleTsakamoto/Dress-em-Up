@@ -27,10 +27,12 @@
 .header-home-category > p{
   font-size: 32px;
   padding-top: .5vh;
+  cursor: pointer;
 }
 
 .fa-shopify{
   font-size: 48px;
+  cursor: pointer;
 }
 
 .fa-user-circle{

@@ -63,6 +63,7 @@
   align-self: flex-end;
   height: 4.5vh;
   width: 75vw;
+  margin-left: 22vw;
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
@@ -98,6 +99,7 @@
     width: 500px;
     height: 85vh;
     background-color: white;
+    z-index: 0;
   }
 
   .homepage-container-inside {
@@ -157,12 +159,12 @@
 
 @media screen and (min-aspect-ratio: 2/1){
   .homepage-container {
-    height: 77vh;
+    height: 79vh;
   }
 }
 
 @media screen and (min-aspect-ratio: 3/1){
   .homepage-container {
-    height: 66vh;
+    height: 68vh;
   }
 }

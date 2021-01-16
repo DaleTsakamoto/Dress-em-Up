@@ -156,17 +156,17 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
           onChange={getImage}
         />
         <p>{message}</p>
-        <form onSubmit={uploadFile}>
+        <form className='upload-image-form' onSubmit={uploadFile}>
           <button id='file-upload-button'>Upload</button>
         </form>
       <div className='new-request-preview-container'>
           {isLoaded && (
-          <div className='new-request-preview'>
-                <img
+              <div className='new-request-preview'>
+                {images[0] ? <img
                   id='show-picture'
                   src={images[0]}
                   alt='File preview'
-                />
+                /> : null}
               </div>
           )}
             </div>
@@ -250,8 +250,8 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
     }
           </select>
           </div>
-        <div className='signup-button-holder'>
-          <button type="submit" className="signup-button">Send Request</button>
+        <div className='new-request-button-holder'>
+          <button type="submit" className="new-request-button">Send Request</button>
         </div>
             </form>
             </div>
