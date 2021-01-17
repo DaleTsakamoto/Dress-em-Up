@@ -237,7 +237,7 @@
     padding-top: 20px;
     margin-bottom: 50px;
     width: 500px;
-    height: 82vh;
+    height: 85vh;
     background-color: white;
   }
 
@@ -395,12 +395,12 @@
 
 @media screen and (min-aspect-ratio: 2/1){
   .search-container {
-    height: 74vh;
+    height: 82vh;
   }
 }
 
 @media screen and (min-aspect-ratio: 3/1){
   .search-container {
-    height: 62vh;
+    height: 72vh;
   }
 }

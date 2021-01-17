@@ -1,6 +1,11 @@
 .account-main{
   height: 100vh;
   width: 100%;
+  overflow: scroll;
+}
+
+.account-main::-webkit-scrollbar{
+  display: none;
 }
 
 .pattern-cross-dots-lg{
@@ -39,6 +44,7 @@
   margin-top: 1.5vh;
   font-size: 32px;
   color: #23BDBC;
+  cursor: pointer;
 }
 
 .account-places{
@@ -104,6 +110,7 @@ width: 100vw;
   padding-left: 5vw;
   background-color: white;
   color: black;
+  cursor: pointer;
 }
 
 /********************* EDIT FORM CSS *********************/
@@ -198,4 +205,114 @@ width: 100vw;
 
 .account-input-city{
   width: 12vw;
+}
+
+
+
+/****************** @MEDIA QUERIES **********************/
+
+@media screen and (min-aspect-ratio: 1/1){
+	.account-main {
+    margin-top: 50px;
+    padding-top: 20px;
+    margin-bottom: 50px;
+    width: 500px;
+    height: 85vh;
+  }
+
+  .account-header-info{
+    padding-top: 30px;
+    padding-bottom: 10px;
+    top: 50px;
+    height: 200px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:white;
+    color: black;
+  }
+  
+  .account-header-info > i{
+    font-size: 90px;
+  }
+  
+  .account-header-info > h1{
+    margin-top: 20px;
+    font-size: 36px;
+  }
+  
+  .account-header-info > h2{
+    margin-top: 5px;
+    font-size: 18px;
+  }
+  
+  .account-header-info > p{
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  .account-places{
+    font-size: 22px;
+    height: 35px;
+    width: 500px;
+  }
+  
+  .account-places > p{
+    margin-left: 50px;
+  }
+  
+  .account-places-home{
+    height: 60px;
+    padding: 0 50px;
+  }
+  
+  .account-places-home > i{
+    font-size: 22px;
+  }
+  
+  .account-places-home-header{
+    margin-left: 50px;
+    font-size: 16px;
+  }
+  
+  .account-places-home-address{
+    margin-left: 50px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .account-places-email{
+    margin-left: 40px;
+    font-size: 16px;
+  }
+  
+  .account-places-email > p{
+    font-size: 12px;
+  }
+  
+  .account-places-spacer{
+    height: 30px;
+    width: 500px;
+  }
+  
+  .account-logout{
+    height: 60px;
+    font-size: 22px;
+    padding-left: 50px;
+    margin-bottom: 65px;
+  }
+}
+
+@media screen and (min-aspect-ratio: 2/1){
+  .account-main {
+    height: 82vh;
+  }
+}
+
+@media screen and (min-aspect-ratio: 3/1){
+  .account-main {
+    height: 76vh;
+  }
 }
