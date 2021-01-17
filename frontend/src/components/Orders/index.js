@@ -95,7 +95,7 @@ function Orders() {
             <p className='order-requests-ind-message'>Message:</p>
             <p className='order-requests-ind-message-description'>{req.description}</p>
             <div className='orders-requests-images'>
-              { console.log("THIS IS THE IMAGE!!!!!!!!", req.image) }
+              {/* { console.log("THIS IS THE IMAGE!!!!!!!!", req.image) } */}
             <img className='orders-request-single-image' src={currentImageKey} />
             </div>
           </div>

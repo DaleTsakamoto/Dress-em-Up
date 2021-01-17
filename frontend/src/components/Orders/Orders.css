@@ -18,7 +18,7 @@ color: #DD356E;
 }
 
 .orders-requests-container{
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,4 +172,150 @@ color: #DD356E;
 
 .orders-recommendations-feed-spacer{
   margin-bottom: 10vh;
+}
+
+
+/****************** @MEDIA QUERIES **********************/
+
+
+@media screen and (min-aspect-ratio: 1/1){
+	.orders-container {
+    margin-top: 70px;
+    padding-top: 20px;
+    margin-bottom: 50px;
+    width: 500px;
+    height: 82vh;
+    background-color: white;
+  }
+  
+  .orders-requests-container{
+    width: 500px;
+  }
+
+  .orders-main-header{
+    font-size: 34px;
+    }
+
+  .orders-requests-header-container{
+    width: 500px;
+    height: 40px;
+    font-size: 24px;
+    margin: 15px 0 20px 0;
+  }
+  
+  .orders-requests-header{
+    padding: 5px 0 5px 0;
+    padding-left: 50px;
+  }
+
+  .orders-request-ind{
+    max-height: 200px;
+    width: 400px;
+  }
+  
+  .orders-request-ind > h2{
+    margin-top: 8px;
+    font-size: 16px;
+  }
+  
+  .order-requests-ind-message{
+    margin-top: 12.5px;
+    font-size: 14px;
+  }
+  
+  .order-requests-ind-message-description{
+    margin-top: 8px;
+    font-size: 10px;
+  }
+  
+  .orders-requests-line{
+    width: 500px;
+    margin-bottom: 15px;
+  }
+
+  .orders-request-single-image{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    max-height: 80px;
+    max-width: 80px;
+  }
+  
+  .orders-recommendations-container{
+    width: 500px;
+  }
+  
+  .orders-recommendations-feed{
+    width: 400px;
+  }
+  
+  .orders-recommendations-header-container{
+    width: 500px;
+    height: 40px;
+    font-size: 24px;
+    margin: 15px 0 20px 0;
+  }
+  
+  .orders-recommendations-header{
+    padding: 5px 0 5px 0;
+    margin-left: 50px;
+  }
+
+  .orders-recommendations-feed-box{
+    height: 120px;
+    width: 400px;
+    font-size: 14px;
+  }
+  
+  .orders-recommendations-feed-text{
+    margin-bottom: 10px;
+  }
+  
+  .orders-recommendations-feed-names{
+    height: 40px;
+    padding-top: 8px;
+  }
+  
+  .orders-recommendations-feed-title{
+    font-size: 14px;
+  }
+  
+  .orders-recommendations-feed-description{
+    margin-top: 20px;
+    font-size: 10px;
+  }
+
+  .orders-recommendations-feed-likes-comments{
+    height: 40px;
+    width: 400px;
+    margin-top: 15px;
+    margin-bottom: 0;
+  }
+  
+  .orders-recommendations-feed-icons{
+    height: 25px;
+    width: 25px;
+  }
+  
+  .orders-recommendations-feed-line{
+    align-self: flex-end;
+    width: 500px;
+    border-bottom: .5px solid #DD356E;
+    margin-bottom: 15px;
+  }
+  
+  .orders-recommendations-feed-spacer{
+    margin-bottom: 60px;
+  }
+}
+
+@media screen and (min-aspect-ratio: 2/1){
+  .orders-container {
+    height: 74vh;
+  }
+}
+
+@media screen and (min-aspect-ratio: 3/1){
+  .orders-container {
+    height: 62vh;
+  }
 }

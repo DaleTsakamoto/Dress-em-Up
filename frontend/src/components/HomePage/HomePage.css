@@ -91,6 +91,7 @@
 
  /************** @MEDIA QUERIES  ***************/
 
+ 
 @media screen and (min-aspect-ratio: 1/1){
 	.homepage-container {
     margin-top: 70px;
@@ -144,7 +145,7 @@
 
   .homepage-feed-likes-comments{
     height: 50px;
-    /* width: 75vw; */
+    width: 400px;
     margin-left: 72px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -154,6 +155,17 @@
     /* align-self: center; */
     height: 40px;
     width: 40px;
+  }
+
+  .homepage-feed-line{
+    align-self: flex-end;
+    width: 500px;
+    border-bottom: .5px solid #23BDBC;
+    margin-bottom: 20px;
+  }
+
+  .homepage-feed-spacer{
+    margin-bottom: 60px;
   }
 }
 
