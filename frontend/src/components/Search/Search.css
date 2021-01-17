@@ -1,7 +1,7 @@
 .search-container{
   height: 92vh;
   width: 100vw;
-  margin-top: 8vh;
+  margin-top: 60px;
   overflow: scroll;
 }
 
@@ -44,6 +44,7 @@
 }
 
 .search-button{
+  margin-top: .5vh;
   background-color: #23BDBC;
   box-shadow: 0px 0px 5px lightgrey;
   border: none;
@@ -62,22 +63,8 @@
   justify-content: center;
 }
 
-.search-results-title{
-  margin-top: 3vh;
-  margin-bottom: 1vh;
-  font-size: 32px;
-  color: black;
-}
-
 .search-bar-spacer{
   height: 5vh;
-}
-
-.search-results-header{
-  align-self: center;
-  height: 5vh;
-  font-size: 60px;
-  background-color: white;
 }
 
 .search-results-container{
@@ -105,6 +92,8 @@
   padding-bottom: 1.5vh;
   width: 100%;
   margin-bottom: 1.5vh;
+  margin-top: 3vh;
+  color: black;
 }
 
 .search-results-title > h2{
@@ -238,4 +227,180 @@
 .search-margin-spacer{
   width: 100%;
   height: 8vh;
+}
+
+/****************** @MEDIA QUERIES **********************/
+
+@media screen and (min-aspect-ratio: 1/1){
+	.search-container {
+    margin-top: 50px;
+    padding-top: 20px;
+    margin-bottom: 50px;
+    width: 500px;
+    height: 82vh;
+    background-color: white;
+  }
+
+  .search-bar-container{
+    min-height: 120px;
+    width: 500px;
+  }
+  
+  .search-bar{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 350px;
+  }
+  
+  .search-bar-keyword{
+    height: 30px;
+    box-shadow: 0px 0px 8px lightgrey;
+    padding: 0 15px;
+  }
+  
+  .search-bar-title{
+    height: 50px;
+    margin-top: 18px;
+    font-size: 22px;
+  }
+
+  .search-button{
+    margin-top: 4.5px;
+    background-color: #23BDBC;
+    height: 30px;
+    width: 35px;
+  }
+  
+  .search-magnify{
+    font-size: 14px;
+  }
+
+  .search-bar-spacer{
+    height: 30px;
+  }
+
+  .search-results-container{
+    min-height: 40px;
+    width: 500px;
+    background-color: white;
+  }
+
+  .search-results-image{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+
+  .search-results-header{
+    height: 40px;
+  }
+
+  .search-results-title{
+    font-size: 26px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 500px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+  }
+
+  .search-results-title > h2{
+    padding-left: 50px;
+  }
+
+  .search-results-name{
+    font-size: 24px;
+  }
+
+  .search-my-designers-header{
+    width: 400px;
+    height: 40px;
+    font-size: 30px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+  }
+  
+  .search-my-designers-container{
+    min-height: 90px;
+    width: 500px;
+  }
+  
+  .search-my-designers-image{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .search-my-designers-title{
+    font-size: 26px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 500px;
+    margin-bottom: 20px;
+  }
+  
+  .search-my-designers-title > h1{
+    padding-left: 50px;
+  }
+  
+  .search-my-designers-bio{
+    font-size: 10px;
+  }
+  
+  .search-my-designers-name{
+    font-size: 14px;
+    padding-left: 20px;
+  }
+  
+  .search-my-designers-individual{
+    min-height: 50px;
+    width: 400px;
+  }
+
+  .search-my-designers-ratings-container{
+    padding-left: 18px;
+    margin-top: 5px;
+  }
+  
+  .search-my-designers-ratings-container > img{
+    height: 18px;
+    width: 18px;
+    margin-right: -2px;
+  }
+
+  .rate:hover{
+    animation: none;
+    cursor: pointer;
+  }
+
+  .rate:active{
+    animation: dress .5s;
+  }
+
+  .search-my-designers-ratings-container > #search-my-designers-ratings-half-dress{
+    height: 18px;
+    width: 9px;
+    margin-right: 0px;
+  }
+  
+  .search-margin-spacer{
+    width: 500px;
+    height: 40px;
+  }
+  
+}
+
+@media screen and (min-aspect-ratio: 2/1){
+  .search-container {
+    height: 74vh;
+  }
+}
+
+@media screen and (min-aspect-ratio: 3/1){
+  .search-container {
+    height: 62vh;
+  }
 }
