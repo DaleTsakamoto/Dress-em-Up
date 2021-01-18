@@ -7,10 +7,13 @@
   overflow: scroll;
 }
 
-.homepage-container{
+.homepage-container-inside{
   height: 100%;
-  width: 100%
+  width: 100%;
+  display: flex;
+  flex-direction:column;
 }
+
 
 .homepage-container::-webkit-scrollbar{
   display: none;
@@ -96,9 +99,9 @@
 	.homepage-container {
     margin-top: 70px;
     padding-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
     width: 500px;
-    height: 85vh;
+    height: 80vh;
     background-color: white;
     z-index: 0;
   }
@@ -171,12 +174,12 @@
 
 @media screen and (min-aspect-ratio: 2/1){
   .homepage-container {
-    height: 79vh;
+    height: 70vh;
   }
 }
 
 @media screen and (min-aspect-ratio: 3/1){
   .homepage-container {
-    height: 68vh;
+    height: 62vh;
   }
 }

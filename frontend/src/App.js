@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
-import SignupFormPage from "./components/SignupFormPage";
+import SignupFormPage from "./components/DesignerSignup";
 import * as sessionActions from "./store/session";
 import Navigation from './components/Navigation'
 import SplashPage from './components/SplashPage'
@@ -11,6 +11,7 @@ import Orders from './components/Orders'
 import Search from './components/Search'
 import Account from './components/Account'
 import Header from './components/Header'
+import DesignerSignup from './components/DesignerSignup'
 
 
 function App() {
@@ -24,9 +25,9 @@ function App() {
   return isLoaded && (
     <>
       <Switch>
-        {/* <Route path="/signup">
-          <SignupFormPage />
-        </Route> */}
+        <Route path="/designer-signup">
+          <DesignerSignup />
+        </Route>
         <Route path="/orders">
           <Header />
           <Orders />

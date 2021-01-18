@@ -11,6 +11,7 @@ AWS.config = new AWS.Config({
 const s3 = new AWS.S3();
 
 const Bucket = process.env.BUCKET_NAME;
+const BucketDesignersResume = `${process.env.BUCKET_NAME}/designers/resume`
 
 // GET URL Generator
 function generateGetUrl(Key) {
@@ -31,9 +32,27 @@ function generateGetUrl(Key) {
 }
 
 // PUT URL Generator
-function generatePutUrl(Key, ContentType) {
+// function generatePutUrl(Key, ContentType, option) {
+//   return new Promise((resolve, reject) => {
+//     let params = { Bucket, Key, ContentType };
+//     console.log("THESE ARE THE PARAMS!?!?!?!", params)
+//     s3.getSignedUrl('putObject', params, function(err, url) {
+//       if (err) {
+//         reject(err);
+//       }
+//       resolve(url);
+//     });
+//   });
+// }
+
+function generatePutUrl(Key, ContentType, option) {
   return new Promise((resolve, reject) => {
-    const params = { Bucket, Key, ContentType };
+    let params;
+    if (option === 'resume') {
+      params = { Bucket: BucketDesignersResume, Key, ContentType };
+    } else {
+      params = { Bucket, Key, ContentType };
+    }
     s3.getSignedUrl('putObject', params, function(err, url) {
       if (err) {
         reject(err);

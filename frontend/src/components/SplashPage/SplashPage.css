@@ -31,7 +31,6 @@ body{
 }
 
 .about_carousel{
-  padding-top: 4vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,6 +55,7 @@ body{
   background: #5df5f5;
   margin: 0 .1em;
   border-radius: 50%;
+  z-index: 5;
 }
 
 .circle:hover {
@@ -233,8 +233,8 @@ body{
 }
 
 .homepage-designers-join > p > a{
-  color: #23BDBC
-
+  color: #23BDBC;
+  text-decoration: none;
 }
 
 /************** OVERLAYS **************/
@@ -243,7 +243,7 @@ body{
   position: fixed;
   width: 50.1%;
   height: 100%;
-  z-index: 1;
+  z-index: 7;
   animation-name: overlay-1-slide;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -269,7 +269,7 @@ body{
   top: 0;
   bottom: 0;
   right: 0;
-  z-index: 1;
+  z-index: 7;
   animation-name: overlay-2-slide;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -478,6 +478,7 @@ body{
   /************** OVERLAYS **************/
 
 #overlay-1 {
+  display: none;
   position: fixed;
   width: 250px;
   height: 100%;
@@ -491,6 +492,7 @@ body{
 }
 
 #overlay-2 {
+  display: none;
   position: fixed;
   width: 250px;
   top: 0;
@@ -503,12 +505,6 @@ body{
 	animation-timing-function: linear;
   animation-duration: .5s;
   animation-delay: 1.5s;
-}
-
-
-@keyframes overlay-1-slide {
-  0%   {left: 0}
-  100% {left: -50%; visibility: hidden}
 }
 
 @keyframes overlay-2-slide {

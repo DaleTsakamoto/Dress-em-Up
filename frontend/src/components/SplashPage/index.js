@@ -90,7 +90,7 @@ function SplashPage() {
             <SignupFormModal />
         </div>
         <div className='homepage-designers-join'>
-          <p>Want to join our team of designers? <a>Help dress 'em up</a> </p>
+          <p>Want to join our team of designers? <a href='/designer-signup'> Help dress 'em up</a> </p>
         </div>
       </div>
       </div>

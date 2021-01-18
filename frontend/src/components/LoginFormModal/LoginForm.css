@@ -45,7 +45,7 @@
 
 @keyframes login-slide-down {
   0%   {bottom: 0vh}
-  100% {bottom: -30vh}
+  100% {bottom: -34vh}
   }
 
 .pattern-cross-dots-lg{
@@ -78,7 +78,7 @@
 
 .login-input{
   height: 3vh; 
-  width: 75vw; 
+  width: 55vw; 
   box-sizing: border-box; 
   border: .5px solid #DD356E;
   padding: 10px; 
@@ -98,9 +98,9 @@
 
 .login-button{
   margin-top: .8vh;
-  margin-left: 1vw;
-  height: 3vh; 
-  width: 45vw; 
+  /* margin-left: 1vw; */
+  height: 2.7vh; 
+  width: 35vw; 
   border-radius: 3px; 
   box-sizing:border-box;
   background:#DD356E;
@@ -112,9 +112,9 @@
 }
 
 .login-form-demo-user-button, .login-form-demo-designer-button{
-  margin-top: .5vh;
+  margin-top: .8vh;
   height: 3vh; 
-  width: 45vw; 
+  width: 35vw; 
   border-radius: 3px; 
   box-sizing:border-box;
   background:#DD356E;
@@ -150,4 +150,95 @@
 
 .login-hide{
   display: none;
+}
+
+
+/****************** @MEDIA QUERIES **********************/
+
+
+@media screen and (min-aspect-ratio: 1/1){
+  .login-form-holder-open {
+    height: 300px;
+    width: 100%;
+  }
+
+  .login-form-title{
+    color: #DD356E;
+    font-size: 35px;
+    margin-top: 30px;
+    margin-bottom: 5px;
+  }
+  
+  .login-form {
+    height: 100%; 
+    width: 340px; 
+  }
+  
+  .login-input-holder{
+    margin: 8px;
+  }
+  
+  .login-input{
+    height: 30px; 
+    width: 250px; 
+  }
+  
+  .login-button-holder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .login-button{
+    margin-top: 2px;
+    margin-left: 0;
+    height: 30px; 
+    width: 150px; 
+    border-radius: 3px; 
+    box-sizing:border-box;
+    background:#DD356E;
+    color: white;
+    font-weight:bold;
+    font-size: 12px;
+    transition: background-color 0.1s;
+    cursor: pointer;  
+  }
+  
+  .login-form-demo-user-button, .login-form-demo-designer-button{
+    margin-top: 5px;
+    height: 30px; 
+    width: 150px; 
+    border-radius: 3px; 
+    box-sizing:border-box;
+    background:#DD356E;
+    color: white;
+    font-weight:bold;
+    font-size: 12px;
+    transition: background-color 0.1s;
+    cursor: pointer;  
+  }
+  
+  .button-modal{
+    height: 50px; 
+    width: 240px; 
+    border-radius: 3px; 
+    border: rgba(0,0,0,0.3) 0px solid; 
+    box-sizing:border-box;
+    padding:10px; 
+    background:#f1bc8f;
+    color:#FFF;
+    font-weight:bold;
+    font-size: 12pt;
+    transition: background-color 0.4s;
+    cursor: pointer;  
+  }
+  
+  .button-modal:hover {
+    background:#da4339;
+  }
+  
+  .login-hide{
+    display: none;
+  }
 }

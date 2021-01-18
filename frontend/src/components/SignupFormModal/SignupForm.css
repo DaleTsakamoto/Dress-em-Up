@@ -45,7 +45,7 @@
 
 @keyframes signup-slide-down {
   0%   {bottom: 0vh}
-  100% {bottom: -38vh}
+  100% {bottom: -42vh}
   }
 
 .pattern-cross-dots-lg{
@@ -173,4 +173,104 @@
 
 .sign-up-hide{
   display: none;
+}
+
+/****************** @MEDIA QUERIES **********************/
+
+
+@media screen and (min-aspect-ratio: 1/1){
+  .signup-form-holder-open {
+    height: 400px;
+    width: 100%;
+  }
+  .signup-form-title{
+    color: #DD356E;
+    font-size: 35px;
+    margin-top: 30px;
+    margin-bottom: 5px;
+  }
+  
+  .signup-form {
+    height: 100%; 
+    width: 340px; 
+  }
+  
+  .signup-input-holder{
+    margin: 8px;
+  }
+  
+  .signup-input-holder-name{
+    width: 340px; 
+    margin: 4px 8px;
+  }
+  
+  .signup-input{
+    height: 28px; 
+    width: 100%; 
+  }
+  
+  .signup-input-name{
+    height: 28px; 
+    width: 130px; 
+  }
+  
+  .signup-button-holder{
+    margin-top: 5px;
+  }
+  
+  .signup-button{
+    margin-top: 3px;
+    margin-left: 1vw;
+    height: 30px; 
+    width: 120px; 
+    border-radius: 3px; 
+    box-sizing:border-box;
+    background:#DD356E;
+    color: white;
+    font-weight:bold;
+    font-size: 12px;
+    transition: background-color 0.1s;
+    cursor: pointer;  
+  }
+  
+  .signup-form-demo-user-button, .signup-form-demo-designer-button{
+    margin-top: .5vh;
+    height: 3vh; 
+    width: 45vw; 
+    border-radius: 3px; 
+    box-sizing:border-box;
+    background:#DD356E;
+    color: white;
+    font-weight:bold;
+    font-size: 20pt;
+    transition: background-color 0.1s;
+    cursor: pointer;  
+  }
+  
+  .signup-button:hover, .signup-form-demo-user-button:hover, .signup-form-demo-designer-button:hover {
+    background:#fef0bc;
+  }
+  
+  .button-modal{
+    height: 50px; 
+    width: 240px; 
+    border-radius: 3px; 
+    border: rgba(0,0,0,0.3) 0px solid; 
+    box-sizing:border-box;
+    padding:10px; 
+    background:#f1bc8f;
+    color:#FFF;
+    font-weight:bold;
+    font-size: 12pt;
+    transition: background-color 0.4s;
+    cursor: pointer;  
+  }
+  
+  .button-modal:hover {
+    background:#da4339;
+  }
+  
+  .sign-up-hide{
+    display: none;
+  }
 }

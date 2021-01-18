@@ -34,6 +34,10 @@
   overflow: scroll;
 }
 
+.new-request-form-holder-open::-webkit-scrollbar{
+  display: none;
+}
+
 @keyframes signup-slide-right {
   0%   {left: -100vw}
   100% {left: 0vw}

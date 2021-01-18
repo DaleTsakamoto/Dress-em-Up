@@ -28,10 +28,15 @@ router.get(
     // Both Key and ContentType are defined in the client side.
     // Key refers to the remote name of the file.
     // ContentType refers to the MIME content type, in this case image/jpeg
+    let option = null;
     const { Key, ContentType } = req.query;
+    console.log("THIS IS THE CONTENTTYPE", ContentType)
     let KeyArray = Key.split('.')
     realKey = `${uuidv4()}.${KeyArray[KeyArray.length - 1]}`;
-    generatePutUrl(realKey, ContentType).then(putURL => {
+    if (ContentType === 'application/msword' || ContentType === 'application/pdf') {
+      option = 'resume'
+    }
+    generatePutUrl(realKey, ContentType, option).then(putURL => {
       res.send({putURL, realKey});
     })
     .catch(err => {

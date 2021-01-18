@@ -1,0 +1,147 @@
+.designer-signup-container{
+  height: 92vh;
+  width: 100vw;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.designer-signup-main-image-container{
+  margin-top: 3vh;
+  height: 40vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.designer-signup-main-image-container > img{
+  height: 30vh;
+  width: 75vw;
+  margin-left: -8vw;
+}
+
+.pattern-cross-dots-xl{
+  color: black;
+}
+
+.designer-signup-text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+}
+
+.designer-signup-text > h1{
+  text-align: center;
+  font-size: 50px;
+  margin-top: 4vh;
+  line-height: 1.4;
+  width: 56vw;
+}
+
+.designer-signup-text > p{
+  text-align: center;
+  font-size: 14px;
+  margin: 2vh 8vw 0 8vw;
+  line-height: 1.5;
+  color: rgb(31, 29, 29);
+  width: 100%;
+  }
+
+.designer-signup-form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2vh;
+}
+
+.designer-signup-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.designer-signup-names-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 55vw;
+  margin-bottom: 1vh;
+}
+
+.designer-signup-names-container > input{
+  font-size: 20px;
+  height: 2vh;
+  width: 25vw;
+  border: 2px solid #DD356E;
+  border-radius: 5px;
+}
+
+.designer-signup-form > input{
+  font-size: 20px;
+  height: 2vh;
+  width: 55vw;
+  border: 2px solid #DD356E;
+  border-radius: 5px;
+  margin-bottom: 1vh;
+}
+
+.designer-signup-form > p{
+  font-size: 26px;
+  margin-bottom: .5vh;
+}
+
+.designer-signup-form > textarea{
+  font-size: 20px;
+  height: 5vh;
+  width: 40vw;
+  border: 2px solid #DD356E;
+  border-radius: 5px;
+  margin-bottom: 1vh;
+}
+
+.designer-signup-form-resume-title{
+  text-align: center;
+  font-size: 26px;
+}
+
+.designer-signup-upload-container{
+  margin-top: .5vh;
+  width: 40vw;
+}
+
+.designer-signup-upload-container > input{
+  margin-top: .5vh;
+  margin-bottom: .5vh;
+}
+
+.designer-signup-buttons-container{
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 7vh;
+  bottom: 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+  z-index: 5;
+}
+
+.designer-signup-buttons-container > button{
+  height: 4vh;
+  width: 28vw;
+  border-radius: 10px;
+  border: 2px solid #23BDBC;
+  box-sizing: border-box;
+  padding: .5em;
+  margin: 0 2vw;
+  font-size: 36px;
+  background-color: #23BDBC;
+  color: #FFFFFF;
+  cursor: pointer;
+}

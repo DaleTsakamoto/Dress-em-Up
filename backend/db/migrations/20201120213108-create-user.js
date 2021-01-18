@@ -30,6 +30,15 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false
       },
+      active: {
+        type: Sequelize.BOOLEAN,
+      },
+      description: {
+        type: Sequelize.TEXT,
+      },
+      resume: {
+        type: Sequelize.STRING,
+      },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
         allowNull: false
