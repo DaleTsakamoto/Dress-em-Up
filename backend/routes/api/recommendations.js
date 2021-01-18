@@ -75,7 +75,7 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     //   }
     // })
   // console.log("THIS IS SEQUELISE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", sequelize.query)
-  let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "apparelChoice", description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE NOT "userId"=${user}`);
+  let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "apparelChoice", "Recommendations".description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE NOT "userId"=${user}`);
   // UNION SELECT name, "apparelChoice", description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id
   let recommendations = oldRecommendations[0];
     return res.json({ recommendations });

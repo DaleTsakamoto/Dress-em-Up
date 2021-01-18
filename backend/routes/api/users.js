@@ -85,6 +85,7 @@ router.post(
   asyncHandler(async (req, res) => {
     const { username, email, password, firstName, lastName, userType, active, description, resume } = req.body;
     const user = await User.signup({ username, firstName, lastName, email, password, userType, active, description, resume });
+    console.log("THIS IS THE USER AND BACKEND IS WORKING", user)
 
     await setTokenCookie(res, user);
 
