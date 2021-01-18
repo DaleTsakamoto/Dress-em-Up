@@ -176,19 +176,29 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     designers = await User.findAll({
       where: {
         userType: false,
-        firstName: {
-          [Op.iLike]: {[Op.any]: queries}
-        },
-        lastName: {
-          [Op.iLike]: {[Op.any]: queries}
-        },
-        email: {
-          [Op.iLike]: {[Op.any]: queries}
-        },
-        username: {
-          [Op.iLike]: {[Op.any]: queries}
+        [Op.or]: [
+          {
+            firstName: {
+              [Op.iLike]: { [Op.any]: queries }
+            }
+          },
+          {
+            lastName: {
+              [Op.iLike]: { [Op.any]: queries }
+            }
+          },
+          {
+            email: {
+              [Op.iLike]: { [Op.any]: queries }
+            }
+          },
+          {
+            username: {
+              [Op.iLike]: { [Op.any]: queries }
+            }
           }
-        }
+        ]
+      }
     })
     // console.log("THESE ARE THE MULTIPLE DESIGNERS YAHOO!!!!!!!", queries)
     // console.log("THESE ARE THE DESIGNERS!!!!!", designers)
