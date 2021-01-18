@@ -26,7 +26,15 @@ function App() {
     <>
       <Switch>
         <Route path="/designer-signup">
-          <DesignerSignup />
+        {sessionUser ? 
+            <>
+              <Header />
+              <HomePage />
+              <Navigation />
+            </>
+            :
+            <DesignerSignup />
+        }
         </Route>
         <Route path="/orders">
           <Header />

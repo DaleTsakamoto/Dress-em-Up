@@ -74,11 +74,15 @@ const DesignerSignup = () => {
     if (password === confirmPassword) {
       setErrors([]);
       const active = false;
+      console.log("THE FRONTEND IS WORKING")
       return (
-        dispatch(sessionActions.signup({ email, username, password, firstName, lastName, active, description, resume}))
+        dispatch(sessionActions.signup({ email, username, password, firstName, lastName, active, description, resume }))
+        .then (() => returnHome())
       )
         .catch(res => {
-          if (res.data && res.data.errors) setErrors(res.data.errors);
+          if (res.data && res.data.errors) {
+            setErrors(res.data.errors)
+          }
         });
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
@@ -170,12 +174,12 @@ const DesignerSignup = () => {
               <button id='file-upload-button'>Upload</button>
             </div>
           </div>
-        </div>
-        </form>
-      </div>
+          </div>
       <div className='designer-signup-buttons-container'>
-        <button className='designer-signup-return-home-button' onClick={returnHome}>Home</button>
-        <button className='designer-signup-button-submit-button' type="submit"> Submit </button>    
+        <button className='designer-signup-button-submit-button' type="submit"> Submit </button>  
+        <button className='designer-signup-return-home-button' onClick={returnHome}>Home</button>  
+      </div>
+        </form>
       </div>
       </div>
     

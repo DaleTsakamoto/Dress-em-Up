@@ -1,4 +1,5 @@
 import { fetch } from './csrf'
+import axios from 'axios';
 
 const SET_USER = 'session/setUser'
 // const EDIT_USER = 'session/editUser'
@@ -60,6 +61,27 @@ export const searchUserRequests = (id) => async (dispatch) => {
   const res = await fetch(`/api/session/${id}/requests`, {
     method: 'GET',
   })
+  let newRequests = res.data.requests
+  for (let i = 0; i < newRequests.length; i++) {
+    const generateGetUrl = 'api/uploads/get-url';
+    const options2 = {
+      params: {
+        Key: newRequests[i].image,
+        ContentType: 'image/jpeg',
+        expires: 31536000,
+      }
+    };
+    await axios.get(generateGetUrl, options2).then(res => {
+      const { data: getURL } = res;
+      console.log("THIS IS THE RETURNED URL", getURL)
+      if (!getURL.message) {
+        newRequests[i].imageURL = getURL
+        console.log("THIS IS THE CURRENTIMAGEKEY", getURL)
+        return
+      }
+    });
+  }
+  console.log("HERE ARE THE REQUESTS!?!?!", res.data.requests)
   dispatch(setUserRequests(res.data.requests));
   return res
 }
@@ -93,6 +115,7 @@ export const signup = (user) => async (dispatch) => {
   } else {
     userType = true
   }
+  console.log("STORE IS WORKING AND THIS IS THE USERTYPE", userType)
   const res = await fetch('/api/users', {
     method: 'POST',
     body: JSON.stringify({

@@ -36,6 +36,8 @@ router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => 
   // })
   let oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );
   let requests = oldRequests[0];
+
+  console.log("THESE ARE THE REQUESTS BEING MADE!?!?!??!", requests)
     return res.json({ requests });
 }))
   
