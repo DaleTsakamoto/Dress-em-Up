@@ -6,35 +6,35 @@ Check out Dress 'em Up at the live link below:
 
 https://dress-em-up.herokuapp.com/
 
-> Welcome to help
+> Welcome to Dress 'em Up
 
-help was created during the 2020 pandemic as a way to connect people who need help(helpees) with those who can help them out (helpers).  The app was designed especially for older people who may be limited in where they can go during the pandemic because of the risk of catching Covid-19.
-Helpers can connect with local helpees in the area by searching their area or waiting for the page to dynamically load and display below on the homepage.  Each user can access the tasks they need to complete as helpers or can add a task to a list for helpees.  Tasks range from doing house chores to picking up groceries.
+An app designed to connect personal shoppers/designers with gift-givers everywhere, Dress-em-up helps you to find the perfect gift for yourself, your significant other, or your loves ones.  Based on a gig economy design the app provides users the opportunity to upload images of their loved ones or themselves in their favorite clothes, send a request to a designer, and receive recommendations in the form of hyperlinks to the perfect clothes.  Each designer will in turn create a response with hyperlinks and receive cash compensation for fulfilling the request.  
 
-Users are designated as a helper or helpee and can use the google api services included to find and connect with them.
+Users are designated as a user or designer and information is stored online in AWS's S3 online service.
 
 As a logged-in user, you will have access to:
 
-* Tasks List (can be completed and assigned a helperId all with UI)
-* SearchBar (can search for people or locations with both search bars)
-* Giving Testimony (to be implemented in future upgrades)
-* Giving helping hands (ratings for helpers or helpees)
-
-(DISCLAIMER: This site is an App Academy project that is a light "clone" of the yelp.)
+* Homepage Feed (gives insight into recent recommendations by others that are signed into the app )
+* Orders (connection to current requests along with past recommendations)
+* Likes (created using dresses with 5 dresses for excellent and 1 dress for poor)
+* Search (Search for popular designers or look at your own past designers)
 
 ## Features
 
+### Splash Page
+
+The Splash Page will feature a carousel that gives users the information into how the app works if they do not already have a login saved.  Includes a login and signup modal as shown below.  Designers can also request to become a future designer by uploading their resume and then can preview the site experience similar to a users.  If they already have an account they are taken to the main home page:
+
+![Screen Shot of Splash Page](./frontend/public/images/dress-em-up-intro.gif)
+
+
 ### Home Page
 
-The Home Page will render a simple searchbar similar to yelp with a few links for accessibility navigating the site:
+The Home Page will render a list of recent recommendations made by designers and users who are apart of the community.  The recommendations are rendered by most recent and allow users to click on the links that were recommended to other users to see if a designer has done a good job with other users:
 
-![Screen Shot of Home Page](./frontend/public/images/dress-em-up-intro.gif)
+![Screen Shot of Home Page](./frontend/public/images/dress-em-up-homepage.gif)
 
-The Home Page also offers access to local users in the area which renders helpees within a 20 mile radius by using a geolocation service on the frontend to compare to the database which uses a node package to translate addresses to lattitude and longitude.  Everything then goes through a sorting algorhythm to render the nearest helper first, up to six helpers.
-
-![Screen Shot of Home Page Helpees](./frontend/public/images/dress-em-up-homepage.gif)
-
-The Helpers are also rendered below this using the same sorting methods and routes on the backend.
+The links are shown below and are rendered on each recommendation form.  Depending on what type of request the user made (dress, shirt, pants, etc.) the image rendered uses a randmoization algorhythm to render an image to match their specific type of request.
 
 ![Screen Shot of Home Page Helpers](./frontend/public/images/dress-em-up-links.gif)
 
@@ -47,18 +47,72 @@ The searchbar was an interesting challenge as I tried to implement the best sort
     To implement this, I used a react/redux store on the frontend which checked on the backend for a particular search.
     
     ```js
-  export const localsFindLocation = (keyword) => async (dispatch) => {
-    const { keywordSearch, locationSearch } = keyword;
-    const res = await fetch('/api/search', {
-      method: 'POST',
-      body: JSON.stringify({
-        keywordSearch,
-        locationSearch
-      }),
+router.get('/', requireAuth, asyncHandler(async (req, res) => {
+  let designers;
+  if (!req.query['q0']) {
+    const oldDesigners = await User.findAll({
+      where: {
+        userType: false,
+      }
     })
-    dispatch(findLocalsSearch(res.data.locals));
-    return
+    designers = {}
+    for (let i = 0; i < oldDesigners.length; i++) {
+      designers[oldDesigners[i].id] = oldDesigners[i]
+    } 
+  } 
+  else if (!req.query['q1']) {
+    console.log("FIRST CONSTRUCTION!!!!")
+    let keywordSearch = req.query['q0']
+    designers = await User.findAll({
+      where: {
+        userType: false,
+        [Op.or]: [{firstName: {
+          [Op.iLike]: '%'+keywordSearch+'%'
+        }}, {lastName: {
+          [Op.iLike]: '%'+keywordSearch+'%'
+        }}, {email: {
+          [Op.iLike]: '%'+keywordSearch+'%'
+        }}, {username: {
+          [Op.iLike]: '%'+keywordSearch+'%'
+        }}]
+      }
+    })
+  } 
+  else {
+    let keywordSearches = req.query;
+    let queries = Object.values(keywordSearches).map((keywordSearch) => {
+      return `%${keywordSearch}%`
+    })
+    designers = await User.findAll({
+      where: {
+        userType: false,
+        [Op.or]: [
+          {
+            firstName: {
+              [Op.iLike]: { [Op.any]: queries }
+            }
+          },
+          {
+            lastName: {
+              [Op.iLike]: { [Op.any]: queries }
+            }
+          },
+          {
+            email: {
+              [Op.iLike]: { [Op.any]: queries }
+            }
+          },
+          {
+            username: {
+              [Op.iLike]: { [Op.any]: queries }
+            }
+          }
+        ]
+      }
+    })
   }
+    return res.json({ designers });
+    }))
     ```
 
 * On the backend use the search options to query the database using a complex sequelize query.  This was complicated at times as the sequelize syntax is a bit convoluted at points.
