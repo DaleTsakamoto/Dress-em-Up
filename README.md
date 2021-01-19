@@ -1,6 +1,7 @@
 # Dress 'em Up
 
 ![Logo of the project](./frontend/public/images/app-icon.jpg =250x250)
+<img src="./frontend/public/images/app-icon.jpg" height="200" width="200">
 
 Check out Dress 'em Up at the live link below:
 
