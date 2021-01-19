@@ -1,6 +1,5 @@
 # Dress 'em Up
 
-![Logo of the project](./frontend/public/images/app-icon.jpg =250x250)
 <img src="./frontend/public/images/app-icon.jpg" height="200" width="200">
 
 Check out Dress 'em Up at the live link below:
@@ -33,7 +32,7 @@ The Splash Page will feature a carousel that gives users the information into ho
 
 The Home Page will render a list of recent recommendations made by designers and users who are apart of the community.  The recommendations are rendered by most recent and allow users to click on the links that were recommended to other users to see if a designer has done a good job with other users:
 
-![Screen Shot of Home Page](./frontend/public/images/dress-em-up-homepage.gif)
+<img src="./frontend/public/images/dress-em-up-homepage.gif" height="400" width="200">
 
 The links are shown below and are rendered on each recommendation form.  Depending on what type of request the user made (dress, shirt, pants, etc.) the image rendered uses a randmoization algorhythm to render an image to match their specific type of request.
 
