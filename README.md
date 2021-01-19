@@ -28,15 +28,15 @@ As a logged-in user, you will have access to:
 
 The Home Page will render a simple searchbar similar to yelp with a few links for accessibility navigating the site:
 
-![Screen Shot of Home Page](./frontend/public/images/screen_shot_1.png)
+![Screen Shot of Home Page](./frontend/public/images/dress-em-up-intro.gif)
 
 The Home Page also offers access to local users in the area which renders helpees within a 20 mile radius by using a geolocation service on the frontend to compare to the database which uses a node package to translate addresses to lattitude and longitude.  Everything then goes through a sorting algorhythm to render the nearest helper first, up to six helpers.
 
-![Screen Shot of Home Page Helpees](./frontend/public/images/screen_shot_2.png)
+![Screen Shot of Home Page Helpees](./frontend/public/images/dress-em-up-homepage.gif)
 
 The Helpers are also rendered below this using the same sorting methods and routes on the backend.
 
-![Screen Shot of Home Page Helpers](./frontend/public/images/screen_shot_3.png)
+![Screen Shot of Home Page Helpers](./frontend/public/images/dress-em-up-links.gif)
 
 ### Searchbar
 
@@ -127,7 +127,7 @@ The searchbar was an interesting challenge as I tried to implement the best sort
 
 The tasks list renders a list of complete and incomplete tasks for the user to see their own and others:
 
-![Screen Shot of Tasks](./frontend/public/images/screen_shot_5.png)
+![Screen Shot of Tasks](./frontend/public/images/dress-em-up-orders.gif)
 
 * Create a completed and incomplete task list
 * If task needs to be completed for helper it has a checkmark and moves to completed list once checked
@@ -178,6 +178,7 @@ let complete;
 
 The tasks list also utilized a react/redux store along with several queries on the backend for this information including patch requests to udpate information in the database when a task is completed or when a task is set to a helper.
 
+![Screen Shot of Tasks](./frontend/public/images/dress-em-up-search.gif)
 ```js
 
 router.patch('/', requireAuth, asyncHandler(async (req, res) => {
