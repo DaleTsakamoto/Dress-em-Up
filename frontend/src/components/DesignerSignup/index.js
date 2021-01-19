@@ -27,7 +27,6 @@ const DesignerSignup = () => {
     const files = e.target.files;
     if (files && files.length > 0) {
       setFile(files[0])
-      console.log(files[0])
     }
   };
 
@@ -35,7 +34,6 @@ const DesignerSignup = () => {
   let options;
   const uploadResume = e => {
     e.preventDefault();
-    console.log("BEGINNING WORKED OK!!!!?!?")
     setMessage('Uploading...')
     const contentType = file.type; // eg. image/jpeg or image/svg+xml
     generatePutUrl = 'api/uploads/put-url';
@@ -64,7 +62,6 @@ const DesignerSignup = () => {
           })
           .catch(err => {
             setMessage('Sorry, something went wrong')
-            console.log('err', err);
           });
       });
     };
@@ -74,7 +71,6 @@ const DesignerSignup = () => {
     if (password === confirmPassword) {
       setErrors([]);
       const active = false;
-      console.log("THE FRONTEND IS WORKING")
       return (
         dispatch(sessionActions.signup({ email, username, password, firstName, lastName, active, description, resume }))
         .then (() => returnHome())

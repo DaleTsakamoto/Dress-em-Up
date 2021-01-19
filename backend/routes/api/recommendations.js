@@ -39,7 +39,6 @@ const Op = Sequelize.Op;
 //     image = image.join(',')
 //     apparelChoice = apparelChoice.join(',')
 //     const request = await Request.build({ image, description, designerId, apparelChoice, userId });
-//     console.log("BACKEND REQUEST", request)
 //     await request.save();
 //     return res.json({
 //       request,
@@ -74,7 +73,6 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     //     include: Recommendation
     //   }
     // })
-  // console.log("THIS IS SEQUELISE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", sequelize.query)
   let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "apparelChoice", "Recommendations".description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE NOT "userId"=${user}`);
   // UNION SELECT name, "apparelChoice", description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id
   let recommendations = oldRecommendations[0];

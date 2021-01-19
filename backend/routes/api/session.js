@@ -26,18 +26,8 @@ const validateLogin = [
 
 router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
-  // const requests = await Request.findAll({
-  //   where: {
-  //     userId: userId,
-  //   },
-  //   order: [
-  //     ['createdAt', 'ASC']
-  //   ],
-  // })
   let oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );
   let requests = oldRequests[0];
-
-  console.log("THESE ARE THE REQUESTS BEING MADE!?!?!??!", requests)
     return res.json({ requests });
 }))
   
@@ -57,7 +47,6 @@ router.get('/:id(\\d+)/designers', requireAuth, asyncHandler(async (req, res) =>
   let oldDesigners = await sequelize.query(`SELECT "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName", "Users"."avatar" AS "designerAvatar", "Users"."bio" AS "designerBio" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId}`);
   // let oldDesigners = await sequelize.query(`SELECT "Recommendations"."designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName", "Users"."avatar" AS "designerAvatar", "Users"."bio" AS "designerBio", AVG("Ratings"."designerRating") AS ratings GROUP BY "Ratings"."designerRating" FROM "Recommendations" JOIN "Users" ON "Recommendations"."designerId" = "Users".id JOIN "Ratings" ON "Ratings"."designerId" = "Recommendations"."designerId" WHERE "Recommendations"."userId"=${userId}`);
   let designers = oldDesigners[0];
-  // console.log("DESIGNERS ARE USERS ARE HERE !!?!?!?!?!?!?!?!?!?!??!", designers)
     return res.json({ designers });
   }))
 

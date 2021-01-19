@@ -30,7 +30,6 @@ router.get(
     // ContentType refers to the MIME content type, in this case image/jpeg
     let option = null;
     const { Key, ContentType } = req.query;
-    console.log("THIS IS THE CONTENTTYPE", ContentType)
     let KeyArray = Key.split('.')
     realKey = `${uuidv4()}.${KeyArray[KeyArray.length - 1]}`;
     if (ContentType === 'application/msword' || ContentType === 'application/pdf') {
@@ -145,7 +144,6 @@ module.exports = router;
 //   //   }),
 //   // ]);
 
-//   // console.log(newImage)
 
 //   // await Upload.create({
 //   //   file_name: req.file.originalname,

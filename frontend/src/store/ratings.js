@@ -37,10 +37,8 @@ export const ratingAdd = (rating) => async (dispatch) => {
     }),
   })
   if (!res.data) {
-    console.log("THE RES IS NOTHING!!!!!!!")
     return
   }
-  console.log("RETURENED DATA FROM THE STORE!!!!!!!!", Object.keys(res.data.ratingUpdate)[0])
   dispatch(addRating(res.data.ratingUpdate));
   return res
 }

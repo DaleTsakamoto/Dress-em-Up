@@ -66,7 +66,6 @@ export const searchDesigners = (keywordSearch) => async (dispatch) => {
     } else {
       keywordUrl += `q0=${keywordSearch}`
     }
-    console.log("STORE IS WORKING!!!!!!!!!", keywordUrl)
     res = await fetch(keywordUrl)
   }
   dispatch(findDesigners(res.data.designers));

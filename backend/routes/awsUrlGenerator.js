@@ -15,7 +15,6 @@ const BucketDesignersResume = `${process.env.BUCKET_NAME}/designers/resume`
 
 // GET URL Generator
 function generateGetUrl(Key) {
-  console.log("THIS IS THE BACKEND KEY", Key)
   return new Promise((resolve, reject) => {
     const params = {
       Bucket,
@@ -30,20 +29,6 @@ function generateGetUrl(Key) {
     });
   });
 }
-
-// PUT URL Generator
-// function generatePutUrl(Key, ContentType, option) {
-//   return new Promise((resolve, reject) => {
-//     let params = { Bucket, Key, ContentType };
-//     console.log("THESE ARE THE PARAMS!?!?!?!", params)
-//     s3.getSignedUrl('putObject', params, function(err, url) {
-//       if (err) {
-//         reject(err);
-//       }
-//       resolve(url);
-//     });
-//   });
-// }
 
 function generatePutUrl(Key, ContentType, option) {
   return new Promise((resolve, reject) => {

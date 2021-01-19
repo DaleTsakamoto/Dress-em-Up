@@ -73,15 +73,12 @@ export const searchUserRequests = (id) => async (dispatch) => {
     };
     await axios.get(generateGetUrl, options2).then(res => {
       const { data: getURL } = res;
-      console.log("THIS IS THE RETURNED URL", getURL)
       if (!getURL.message) {
         newRequests[i].imageURL = getURL
-        console.log("THIS IS THE CURRENTIMAGEKEY", getURL)
         return
       }
     });
   }
-  console.log("HERE ARE THE REQUESTS!?!?!", res.data.requests)
   dispatch(setUserRequests(res.data.requests));
   return res
 }
@@ -115,7 +112,6 @@ export const signup = (user) => async (dispatch) => {
   } else {
     userType = true
   }
-  console.log("STORE IS WORKING AND THIS IS THE USERTYPE", userType)
   const res = await fetch('/api/users', {
     method: 'POST',
     body: JSON.stringify({

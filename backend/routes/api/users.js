@@ -85,7 +85,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const { username, email, password, firstName, lastName, userType, active, description, resume } = req.body;
     const user = await User.signup({ username, firstName, lastName, email, password, userType, active, description, resume });
-    console.log("THIS IS THE USER AND BACKEND IS WORKING", user)
 
     await setTokenCookie(res, user);
 
@@ -119,7 +118,6 @@ router.put(
 /****************** USERS PAGE **************************/
 
 router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-  // console.log("THIS IS NOT THE RIGHT ROUTE AHHHHHHH!!!!!!!")
   const userId = parseInt(req.params.id, 10)
   const user = await User.findByPk(userId)
   if (user) {
@@ -134,8 +132,6 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
 /****************** GET DESIGNERS **************************/
 
 router.get('/', requireAuth, asyncHandler(async (req, res) => {
-  // console.log("THIS IS THE LENGTH!!!!!!!", req.params)
-  // console.log("BUT THIS IS THE QUERY", req.query)
   let designers;
   if (!req.query['q0']) {
     const oldDesigners = await User.findAll({
@@ -149,7 +145,6 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     } 
   } 
   else if (!req.query['q1']) {
-    console.log("FIRST CONSTRUCTION!!!!")
     let keywordSearch = req.query['q0']
     designers = await User.findAll({
       where: {
@@ -165,11 +160,9 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
         }}]
       }
     })
-    // console.log("THIS IS THE DESIGNER", res.json(designers))
   } 
   else {
     let keywordSearches = req.query;
-    // console.log("THESE ARE KEYWORD SEARCHES", keywordSearches)
     let queries = Object.values(keywordSearches).map((keywordSearch) => {
       return `%${keywordSearch}%`
     })
@@ -200,8 +193,6 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
         ]
       }
     })
-    // console.log("THESE ARE THE MULTIPLE DESIGNERS YAHOO!!!!!!!", queries)
-    // console.log("THESE ARE THE DESIGNERS!!!!!", designers)
   }
     return res.json({ designers });
     }))

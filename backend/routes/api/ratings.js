@@ -36,7 +36,6 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
   })
   let rating = null;
   if (oldRating) {
-    console.log(oldRating)
     return rating
   } else {
     rating = Rating.build({
@@ -52,10 +51,7 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
       attributes: ['designerId', [sequelize.fn('AVG', sequelize.col('designerRating')), 'avgRating']],
       group: 'designerId'
     })
-    // console.log("BACKEND RATINGS!?!?!?", oldRatings)
-    // console.log("BACKEND RATINGS 000000!?!?!?", oldRatings.dataValues)
     ratingUpdate = { [designerId]: oldRatings.dataValues }
-    console.log("BACKEND RATINGS SENT TO FRONTEND", ratingUpdate)
   }
   return res.json({ ratingUpdate });
 }))

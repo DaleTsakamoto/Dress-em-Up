@@ -69,7 +69,6 @@ const updateRecommendation = (recommendation) => {
 // }
 
 export const searchRecommendations = (id) => async (dispatch) => {
-  console.log("RECOMMENDATIONS STORE IS WORKING!!!!!!!!!")
   const res = await fetch(`/api/recommendations/${id}`, {
     method: 'GET',
   })

@@ -74,7 +74,6 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
         })
         .catch(err => {
           setMessage('Sorry, something went wrong')
-          console.log('err', err);
         });
     });
   };
