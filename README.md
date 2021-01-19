@@ -47,8 +47,6 @@ The searchbar was an interesting challenge as I tried to implement the best sort
     To implement this, I used a react/redux store on the frontend which checked on the backend for a particular search.
     
     ```js
-router.get('/', requireAuth, asyncHandler(async (req, res) => {
-  let designers;
   if (!req.query['q0']) {
     const oldDesigners = await User.findAll({
       where: {
@@ -112,7 +110,7 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     })
   }
     return res.json({ designers });
-    }))
+    )
     ```
 
 * On the backend use the search options to query the database using a complex sequelize query.  This was complicated at times as the sequelize syntax is a bit convoluted at points.
