@@ -25,7 +25,7 @@ As a logged-in user, you will have access to:
 
 The Splash Page will feature a carousel that gives users the information into how the app works if they do not already have a login saved.  Includes a login and signup modal as shown below.  Designers can also request to become a future designer by uploading their resume and then can preview the site experience similar to a users.  If they already have an account they are taken to the main home page:
 
-![Screen Shot of Splash Page](./frontend/public/images/dress-em-up-intro.gif)
+<img src="./frontend/public/images/dress-em-up-intro.gif" height="400" width="200">
 
 
 ### Home Page
@@ -36,18 +36,62 @@ The Home Page will render a list of recent recommendations made by designers and
 
 The links are shown below and are rendered on each recommendation form.  Depending on what type of request the user made (dress, shirt, pants, etc.) the image rendered uses a randmoization algorhythm to render an image to match their specific type of request.
 
-![Screen Shot of Home Page Helpers](./frontend/public/images/dress-em-up-links.gif)
+<img src="./frontend/public/images/dress-em-up-links.gif" height="400" width="200">
 
-### Searchbar
+### Search
 
-The searchbar was an interesting challenge as I tried to implement the best sorting algorhythm while also using a complex sequelize query that added users depending on location and/or a general search:
+The searchbar was an interesting challenge as I tried to implement multi-term searches which successfully queries the database with multiple terms.  Rendering the ratings along with each designer was also challenging as I had to reshape the POJO on the front end to be refenced by the designer id, so the frontend could render more quickly by not having to perform an O of N function, but merely a simple match.
 
-* Use possible multiple parameters to search location and general search(similar to yelp)
+* Use possible multiple parameters to search for a designer by first name, last name, or email
 
-    To implement this, I used a react/redux store on the frontend which checked on the backend for a particular search.
+    On the frontend the React State is used to store info related to the search in an array and is eventually dispatched to the store with these requests put into a url query.
     
     ```js
-  if (!req.query['q0']) {
+    <div className='search-container pattern-cross-dots-lg'>
+      <div className="search-bar-container">
+          <h1 className='search-bar-title'>Search for a Designer</h1>
+        <div className="search-bar">
+          <input
+          onChange={(e) => setKeywordSearch(e.target.value)}
+          className="search-bar-keyword"
+          placeholder="Sally Jameson"
+            name="keywordSearch" />
+          <button onClick={activateSearch} className="search-button">
+            <i className="fas fa-search search-magnify" />
+          </button>
+        </div>
+        <div className='search-results-title pattern-cross-dots-lg'>
+          <h2>Results</h2>
+        </div>
+        {designersSearch ?
+            Object.values(designersSearch).map((person, idx) => {
+      return (
+        <div key={idx} className='search-my-designers-individual'>
+        <NavLink className='search-my-designers-navlinks' to={`/users/${person.id}`}>
+          <div className='search-my-designers-header'>
+          <img className='search-my-designers-image' src={person.avatar} />
+            <div className='search-my-designers-name-rating'>
+              <h1 className='search-my-designers-name'>{person.firstName} {person.lastName}</h1>
+                <div className={`did${designerRatings[`${person.id}`].designerId} search-my-designers-ratings-container`}>
+              {renderRatings2(designerRatings[`${person.id}`].avgRating) }
+              </div>
+            </div>
+          </div>
+        </NavLink>
+      </div>
+      )
+    })
+          :
+          null
+      }
+    ```
+
+* On the backend use the search options to query the database using a complex sequelize query.  This was complicated as the api route took in multiple calls from the store and had to sort for the correct type of query.
+
+<img src="./frontend/public/images/dress-em-up-search.gif" height="400" width="200">
+
+    ```js
+      if (!req.query['q0']) {
     const oldDesigners = await User.findAll({
       where: {
         userType: false,
@@ -111,169 +155,85 @@ The searchbar was an interesting challenge as I tried to implement the best sort
   }
     return res.json({ designers });
     )
-    ```
-
-* On the backend use the search options to query the database using a complex sequelize query.  This was complicated at times as the sequelize syntax is a bit convoluted at points.
-
-    ```js
-    const { keywordSearch, locationSearch } = req.body;
-
-    let locals;
-
-    if (locationSearch) {
-      let { lat, lng } = await geocodeAddress(locationSearch)
-      lat = parseFloat(lat, 10)
-      lng = parseFloat(lng, 10)
-      locals = await User.findAll({
-        where: {
-          lat: {
-            [Op.between]: [(lat - .5), (lat + .5)]
-          },
-          lng: {
-            [Op.between]: [(lng - .5), (lng + .5)]
-          },
-          [Op.or]: [{
-            username: {
-              [Op.iLike]: '%' + keywordSearch + '%'
-            }
-          }, {
-            firstName: {
-              [Op.iLike]: '%' + keywordSearch + '%'
-            }
-          }, {
-            lastName: {
-              [Op.iLike]: '%' + keywordSearch + '%'
-            }
-          }]
-        },
-      })
-    } else {
-      locals = await User.findAll({
-        where: {
-          [Op.or]: [{username: {
-            [Op.iLike]: '%'+keywordSearch+'%'
-          }}, {firstName: {
-            [Op.iLike]: '%'+keywordSearch+'%'
-          }}, {lastName: {
-            [Op.iLike]: '%'+keywordSearch+'%'
-          }}]
-        }
-      })
-    }
-
-    if (locals.length === 0) {
-      let err = 'No results found'
-      return res.json({
-        err,
-      });
-    }
-
-    return res.json({
-      locals,
-      apiKey: process.env.GOOGLE_API,
-    });
     
     ```
 
-### Tasks
+### Orders
 
-The tasks list renders a list of complete and incomplete tasks for the user to see their own and others:
+The orders page renders a list of requests and recommendations for the users past and current orders:
 
-![Screen Shot of Tasks](./frontend/public/images/dress-em-up-orders.gif)
+<img src="./frontend/public/images/dress-em-up-orders.gif" height="400" width="200">
 
-* Create a completed and incomplete task list
-* If task needs to be completed for helper it has a checkmark and moves to completed list once checked
-* If task needs to be completed for a helpee it includes a clickable image of the helping hands to add to your list.
+* Create a request in the header modal which includes image upload to the AWS S3 storage
+* View your open requests and edit them
+* View your past recommendations and the designers who recommended them to you.
 
-The greatest challenge of this project was using many conditionals and nested conditionals to render the correct information depending on a helper or helpee
+Implementing the correct backend algorhythms to manage the creationg of a uuid tag for my images and storing them in both a local database and the cloud-based service presented a challenge as it required two api calls and careful handling of asynchronous tasks.  My redux store shown below, send a request to my own api which queries for the user requests which include the uuid tag as the name.  AWS also provides an object with a method that renders a get html that includes a token that expires after a short period of time.  This token is used to query the AWS server via axios.get and the information is attached as an image url to the requests in the redux store.  
 
 ```js
-let complete;
-  let incomplete;
-  if (isLoaded) {
-    complete = Object.values(currentTasks).map((task, idx) => {
-        if (task.completed) {
-          return(
-            <div className='task-container__list__completed' key={idx}>
-              <i className="far fa-check-square completed-icon"></i>
-              <p>{task.category} - {task.details}</p><br />
-            </div>
-          )
-        }
-      })
-      incomplete = Object.values(currentTasks).map((task, idx) => {
-        if (id === urlId && !currentHelpType && !task.completed) {
-          return (
-            <div className='task-container__list__incomplete' key={idx}>
-              <div className="tasks__checkbox" key={idx}>{task.category} - {task.details}</div><br />
-            </div>
-          )
-        } else if (!task.completed && currentHelpType) {
-          return(
-            <div className='task-container__list__incomplete' key={idx}>
-              <input className='task-list__checkbox' type="checkbox" id={task.id} name='checkbox' onClick={alterTask} />
-              <label className="tasks__checkbox" key={task.id} htmlFor={task.id}>{task.category} - {task.details}</label><br />
-            </div>
-          )
-        } else if (!task.completed){
-          return(
-            <div className='task-container__list__incomplete' key={idx}>
-              {!task.helperId ? 
-              <i id={task.id} name='iWillHelp' onClick={alterTask} className="fas fa-hands-helping tasks__helping-hands-icon"></i> : null  }
-              <div className="tasks__checkbox">{task.category} - {task.details}</div><br />
-            </div>
-          )
-        }
-      })
+export const searchUserRequests = (id) => async (dispatch) => {
+  const res = await fetch(`/api/session/${id}/requests`, {
+    method: 'GET',
+  })
+  let newRequests = res.data.requests
+  for (let i = 0; i < newRequests.length; i++) {
+    const generateGetUrl = 'api/uploads/get-url';
+    const options2 = {
+      params: {
+        Key: newRequests[i].image,
+        ContentType: 'image/jpeg',
+        expires: 31536000,
+      }
+    };
+    await axios.get(generateGetUrl, options2).then(res => {
+      const { data: getURL } = res;
+      console.log("THIS IS THE RETURNED URL", getURL)
+      if (!getURL.message) {
+        newRequests[i].imageURL = getURL
+        console.log("THIS IS THE CURRENTIMAGEKEY", getURL)
+        return
+      }
+    });
   }
+  dispatch(setUserRequests(res.data.requests));
+  return res
+}
 ```
 
-The tasks list also utilized a react/redux store along with several queries on the backend for this information including patch requests to udpate information in the database when a task is completed or when a task is set to a helper.
+Because my tables are self-referential between users and designers, all the other tables act as join tables which I could not query with sequelize.  Therefore I created a raw SQL query and retrieved designer information along with requests information by using keywords of 'JOIN' and 'WHERE'. 
 
-![Screen Shot of Tasks](./frontend/public/images/dress-em-up-search.gif)
 ```js
 
-router.patch('/', requireAuth, asyncHandler(async (req, res) => {
-    let { taskId, name, userId } = req.body
-    const id = parseInt(taskId)
-    const user = parseInt(userId)
-    let task;
-    if (!name) {
-      task = await Task.update({ helperId: user }, {
-        where: {
-          id: id
-        }
-      });
-    } else {
-      task = await Task.update({ completed: true }, {
-        where: {
-          id: id
-        }
-      });
-    }
-      return res.json({
-        task
-      });
-  }));
+router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10)
+  let oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );
+  let requests = oldRequests[0];
+
+  console.log("THESE ARE THE REQUESTS BEING MADE!?!?!??!", requests)
+    return res.json({ requests });
+}))
 
 ```
 
 
 ## FAQ
 
-### What is a helper and helpee?
+### What is a user and designer?
 
-A helper is someone who is willing to run errands, do household chores, help mow the lawn, etc. for someone.  A helpee is someone who needs help or assistance in one of these areas
+A user is an individual who makes a request to find clothing for themselves or their loved ones by uploading images and filling in a simple form, and a designer received the request and sends back a recommendation of what to buy for them.
 
-### Why help?
+### Why Dress 'em Up?
 
-The purpose of this app is to create a sense of community between all the users.  As our society becomes more engrossed with technology it is important we don't forget those who are left behind who still need our help.
+I've seen so many people, including myself, struggle with understanding someone's style and where to shop and how to find the best gift of clothing for them.  There's a world of designers out there who understand how to do this, so why not tap into that wealth of knowledge to help us all out?
 
 ## Links
 
-Get some help or help out today... follow this link to join help:
+Live Link:
 
-https://helpp.herokuapp.com/
+https://dress-em-up.herokuapp.com/
+
+## Technologies Used
+
 
 ## Contributor
 
