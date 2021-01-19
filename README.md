@@ -1,6 +1,6 @@
 # Dress 'em Up
 
-![Logo of the project](./frontend/public/images/app-icon.jpg =200x200)
+![Logo of the project](./frontend/public/images/app-icon.jpg){:height="200px" width="200px"}
 
 Check out Dress 'em Up at the live link below:
 
