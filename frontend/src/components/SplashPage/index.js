@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom'
 
@@ -22,18 +22,20 @@ function SplashPage() {
 //     let path = '/signup'
 //     history.push(path);
 // }
-  
 
   return (
     <>
+    <div id="overlay-1">
+      <img className="homepage-dresser-door-left" src= "./images/Dresser-door-left.png" />
+    </div>
+    <div id="overlay-2">
+      <img className="homepage-dresser-door-right" src= "./images/Dresser-door-right.png" />
+        </div>
     <div className="homepage-main">
-      <div id="overlay-1">
-        <img className="homepage-dresser-door-left" src= "./images/Dresser-door-left.png" />
-      </div>
-      <div id="overlay-2">
-        <img className="homepage-dresser-door-right" src= "./images/Dresser-door-right.png" />
-      </div>
         <div className="about_carousel">
+          <div className='homepage-text-logo-container'>
+            <img className="homepage-text-logo" src="./images/Text-Logo-02.png" />
+          </div>
           <div className="about_carousel_screens">
             <div id="screen-1">
             <div className="pattern-cross-dots-xl carousel-top-screen">

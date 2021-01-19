@@ -40,6 +40,20 @@ body{
   overflow: hidden;
 }
 
+.homepage-text-logo-container{
+  top: 0;
+  width: 100vw;
+  padding-top: 5.4vh;
+  position: absolute;
+  text-align: center;
+}
+
+.homepage-text-logo{
+  text-align: center;
+  height: 10vh;
+  width: 60vw;
+}
+
 .about_carousel_circles{
   display: flex;
   flex-direction: row;
@@ -95,7 +109,8 @@ body{
 }
 
 .carousel-top-screen{
-  height: 50vh;
+  margin-top: 10vh;
+  height: 40vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -398,6 +413,7 @@ body{
   }
   
   .carousel-top-screen{
+    margin-top: 0px;
     height: 250px;
   }
 
@@ -473,6 +489,19 @@ body{
   .homepage-designers-join{
     font-size: 14px;
     margin-top: 10px;
+  }
+
+  .homepage-text-logo-container{
+    top: 0;
+    width: 500px;
+    padding-top: 24px;
+    position: fixed;
+  }
+  
+  .homepage-text-logo{
+    height: 60px;
+    width: 300px;
+    text-align: center;
   }
 
   /************** OVERLAYS **************/
