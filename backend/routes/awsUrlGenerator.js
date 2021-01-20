@@ -65,4 +65,4 @@ function generatePutUrl(Key, ContentType, option) {
   });
 }
 
-module.exports = { generateGetUrl, generatePutUrl };
+module.exports = { generatePutUrl };

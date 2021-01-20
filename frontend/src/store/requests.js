@@ -52,6 +52,7 @@ const updateRequests = (request) => {
 export const requestAdd = (request) => async (dispatch) => {
   const { userId, imagesArray, description, designerId, apparelChoice } = request;
   let image = imagesArray;
+  console.log("THIS IS THE STORE AND THE IMAGES ARRAY!?!?!", image)
   let isCompleted = false
   const res = await fetch(`/api/requests/${userId}`, {
     method: 'POST',

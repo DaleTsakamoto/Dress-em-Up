@@ -113,14 +113,16 @@ const firstUpdate = useRef(true);
     if (hidden) {
       setHidden(false)
     }
-        dispatch(requestActions.requestAdd({ userId, imagesArray, description, designerId, apparelChoice }))
+    console.log("DISPATCH IS ABOUT TO BEGIN!!!!!!")
+    dispatch(requestActions.requestAdd({ userId, imagesArray, description, designerId, apparelChoice }))
         .catch(res => {
           if (res.data && res.data.errors) {
             setErrors(res.data.errors)
           } else {
             return setErrors([])
           }
-        });
+        })
+      .then(() => submitClear())
     return errors;
   };
 
@@ -190,11 +192,8 @@ const firstUpdate = useRef(true);
           </div>
           <h1 className='new-request-form-subtitle-2'>More Details</h1>
           <div className='new-request-main-form-container'>
-          <form onSubmit={() => {
-            handleSubmit()
-            submitClear()
-          }
-          } className="new-request-form">
+          <form onSubmit={handleSubmit}
+            className="new-request-form">
             <ul>
                 {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
