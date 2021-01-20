@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom'
 import axios from 'axios';
 
-import './SignupForm.css';
+import './DesignerSignupForm.css';
 
 const DesignerSignup = () => {
   const dispatch = useDispatch()
