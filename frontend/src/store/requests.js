@@ -3,6 +3,7 @@ import { fetch } from './csrf'
 const ADD_REQUEST = 'requests/addRequest'
 const UPDATE_REQUEST = 'requests/updateRequest'
 const FIND_REQUESTS = 'requests/findRequests'
+// const FIND_REQUEST = 'requests/findRequest'
 const DELETE_REQUEST = 'requests/deleteRequest'
 
 const findRequests = (requests) => {
@@ -11,6 +12,13 @@ const findRequests = (requests) => {
     requests
   }
 }
+
+// const findRequest = (request) => {
+//   return {
+//     type: FIND_REQUEST,
+//     request
+//   }
+// }
 
 const addRequest = (request) => {
   return {
@@ -59,13 +67,13 @@ export const requestAdd = (request) => async (dispatch) => {
   return res
 }
 
-// export const search = (user) => async (dispatch) => {
-//   const { urlId } = user;
-//   console.log("THE INITIAL URLID", urlId)
-//   const res = await fetch(`/api/users/${urlId}/tasks`, {
+// export const searchRequest = (request) => async (dispatch) => {
+//   const { image } = request;
+//   console.log("THE INITIAL IMAGE", image)
+//   const res = await fetch(`/api/requests/${image}`, {
 //     method: 'GET',
 //   })
-//   dispatch(findTasks(res.data.tasks));
+//   dispatch(findRequest(res.data.request));
 //   return res
 // }
 

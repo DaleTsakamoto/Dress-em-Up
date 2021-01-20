@@ -240,6 +240,11 @@
   background:#23BDBC;
 }
 
+#show-picture{
+  max-height: 20vh;
+  max-width: 20vh;
+}
+
 
 /*************** @MEDIA QUERIES ***************/
 

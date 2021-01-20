@@ -118,8 +118,8 @@ function Orders() {
             <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
             <p className='order-requests-ind-message'>Message:</p>
             <p className='order-requests-ind-message-description'>{req.description}</p>
-            <div className='orders-requests-images'>
-            <img className='orders-request-single-image' src={req.imageURL} />
+                <div className='orders-requests-images'>
+            <img className='orders-request-single-image' src={req.imageUrl} />
             </div>
           </div>
           <div className='orders-requests-line'></div>

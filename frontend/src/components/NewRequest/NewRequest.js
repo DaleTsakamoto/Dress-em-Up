@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
 import Dropzone from "react-dropzone-uploader";
@@ -50,7 +50,8 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
     const options = {
       params: {
         Key: file.name,
-        ContentType: contentType
+        ContentType: contentType,
+        Option: 'new-request'
       },
       headers: {
         'Content-Type': contentType
@@ -65,10 +66,11 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
         .put(putURL, file, options)
         .then(res => {
           setMessage('Upload Successful')
+          // findImages()
           setTimeout(()=>{
             setMessage('');
             setImage(realKey)
-            setImagesArray([...images, realKey])
+            setImagesArray([...imagesArray, realKey])
             document.querySelector('#upload-image').value='';
           }, 2000)
         })
@@ -78,24 +80,32 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
     });
   };
 
-  useEffect(() => {
-    const generateGetUrl = 'api/uploads/get-url';
-    const options2 = {
-      params: {
-        Key: image,
-        ContentType: 'image/jpeg',
-        expires: 31536000,
-      }
-    };
-
-    axios.get(generateGetUrl, options2).then(res => {
-      const { data: getURL } = res;
-      if (!getURL.message) {
-        setImages([getURL, ...images])
-      }
-      setIsLoaded(true)
-    });
-  }, [image]);
+const firstUpdate = useRef(true);
+  useLayoutEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+  const url = `api/uploads/get-url/${image}`;
+  axios.get(url).then(res => {
+    const { data: getURL } = res;
+    console.log("THIS IS THE FRONTEND GETURL GOING IN!?!?", getURL)
+    if (!getURL.message) {
+      setImages([getURL, ...images])
+    }
+  })
+}, [imagesArray])
+  
+  // const findImages = async () => {
+  //   const url = `api/uploads/get-url/${image}`;
+  //   axios.get(url).then(res => {
+  //     const { data: getURL } = res;
+  //     console.log(getURL)
+  //     if (!getURL.message) {
+  //       setImages([getURL, ...images])
+  //     }
+  //   });
+  // }
 
 
   const handleSubmit = (e) => {
@@ -159,12 +169,19 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
           <button id='file-upload-button'>Upload</button>
         </form>
       <div className='new-request-preview-container'>
-          {isLoaded && (
+          {images && (
               <div className='new-request-preview'>
                 {images[0] ? <img
                   id='show-picture'
                   src={images[0]}
-                  alt='File preview'
+                /> : null}
+                {images[1] ? <img
+                  id='show-picture'
+                  src={images[1]}
+                /> : null}
+                {images[2] ? <img
+                  id='show-picture'
+                  src={images[2]}
                 /> : null}
               </div>
           )}

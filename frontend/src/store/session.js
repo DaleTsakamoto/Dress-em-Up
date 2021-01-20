@@ -61,24 +61,24 @@ export const searchUserRequests = (id) => async (dispatch) => {
   const res = await fetch(`/api/session/${id}/requests`, {
     method: 'GET',
   })
-  let newRequests = res.data.requests
-  for (let i = 0; i < newRequests.length; i++) {
-    const generateGetUrl = 'api/uploads/get-url';
-    const options2 = {
-      params: {
-        Key: newRequests[i].image,
-        ContentType: 'image/jpeg',
-        expires: 31536000,
-      }
-    };
-    await axios.get(generateGetUrl, options2).then(res => {
-      const { data: getURL } = res;
-      if (!getURL.message) {
-        newRequests[i].imageURL = getURL
-        return
-      }
-    });
-  }
+  // let newRequests = res.data.requests
+  // for (let i = 0; i < newRequests.length; i++) {
+  //   const generateGetUrl = 'api/uploads/get-url';
+  //   const options2 = {
+  //     params: {
+  //       Key: newRequests[i].image,
+  //       ContentType: 'image/jpeg',
+  //       expires: 31536000,
+  //     }
+  //   };
+  //   await axios.get(generateGetUrl, options2).then(res => {
+  //     const { data: getURL } = res;
+  //     if (!getURL.message) {
+  //       newRequests[i].imageURL = getURL
+  //       return
+  //     }
+  //   });
+  // }
   dispatch(setUserRequests(res.data.requests));
   return res
 }

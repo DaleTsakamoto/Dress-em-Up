@@ -59,16 +59,13 @@ router.post(
 //   }))
 
 
-// /****************** GET REQUESTS **************************/
+// /****************** GET REQUEST **************************/
 
-//   router.get('/', requireAuth, asyncHandler(async (req, res) => {
-//     const designers = await User.findAll({
-//       where: {
-//         userType: false,
-//       }
-//     })
-//     return res.json({ designers });
-//     }))
+router.get('/:image', requireAuth, asyncHandler(async (req, res) => {
+  const image = req.params.image
+  const request = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/requests/${image}`
+    return res.json({ request });
+    }))
   
 
 module.exports = router;

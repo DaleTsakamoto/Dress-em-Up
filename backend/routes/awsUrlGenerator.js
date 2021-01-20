@@ -12,9 +12,11 @@ const s3 = new AWS.S3();
 
 const Bucket = process.env.BUCKET_NAME;
 const BucketDesignersResume = `${process.env.BUCKET_NAME}/designers/resume`
+const BucketNewRequest = `${process.env.BUCKET_NAME}/users/requests`
 
 // GET URL Generator
 function generateGetUrl(Key) {
+  console.log("THIS IS THE BACKEND KEY", Key)
   return new Promise((resolve, reject) => {
     const params = {
       Bucket,
@@ -30,11 +32,27 @@ function generateGetUrl(Key) {
   });
 }
 
+// PUT URL Generator
+// function generatePutUrl(Key, ContentType, option) {
+//   return new Promise((resolve, reject) => {
+//     let params = { Bucket, Key, ContentType };
+//     console.log("THESE ARE THE PARAMS!?!?!?!", params)
+//     s3.getSignedUrl('putObject', params, function(err, url) {
+//       if (err) {
+//         reject(err);
+//       }
+//       resolve(url);
+//     });
+//   });
+// }
+
 function generatePutUrl(Key, ContentType, option) {
   return new Promise((resolve, reject) => {
     let params;
     if (option === 'resume') {
       params = { Bucket: BucketDesignersResume, Key, ContentType };
+    } else if (option === 'new-request') {
+      params = { Bucket: BucketNewRequest, Key, ContentType };
     } else {
       params = { Bucket, Key, ContentType };
     }
