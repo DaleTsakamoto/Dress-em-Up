@@ -119,7 +119,16 @@ function Orders() {
             <p className='order-requests-ind-message'>Message:</p>
             <p className='order-requests-ind-message-description'>{req.description}</p>
                 <div className='orders-requests-images'>
-            <img className='orders-request-single-image' src={req.imageUrl} />
+                  {Array.isArray(req.imageUrl)
+                    ?
+                    req.imageUrl.map((img) => {
+                      return (
+                        <img className='orders-request-single-image' src={img} />
+                      )
+                    })
+                    :
+                    <img className='orders-request-single-image' src={req.imageUrl} />
+                }
             </div>
           </div>
           <div className='orders-requests-line'></div>

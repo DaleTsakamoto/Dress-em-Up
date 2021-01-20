@@ -28,9 +28,17 @@ router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => 
   const userId = parseInt(req.params.id, 10)
   let oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );
   let requests = oldRequests[0];
-  console.log("CHECK OUT THESE REQUESTS!?!?!?", requests)
   for (let i = 0; i < requests.length; i++) {
-    requests[i].imageUrl = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/requests/${requests[i].image}`
+    let imageArray;
+    if (requests[i].image.includes(',')) {
+      imageArray = requests[i].image.split(',')
+      requests[i].imageUrl = [];
+      imageArray.forEach(img => {
+        requests[i].imageUrl.push(`https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/requests/${img}`)
+      })
+    } else {
+      requests[i].imageUrl = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/requests/${requests[i].image}`
+    }
   }
     return res.json({ requests });
 }))
