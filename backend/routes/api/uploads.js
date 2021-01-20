@@ -8,7 +8,7 @@ const upload = multer({ storage: storage });
 const { v4: uuidv4 } = require('uuid');
 const aws = require("aws-sdk");
 
-const {generateGetUrl, generatePutUrl} = require('../awsUrlGenerator')
+const {generatePutUrl} = require('../awsUrlGenerator')
 
 
 router.get(

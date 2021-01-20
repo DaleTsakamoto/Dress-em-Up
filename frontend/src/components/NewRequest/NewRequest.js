@@ -169,22 +169,23 @@ const firstUpdate = useRef(true);
           <button id='file-upload-button'>Upload</button>
         </form>
       <div className='new-request-preview-container'>
-          {images && (
               <div className='new-request-preview'>
                 {images[0] ? <img
-                  id='show-picture'
+                  className='show-picture'
+                  alt=''
                   src={images[0]}
                 /> : null}
                 {images[1] ? <img
-                  id='show-picture'
+                  className='show-picture'
                   src={images[1]}
+                  alt=''
                 /> : null}
                 {images[2] ? <img
-                  id='show-picture'
+                  className='show-picture'
                   src={images[2]}
+                  alt=''
                 /> : null}
               </div>
-          )}
             </div>
           </div>
           <h1 className='new-request-form-subtitle-2'>More Details</h1>

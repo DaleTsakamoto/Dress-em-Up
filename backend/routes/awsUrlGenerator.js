@@ -15,22 +15,22 @@ const BucketDesignersResume = `${process.env.BUCKET_NAME}/designers/resume`
 const BucketNewRequest = `${process.env.BUCKET_NAME}/users/requests`
 
 // GET URL Generator
-function generateGetUrl(Key) {
-  console.log("THIS IS THE BACKEND KEY", Key)
-  return new Promise((resolve, reject) => {
-    const params = {
-      Bucket,
-      Key,
-    };
-    s3.getSignedUrl('getObject', params, (err, url) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(url);
-      }
-    });
-  });
-}
+// function generateGetUrl(Key) {
+//   console.log("THIS IS THE BACKEND KEY", Key)
+//   return new Promise((resolve, reject) => {
+//     const params = {
+//       Bucket,
+//       Key,
+//     };
+//     s3.getSignedUrl('getObject', params, (err, url) => {
+//       if (err) {
+//         reject(err);
+//       } else {
+//         resolve(url);
+//       }
+//     });
+//   });
+// }
 
 // PUT URL Generator
 // function generatePutUrl(Key, ContentType, option) {
