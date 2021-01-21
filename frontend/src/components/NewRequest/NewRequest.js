@@ -158,8 +158,9 @@ const firstUpdate = useRef(true);
       <h1 className='new-request-form-title'>New Request</h1>
       <div className='pattern-cross-dots-lg new-request-form-container-background'>
         <h1 className='new-request-form-subtitle'>Upload Images</h1>
-        {/* <div className='new-request-form-container'> */}
         <div className='new-request-upload-container'>
+          {images.length < 3 ? 
+            <>
         <input
           id='upload-image'
           type='file'
@@ -170,8 +171,12 @@ const firstUpdate = useRef(true);
         <form className='upload-image-form' onSubmit={uploadFile}>
           <button id='file-upload-button'>Upload</button>
         </form>
+              </>
+            :
+            <p>Maximum allowed images uploaded</p>
+        }
       <div className='new-request-preview-container'>
-              <div className='new-request-preview'>
+            <div className='new-request-preview'>
                 {images[0] ? <img
                   className='show-picture'
                   alt=''
@@ -257,9 +262,11 @@ const firstUpdate = useRef(true);
         <p id='new-request-designers-label'> Choose a Designer: </p>
           <select id='designer' onChange={e => setDesignerId(e.target.value)} name="designer">
                 {designers ? Object.values(designers).map((person, idx) => {
-        return (
-          <option key={idx} value={person.id}>{person.firstName} {person.lastName}</option>
-        )
+                  if (person.active) {
+                    return (
+                      <option key={idx} value={person.id}>{person.firstName} {person.lastName}</option>
+                    )
+                  }
           })
                 :
                 null

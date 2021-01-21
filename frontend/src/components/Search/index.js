@@ -122,22 +122,24 @@ function Search() {
           <h2>Results</h2>
         </div>
         {designersSearch ?
-            Object.values(designersSearch).map((person, idx) => {
-      return (
-        <div key={idx} className='search-my-designers-individual'>
-        <NavLink className='search-my-designers-navlinks' to={`/users/${person.id}`}>
-          <div className='search-my-designers-header'>
-          <img className='search-my-designers-image' src={person.avatar} />
-            <div className='search-my-designers-name-rating'>
-              <h1 className='search-my-designers-name'>{person.firstName} {person.lastName}</h1>
-                <div className={`did${designerRatings[`${person.id}`].designerId} search-my-designers-ratings-container`}>
-              {renderRatings2(designerRatings[`${person.id}`].avgRating) }
-              </div>
-            </div>
-          </div>
-        </NavLink>
-      </div>
-      )
+          Object.values(designersSearch).map((person, idx) => {
+            if (person.active) {
+              return (
+                <div key={idx} className='search-my-designers-individual'>
+                  <NavLink className='search-my-designers-navlinks' to={`/users/${person.id}`}>
+                    <div className='search-my-designers-header'>
+                      <img className='search-my-designers-image' src={person.avatar} />
+                      <div className='search-my-designers-name-rating'>
+                        <h1 className='search-my-designers-name'>{person.firstName} {person.lastName}</h1>
+                        <div className={`did${designerRatings[`${person.id}`].designerId} search-my-designers-ratings-container`}>
+                          {renderRatings2(designerRatings[`${person.id}`].avgRating)}
+                        </div>
+                      </div>
+                    </div>
+                  </NavLink>
+                </div>
+              )
+            }
     })
           :
           null

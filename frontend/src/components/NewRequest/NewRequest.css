@@ -109,6 +109,10 @@
   /* font-size: 20px */
 }
 
+.new-request-upload-container > p{
+  font-size: 20px
+}
+
 .new-request-main-form-container{
   display: flex;
   flex-direction: column;
@@ -244,6 +248,7 @@
 .show-picture{
   max-height: 14vh;
   max-width: 14vh;
+  margin-right: 1vh;
 }
 
 
@@ -299,6 +304,10 @@
     margin-top: 10px;
     height: 200px;
     color: #DD356E;
+  }
+
+  .new-request-upload-container > p{
+    font-size: 12px
   }
 
   #upload-image{

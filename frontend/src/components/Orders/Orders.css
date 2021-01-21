@@ -80,6 +80,7 @@ color: #DD356E;
 .orders-request-single-image{
   margin-top: 1.5vh;
   margin-bottom: 1.5vh;
+  margin-right: .5vh;
   max-height: 10vh;
   max-width: 10vh;
 }
@@ -236,6 +237,7 @@ color: #DD356E;
   .orders-request-single-image{
     margin-top: 15px;
     margin-bottom: 15px;
+    margin-right: 15px;
     max-height: 80px;
     max-width: 80px;
   }
