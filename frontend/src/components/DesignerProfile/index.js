@@ -6,7 +6,7 @@ import * as sessionActions from '../../store/session';
 
 import './Account.css';
 
-function Account() {
+function DesignerProfile() {
   const history = useHistory()
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
@@ -50,12 +50,8 @@ function Account() {
 
   return (
       <div className="account-main pattern-cross-dots-lg">
-      <div className='account-header-info'>
-        {sessionUser.avatar ? 
-          <img className="account-profile-picture" src={sessionUser.avatar} />
-          :
+        <div className='account-header-info'>
         <i className="fas fa-user-circle"></i>
-      }
           {edit ? 
           <>
             <div className='account-input-container-name'>
@@ -170,4 +166,4 @@ function Account() {
   )
 }
 
-export default Account;
+export default DesignerProfile;

@@ -59,6 +59,9 @@ router.get('/:id(\\d+)/designers', requireAuth, asyncHandler(async (req, res) =>
   let oldDesigners = await sequelize.query(`SELECT "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName", "Users"."avatar" AS "designerAvatar", "Users"."bio" AS "designerBio" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId}`);
   // let oldDesigners = await sequelize.query(`SELECT "Recommendations"."designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName", "Users"."avatar" AS "designerAvatar", "Users"."bio" AS "designerBio", AVG("Ratings"."designerRating") AS ratings GROUP BY "Ratings"."designerRating" FROM "Recommendations" JOIN "Users" ON "Recommendations"."designerId" = "Users".id JOIN "Ratings" ON "Ratings"."designerId" = "Recommendations"."designerId" WHERE "Recommendations"."userId"=${userId}`);
   let designers = oldDesigners[0];
+  for (let i = 0; i < designers.length; i++) {
+      designers[i].designerAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${designers[i].designerAvatar}`
+    }
     return res.json({ designers });
   }))
 
@@ -82,6 +85,9 @@ router.post(
     }
 
     await setTokenCookie(res, user);
+
+    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/${user.avatar}`
+
 
     return res.json({
       user,

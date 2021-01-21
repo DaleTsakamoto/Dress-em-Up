@@ -28,17 +28,6 @@ function HomePage() {
       .then(() => setIsLoaded2(true))
 },[dispatch])
 
-//   let logInClick = () => {
-//     let path = '/login'
-//     history.push(path);
-//   }
-  
-//   let signUpClick = () => {
-//     let path = '/signup'
-//     history.push(path);
-// }
-
-  
   let hyperlinksArray;
   let clothes;
   let random = (min, max) => {

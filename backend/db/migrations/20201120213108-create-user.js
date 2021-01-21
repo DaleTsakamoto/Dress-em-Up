@@ -49,6 +49,9 @@ module.exports = {
       bio: {
         type: Sequelize.TEXT
       },
+      education: {
+        type: Sequelize.STRING(255)
+      },
       address: {
         type: Sequelize.TEXT,
       },

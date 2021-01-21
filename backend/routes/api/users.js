@@ -88,6 +88,7 @@ router.post(
 
     await setTokenCookie(res, user);
 
+    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/${user.avatar}`
     return res.json({
       user,
     });
@@ -109,6 +110,7 @@ router.put(
       },
     });
     let user = await User.scope('currentUser').findByPk(id);
+    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/${user.avatar}`
     return res.json({
       user,
     });
@@ -142,6 +144,7 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     designers = {}
     for (let i = 0; i < oldDesigners.length; i++) {
       designers[oldDesigners[i].id] = oldDesigners[i]
+      oldDesigners[i].avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${oldDesigners[i].avatar}`
     } 
   } 
   else if (!req.query['q1']) {
@@ -160,6 +163,9 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
         }}]
       }
     })
+    for (let i = 0; i < designers.length; i++) {
+      designers[i].avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${designers[i].avatar}`
+    }
   } 
   else {
     let keywordSearches = req.query;
@@ -193,7 +199,14 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
         ]
       }
     })
+    for (let i = 0; i < designers.length; i++) {
+      designers[i].avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${designers[i].avatar}`
+    }
   }
+
+  console.log("THESE ARE THE DESIGNERS BACKEND!?!?!?!", designers)
+
+
     return res.json({ designers });
     }))
   

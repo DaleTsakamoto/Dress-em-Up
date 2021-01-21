@@ -12,6 +12,7 @@ import Search from './components/Search'
 import Account from './components/Account'
 import Header from './components/Header'
 import DesignerSignup from './components/DesignerSignup'
+import DesignerProfile from './components/DesignerProfile'
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/account">
           <Header />
           <Account />
+          {/* <DesignerProfile /> */}
           <Navigation />
         </Route>
         <Route path="/">

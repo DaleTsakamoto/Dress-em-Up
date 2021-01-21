@@ -26,12 +26,6 @@
   color: black;
 }
 
-.account-profile-picture{
-  width: 12vh;
-  height: 12vh;
-  border-radius: 50%;
-}
-
 .account-header-info > i{
   font-size: 160px;
 }
@@ -245,12 +239,6 @@ width: 100vw;
     align-items: center;
     background-color:white;
     color: black;
-  }
-
-  .account-profile-picture{
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
   }
   
   .account-header-info > i{
