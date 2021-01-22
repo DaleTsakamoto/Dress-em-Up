@@ -160,6 +160,7 @@ width: 100vw;
   background-color: white;
   color: black;
   cursor: pointer;
+  margin-bottom: 10vh;
 }
 
 /********************* EDIT FORM CSS *********************/

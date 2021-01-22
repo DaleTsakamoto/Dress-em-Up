@@ -101,7 +101,7 @@ router.post(
 router.get('/:id(\\d+)/recommendations', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
   console.log("BACKEND IS WORKING AND THIS IS USERID", userId)
-  let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"`);
+  let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE "designerId"=${userId} ORDER BY "createdAt"`);
   let recommendations = oldRecommendations[0];
     return res.json({ recommendations });
 }))
@@ -134,7 +134,7 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
   const user = await User.findByPk(userId)
   if (user) {
-    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/${user.avatar}`
+    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
     return res.json({
       user
     })
@@ -216,7 +216,6 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     }
   }
 
-  console.log("THESE ARE THE DESIGNERS BACKEND!?!?!?!", designers)
 
 
     return res.json({ designers });

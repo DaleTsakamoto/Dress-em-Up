@@ -85,8 +85,8 @@ function DesignerProfile() {
           <img src='https://dress-em-up.s3-us-west-1.amazonaws.com/designers/background-profile/05e08f55-bb29-4002-a865-47bd55f96075.jpg'/>
         </div>
         <div className='designer-profile-profile-avatar'>
-          {sessionUser.avatar ?
-            <img src={sessionUser.avatar} />
+          {user.avatar ?
+            <img src={user.avatar} />
             :
             <i className="fas fa-user-circle"></i>
           }
