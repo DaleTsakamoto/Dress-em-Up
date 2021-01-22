@@ -251,6 +251,10 @@
   margin-right: 1vh;
 }
 
+.new-request-hide{
+  display: none;
+}
+
 
 /*************** @MEDIA QUERIES ***************/
 

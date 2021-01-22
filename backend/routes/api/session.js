@@ -86,8 +86,8 @@ router.post(
 
     await setTokenCookie(res, user);
 
-    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/${user.avatar}`
-
+    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
+    // user['profileBackground'] = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/05e08f55-bb29-4002-a865-47bd55f96075.jpg`
 
     return res.json({
       user,
@@ -113,6 +113,8 @@ router.get(
   (req, res) => {
     const { user } = req;
     if (user) {
+      // user.profileBackground = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/05e08f55-bb29-4002-a865-47bd55f96075.jpg`
+      user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
       return res.json({
         user: user.toSafeObject()
       });

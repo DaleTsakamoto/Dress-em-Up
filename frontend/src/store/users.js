@@ -4,6 +4,14 @@ const FIND_USER = 'session/findUser'
 const FIND_DESIGNERS = 'find/findDesigners'
 const PURGE_DESIGNERS = 'purge/designers'
 const FIND_NEW_REQUEST_DESIGNERS = 'find/findNewRequestDesigners'
+const SET_PROFILE_RECOMMENDATIONS = 'users/setProfileRecommendations'
+
+const setProfileRecommendations = (recommendations) => {
+  return {
+    type: SET_PROFILE_RECOMMENDATIONS,
+    recommendations,
+  }
+}
 
 const findDesigners = (designers) => {
   return {
@@ -37,6 +45,14 @@ export const searchUser = (urlId) => async (dispatch) => {
     method: 'GET',
   })
   dispatch(findUser(res.data.user));
+  return res
+}
+
+export const searchProfileRecommendations = (id) => async (dispatch) => {
+  const res = await fetch(`/api/users/${id}/recommendations`, {
+    method: 'GET',
+  })
+  dispatch(setProfileRecommendations(res.data.recommendations));
   return res
 }
 
@@ -80,7 +96,7 @@ export const searchNewRequestDesigners = () => async (dispatch) => {
   return res
 }
 
-const initialState = { user: null, designers: null, newRequest: null }
+const initialState = { user: null, designers: null, newRequest: null, recommendations: null }
 
 const usersReducer = (state = initialState, action) => {
   let newState;
@@ -100,6 +116,10 @@ const usersReducer = (state = initialState, action) => {
     case FIND_NEW_REQUEST_DESIGNERS:
       newState = Object.assign({}, state)
       newState.newRequest = action.designers;
+      return newState;
+    case SET_PROFILE_RECOMMENDATIONS:
+      newState = Object.assign({}, state);
+      newState.recommendations = action.recommendations;
       return newState;
     default:
       return state;

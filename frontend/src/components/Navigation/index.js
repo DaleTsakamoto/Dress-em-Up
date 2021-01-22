@@ -9,7 +9,7 @@ const Navigation = () => {
   const [requestResponse, setRequestResponse] = useState(false)
   const [search, setSearch] = useState(false)
   const [account, setAccount] = useState(false)
-  const userSession = useSelector(state => state.session.user)
+  const sessionUser = useSelector(state => state.session.user)
 
   function changeColorHome() {
     setSearch(false)
@@ -59,7 +59,7 @@ const Navigation = () => {
           <p>Search</p>
         </div>
       </NavLink>
-      <NavLink className='navigation-navlinks' to="/account">
+      <NavLink className='navigation-navlinks' to={`/users/${sessionUser.id}`}>
         <div onClick={ changeColorAccount } className={`navigation-home-category ${account ? 'navigation-add-color' : null}`}>
           <i className="fas fa-user"></i>
           <p>Account</p>

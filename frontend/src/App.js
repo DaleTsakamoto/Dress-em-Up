@@ -47,12 +47,25 @@ function App() {
           <Search />
           <Navigation />
         </Route>
-        <Route path="/account">
-          <Header />
-          <Account />
-          {/* <DesignerProfile /> */}
-          <Navigation />
+        {sessionUser ? 
+          <Route path={`/users/${sessionUser.id}`}>
+            {sessionUser.userType ? 
+              <>
+             <Header />
+             <Account />
+                <Navigation />
+                </>
+              :
+              <>
+              <Header />
+              <DesignerProfile />
+                <Navigation />
+                </>
+            }
         </Route>
+         :
+          null
+      }
         <Route path="/">
           {sessionUser ? 
             <>

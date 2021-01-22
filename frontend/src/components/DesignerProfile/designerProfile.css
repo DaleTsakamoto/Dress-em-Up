@@ -1,10 +1,10 @@
-.account-main{
+.designer-profile-main{
   height: 100vh;
   width: 100%;
   overflow: scroll;
 }
 
-.account-main::-webkit-scrollbar{
+.designer-profile-main::-webkit-scrollbar{
   display: none;
 }
 
@@ -13,11 +13,58 @@
   background-color: #fef0bc
 }
 
-.account-header-info{
-  padding-top: 8vh;
-  top: 8vh;
-  height: 35vh;
+.designer-profile-header{
+  position: relative;
+  margin-top: 8vh;
+  height: 45vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:white;
+  color: black;
+  z-index:0;
+}
+
+.designer-profile-header-background{
+  height: 20vh;
+  /* width: 96vw; */
+  width: 100vw;
+}
+
+.designer-profile-header-background > img{
+  height: 100%;
+  width: 100%;
+  /* border-top-left-radius: 30px;
+  border-top-right-radius: 30px; */
+}
+
+.designer-profile-profile-avatar{
+  position: absolute;
+  margin-top: 14vh;
+  width: 14vh;
+  height: 14vh;
+  border: 14px solid white;
+  border-radius: 50%;
+}
+
+.designer-profile-profile-avatar > img{
+  /* position: absolute; */
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.designer-profile-header > i{
+  /* position: absolute; */
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.designer-profile-header-info{
+  height: 20vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,28 +73,24 @@
   color: black;
 }
 
-.account-header-info > i{
-  font-size: 160px;
-}
-
-.account-header-info > h1{
-  margin-top: 2vh;
+.designer-profile-header-info > h1{
+  margin-top: 10vh;
   font-size: 72px;
 }
 
-.account-header-info > h2{
-  margin-top: .5vh;
+.designer-profile-header-info > h2{
+  margin-top: 1vh;
   font-size: 36px;
 }
 
-.account-header-info > p{
+.designer-profile-header-info > p{
   margin-top: 1.5vh;
   font-size: 32px;
   color: #23BDBC;
   cursor: pointer;
 }
 
-.account-places{
+.designer-profile-recent-requests-title{
   display: table-cell;
   vertical-align: middle;
   font-size: 42px;
@@ -55,12 +98,18 @@
   width: 100vw;
 }
 
-.account-places > p{
+.designer-profile-recent-requests-title > p{
   margin-left: 5vw;
   color: black;
 }
 
-.account-places-home{
+.designer-profile-recent-requests{
+  background-color: white;
+  min-height: 10vh;
+  width: 100vw;
+}
+
+.designer-profile-places-home{
   height: 8vh;
   display: flex;
   flex-direction: row;
@@ -70,38 +119,38 @@
   color: black;
 }
 
-.account-places-home > i{
+.designer-profile-places-home > i{
   font-size: 48px;
 }
 
-.account-places-home-header{
+.designer-profile-places-home-header{
   margin-left: 5vw;
   font-size: 36px;
 }
 
-.account-places-home-address{
+.designer-profile-places-home-address{
   margin-left: 10vw;
   font-size: 32px;
   line-height: 1.5;
 }
 
-.account-places-email{
+.designer-profile-places-email{
   margin-left: 10vw;
   font-size: 32px;
 }
 
-.account-places-email > p{
+.designer-profile-places-email > p{
   font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   box-sizing: border-box; 
 }
 
-.account-places-spacer{
+.designer-profile-places-spacer{
 height: 3vh;
 width: 100vw;
 }
 
-.account-logout{
+.designer-profile-logout{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -115,7 +164,7 @@ width: 100vw;
 
 /********************* EDIT FORM CSS *********************/
 
-.account-form {
+.designer-profile-form {
   height: 100%; 
   width: 100%; 
   border-radius: 15px 15px 0 0;
@@ -124,20 +173,20 @@ width: 100vw;
   z-index: 3;
 }
 
-.account-input-holder{
+.designer-profile-input-holder{
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: .6vh;
 }
 
-.account-input-container-name{
+.designer-profile-input-container-name{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
 
-.account-input-holder-name{
+.designer-profile-input-holder-name{
   /* width: 70vw;  */
   display: flex;
   flex-direction: row;
@@ -145,7 +194,7 @@ width: 100vw;
   margin-top: 1.4vh;
 }
 
-.account-input-first-name, .account-input-last-name{
+.designer-profile-input-first-name, .designer-profile-input-last-name{
   font-family: 'Open Sans', sans-serif;
   font-size: 72px;
   width: 20vw;
@@ -154,12 +203,12 @@ width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.account-input-last-name{
+.designer-profile-input-last-name{
   margin-left: 2vw;
   width: 26vw;
 }
 
-.account-input-username{
+.designer-profile-input-username{
   font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   box-sizing: border-box; 
@@ -170,7 +219,7 @@ width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.account-input-email{
+.designer-profile-input-email{
   font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   box-sizing: border-box; 
@@ -178,18 +227,18 @@ width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.account-input-username:focus, .account-input-name:focus{
+.designer-profile-input-username:focus, .account-input-name:focus{
   background: white; 
 }
 
-.account-input-holder-address{
+.designer-profile-input-holder-address{
   /* width: 70vw;  */
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
 
-.account-input-address{
+.designer-profile-input-address{
   font-family: 'Open Sans', sans-serif;
   font-size: 32px;
   width: 40vw;
@@ -197,7 +246,7 @@ width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.account-input-city, .account-input-state, .account-input-zipcode{
+.designer-profile-input-city, .designer-profile-input-state, .designer-profile-input-zipcode{
   font-family: 'Open Sans', sans-serif;
   font-size: 32px;
   border: none;
@@ -206,11 +255,11 @@ width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.account-input-state{
+.designer-profile-input-state{
   width: 6vw;
 }
 
-.account-input-city{
+.designer-profile-input-city{
   width: 12vw;
 }
 
@@ -219,7 +268,7 @@ width: 100vw;
 /****************** @MEDIA QUERIES **********************/
 
 @media screen and (min-aspect-ratio: 1/1){
-	.account-main {
+	.designer-profile-main {
     margin-top: 50px;
     padding-top: 20px;
     margin-bottom: 50px;
@@ -227,7 +276,7 @@ width: 100vw;
     height: 85vh;
   }
 
-  .account-header-info{
+  .designer-profile-header-info{
     padding-top: 30px;
     padding-bottom: 10px;
     top: 50px;
@@ -240,71 +289,101 @@ width: 100vw;
     background-color:white;
     color: black;
   }
+
+  .designer-profile-header-background{
+    margin-top: -40px;
+    height: 200px;
+    /* width: 96vw; */
+    width: 500px;
+  }
   
-  .account-header-info > i{
+  .designer-profile-header-background > img{
+    height: 100%;
+    width: 100%;
+    /* border-top-left-radius: 30px;
+    border-top-right-radius: 30px; */
+  }
+  
+  .designer-profile-profile-avatar{
+    position: absolute;
+    margin-top: 140px;
+    width: 120px;
+    height: 120px;
+    border: 6px solid white;
+    border-radius: 50%;
+  }
+  
+  .designer-profile-profile-avatar > img{
+    /* position: absolute; */
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+  
+  .designer-profile-header-info > i{
     font-size: 90px;
   }
   
-  .account-header-info > h1{
+  .designer-profile-header-info > h1{
     margin-top: 20px;
     font-size: 36px;
   }
   
-  .account-header-info > h2{
+  .designer-profile-header-info > h2{
     margin-top: 5px;
     font-size: 18px;
   }
   
-  .account-header-info > p{
+  .designer-profile-header-info > p{
     margin-top: 15px;
     font-size: 14px;
   }
 
-  .account-places{
+  .designer-profile-places{
     font-size: 22px;
     height: 35px;
     width: 500px;
   }
   
-  .account-places > p{
+  .designer-profile-places > p{
     margin-left: 50px;
   }
   
-  .account-places-home{
+  .designer-profile-places-home{
     height: 60px;
     padding: 0 50px;
   }
   
-  .account-places-home > i{
+  .designer-profile-places-home > i{
     font-size: 22px;
   }
   
-  .account-places-home-header{
+  .designer-profile-places-home-header{
     margin-left: 50px;
     font-size: 16px;
   }
   
-  .account-places-home-address{
+  .designer-profile-places-home-address{
     margin-left: 50px;
     font-size: 12px;
     line-height: 1.5;
   }
 
-  .account-places-email{
+  .designer-profile-places-email{
     margin-left: 40px;
     font-size: 16px;
   }
   
-  .account-places-email > p{
+  .designer-profile-places-email > p{
     font-size: 12px;
   }
   
-  .account-places-spacer{
+  .designer-profile-places-spacer{
     height: 30px;
     width: 500px;
   }
   
-  .account-logout{
+  .designer-profile-logout{
     height: 60px;
     font-size: 22px;
     padding-left: 50px;
@@ -315,20 +394,20 @@ width: 100vw;
   /********************* EDIT FORM CSS *********************/
 
 
-.account-form {
+.designer-profile-form {
   height: 100%; 
   width: 500px; 
 }
 
-.account-input-holder{
+.designer-profile-input-holder{
   margin: 8px;
 }
 
-.account-input-holder-name{
+.designer-profile-input-holder-name{
   margin-top: 14px;
 }
 
-.account-input-first-name, .account-input-last-name{
+.designer-profile-input-first-name, .designer-profile-input-last-name{
   width: 95px;
   font-family: 'Open Sans', sans-serif;
   font-size: 36px;
@@ -337,20 +416,20 @@ width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.account-input-last-name{
+.designer-profile-input-last-name{
   width: 120px;
 }
 
-.account-input-username{
+.designer-profile-input-username{
   font-size: 18px;
   margin-left: 80px;
 }
 
-.account-input-email{
+.designer-profile-input-email{
   font-size: 12px;
 }
 
-.account-input-address{
+.designer-profile-input-address{
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
   width: 200px;
@@ -358,7 +437,7 @@ width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.account-input-city, .account-input-state, .account-input-zipcode{
+.designer-profile-input-city, .designer-profile-input-state, .designer-profile-input-zipcode{
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
   border: none;
@@ -367,24 +446,24 @@ width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.account-input-state{
+.designer-profile-input-state{
   width: 22px;
 }
 
-.account-input-city{
+.designer-profile-input-city{
   width: 48px;
 }
 
 }
 
 @media screen and (min-aspect-ratio: 2/1){
-  .account-main {
+  .designer-profile-main {
     height: 82vh;
   }
 }
 
 @media screen and (min-aspect-ratio: 3/1){
-  .account-main {
+  .designer-profile-main {
     height: 76vh;
   }
 }
