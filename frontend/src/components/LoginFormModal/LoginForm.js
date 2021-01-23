@@ -40,7 +40,7 @@ function LoginForm({open, hidden, setHidden}) {
   }
 
   return (
-    <div className={`pattern-cross-dots-lg ${open ? 'login-form-holder-open' : hidden ? 'login-form-holder-close login-hide' : 'login-form-holder-close'}`}>
+    <div className={`pattern-diagonal-lines-xl ${open ? 'login-form-holder-open' : hidden ? 'login-form-holder-close login-hide' : 'login-form-holder-close'}`}>
         <h1 className='login-form-title'>Login</h1>
         <form onSubmit={handleSubmit} className="login-form">
           <ul>

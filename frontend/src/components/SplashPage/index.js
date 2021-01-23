@@ -28,9 +28,10 @@ function SplashPage() {
     <div id="overlay-1">
       <img className="homepage-dresser-door-left" src= "./images/Dresser-door-left.png" />
     </div>
-    <div id="overlay-2">
+    <div id="overlay-2" onLoad={() => setIsLoaded(true)}>
       <img className="homepage-dresser-door-right" src= "./images/Dresser-door-right.png" />
-        </div>
+      </div>
+      {isLoaded ?
     <div className="homepage-main">
         <div className="about_carousel">
           <div className='homepage-text-logo-container'>
@@ -95,7 +96,10 @@ function SplashPage() {
           <p>Want to join our team of designers? <a href='/designer-signup'> Help dress 'em up</a> </p>
         </div>
       </div>
-      </div>
+        </div>
+        :
+        null
+        }
       </>
   )
 }

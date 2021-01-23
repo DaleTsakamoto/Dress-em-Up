@@ -15,7 +15,8 @@ import DesignerSignup from './components/DesignerSignup'
 import DesignerProfile from './components/DesignerProfile'
 
 
-function App() {
+function App({ hideLoadScreen }) {
+  useEffect(hideLoadScreen, []);
   const sessionUser = useSelector(state => state.session.user)
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);

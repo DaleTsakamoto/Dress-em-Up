@@ -48,10 +48,15 @@
   100% {bottom: -34vh}
   }
 
-.pattern-cross-dots-lg{
+/* .pattern-cross-dots-lg{
   color: #23BDBC;
   background-color: #fef0bc
-}
+} */
+
+/* .pattern-diagonal-lines-xl{
+  color: black;
+  background-color: white;
+} */
 
 .login-form-title{
   color: #DD356E;

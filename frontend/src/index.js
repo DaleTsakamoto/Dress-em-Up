@@ -21,19 +21,32 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
 }
 
+const loader = document.querySelector('.load-screen');
+const showLoadScreen = () => loader.classList.remove('load-screen--hide');
+const hideLoadScreen = () => loader.classList.add('load-screen--hide');
+document.getElementById('load-screen-image-top').src = './images/clothesline-top.png'
+// document.getElementById('load-screen-image-front').src = './images/load-dress.jpg'
+// document.getElementById('load-screen-image-city').src = './images/cityscape.png'
+document.getElementById('load-screen-loading').innerHTML = 'Loading...'
+
 function Root() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <App
+          hideLoadScreen={hideLoadScreen}
+          showLoadScreen={showLoadScreen}
+        />
       </BrowserRouter>
     </Provider>
   )
 }
 
+setTimeout(() => 
 ReactDOM.render(
   <React.StrictMode>
     <Root />
   </React.StrictMode>,
   document.getElementById('root')
-);
+  )
+  , 4000);
