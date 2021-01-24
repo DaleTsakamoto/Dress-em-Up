@@ -57,16 +57,18 @@ export const searchUserDesigners = (id) => async (dispatch) => {
   return res
 }
 
-export const searchUserRequests = (id) => async (dispatch) => {
-  const res = await fetch(`/api/session/${id}/requests`, {
+export const searchUserRequests = (requests) => async (dispatch) => {
+  const {id, userType} = requests
+  const res = await fetch(`/api/session/${id}/requests/${userType}`, {
     method: 'GET',
   })
   dispatch(setUserRequests(res.data.requests));
   return res
 }
 
-export const searchUserRecommendations = (id) => async (dispatch) => {
-  const res = await fetch(`/api/session/${id}/recommendations`, {
+export const searchUserRecommendations = (recommendations) => async (dispatch) => {
+  const { id, userType } = recommendations;
+  const res = await fetch(`/api/session/${id}/recommendations/${userType}`, {
     method: 'GET',
   })
   dispatch(setUserRecommendations(res.data.recommendations));

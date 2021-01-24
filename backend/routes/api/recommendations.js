@@ -13,19 +13,22 @@ const Op = Sequelize.Op;
 
 /****************** REQUESTS ERRORS MIDDLEWARE **************************/
 
-// const validateRequest = [
-//   check('image')
-//     .exists({ checkFalsy: true })
-//     .withMessage('Please provide at least one image.'),
-//   check('apparelChoice')
-//     .exists({ checkFalsy: true })
-//     .isLength({ min: 1 })
-//     .withMessage('Please include at least one apparel choice.'),
-//   check('description')
-//     .exists({ checkFalsy: true })
-//     .withMessage('Please include a description of your request.'),
-//   handleValidationErrors,
-// ];
+const validateRecommendation = [
+  check('hyperlinks')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide at least one hyperlink.'),
+  check('apparelChoice')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 1 })
+    .withMessage('Please include at least one apparel choice.'),
+  check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Please include a description of your recommendation.'),
+  check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Please include a name for your recommendation'),
+  handleValidationErrors,
+];
 
 /******************** NEW REQUEST **************************/
 
@@ -59,20 +62,29 @@ const Op = Sequelize.Op;
 //     return res.json('No User Found!');
 //   }))
 
+/******************** NEW RECOMMENDATION **************************/
+
+router.post(
+  '/',
+  validateRecommendation,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    let { userId, designerId, name, apparelChoice, description, hyperlinksArray } = req.body;
+    hyperlinks = hyperlinksArray.join(',')
+    apparelChoice = apparelChoice.join(',')
+    const recommendation = await Recommendation.build({ userId, designerId, name, apparelChoice, description, hyperlinks });
+    await recommendation.save();
+    return res.json({
+      recommendation,
+    });
+  }),
+);
+
 
 /****************** GET RECOMMENDATIONS **************************/
 
 router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const user = req.params.id
-    // const recommendations = await User.findAll({
-    //   where: {
-    //     id: {
-    //       [Op.ne]: user
-    //     },
-    //     attributes: ['id', 'firstName', 'lastName'],
-    //     include: Recommendation
-    //   }
-    // })
   let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "apparelChoice", "Recommendations".description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE NOT "userId"=${user}`);
   // UNION SELECT name, "apparelChoice", description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id
   let recommendations = oldRecommendations[0];

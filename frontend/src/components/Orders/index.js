@@ -17,19 +17,17 @@ function Orders() {
   const userRecommendations = useSelector(state => state.session.recommendations)
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoaded2, setIsLoaded2] = useState(false);
-  const [isLoaded3, setIsLoaded3] = useState(false);
-  const [image, setImage] = useState();
-  const [currentImageKey, setCurrentImageKey] = useState([]);
   const componentIsMounted = useRef(true)
   const id = sessionUser.id
+  const userType = sessionUser.userType
 
   useEffect(() => {
-    dispatch(sessionActions.searchUserRequests(id))
+    dispatch(sessionActions.searchUserRequests({ id, userType }))
     .then(() => setIsLoaded(true))
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(sessionActions.searchUserRecommendations(id))
+    dispatch(sessionActions.searchUserRecommendations({ id, userType }))
     .then(() => setIsLoaded2(true))
   }, [dispatch])
 
@@ -111,13 +109,16 @@ function Orders() {
           <h1 className='orders-requests-header'>Requests</h1>
         </div>
         {userRequests ? Object.values(userRequests).map((req, idx) => {
-          // getAWSImage(req.image)
           return(
         <>
-          <div className="orders-request-ind" key={idx}>
-            <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
-            <p className='order-requests-ind-message'>Message:</p>
-            <p className='order-requests-ind-message-description'>{req.description}</p>
+              <div className="orders-request-ind" key={idx}>
+                {userType ? 
+                <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
+                  :
+                  <h2>Request from {req.userFirstName} {req.userLastName}</h2>
+                }
+                <p className='order-requests-ind-message'>Message:</p>
+                <p className='order-requests-ind-message-description'>{req.description}</p>
                 <div className='orders-requests-images'>
                   {Array.isArray(req.imageUrl)
                     ?
@@ -154,8 +155,12 @@ function Orders() {
           <>
           <div className='orders-recommendations-feed'>
             <div key={ idx } className='orders-recommendations-feed-box'>
-            <div className='orders-recommendations-feed-text'>
-              <p className='orders-recommendations-feed-names'>{rec.designerFirstName} {rec.designerLastName} recommended clothes for you!</p>
+              <div className='orders-recommendations-feed-text'>
+                {userType ? 
+                <p className='orders-recommendations-feed-names'>{rec.designerFirstName} {rec.designerLastName} recommended clothes for you!</p>
+                  :
+                <p className='orders-recommendations-feed-names'>You recommended clothes for {rec.userFirstName} {rec.userLastName}!</p>  
+                }
               <p className='orders-recommendations-feed-title'>{rec.name}</p>
               <p className='orders-recommendations-feed-description'>{rec.description}</p>
             </div>

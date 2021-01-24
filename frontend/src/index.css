@@ -57,15 +57,16 @@ table {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #99ccff;
+	background-color: #DD356E;
 	z-index: 11;
+	overflow-x: hidden;
 }
 
 .load-screen-inner {
   width: 50vw;
 	height: 20vh;
 	background-color: transparent;
-	border:900px solid #99ccff;
+	border:900px solid #DD356E;
   /* border: 1.1em solid red; */
   /* border-left: 1.1em solid #000000; */
   /* border-radius: 50%; */
@@ -79,12 +80,12 @@ table {
 	margin-top: -2vh;
 	height: 16vh;
 	width: 100vw;
-	animation: loadright 5s linear;
+	animation: loadright 10s infinite linear;
 	z-index: -1;
 }
 
 #load-screen-loading {
-  color: #99ccff;
+  color: #DD356E;
 	position: absolute;
 	margin-top: 10vh;
   font-family: sans-serif;
@@ -92,13 +93,18 @@ table {
   font-size: 2em;
   letter-spacing: 4px;
   overflow: hidden;
-  background: linear-gradient(90deg, #99ccff, black, #99ccff);
+  background: linear-gradient(90deg, #DD356E, black, #DD356E);
   background-repeat: no-repeat;
   background-size: 80%;
 	animation: animate 3s linear infinite;
 	background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+@keyframes loadright {
+	0%   {right: 10%}
+  100% {right: -18%}
 }
 
 @keyframes animate {
@@ -126,11 +132,6 @@ table {
 	background-color: white;
 }
 
-@keyframes loadright {
-	0%   {right: 0%}
-  100% {right: -10%}
-}
-
 /* @keyframes loadleft {
 	0%   {right: -110%}
   100% {right: -45%}
@@ -142,8 +143,56 @@ table {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		/* margin: 0 auto; */
 		height: 100%;
 		background-color: rgb(85, 84, 84);
+		/* background-color: black; */
+	}
+
+	#load-screen-loading {
+		margin-top: 120px;
+		font-size: 16px;
+		letter-spacing: 3px;
+		background-repeat: no-repeat;
+		background-size: 80%;
+		animation: animate 3s linear infinite;
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: rgba(255, 255, 255, 0);
+		z-index: 50;
+	}
+
+	.load-screen{
+		position: fixed;
+		height: 100vh;
+		width: 500px;
+		display: flex;
+		margin: 0 auto;
+		z-index: 11;
+	}
+
+	.load-screen-inner {
+		width: 300px;
+		height: 100vh;
+		background-color: transparent;
+		border:100px solid #DD356E;
+		overflow-x: hidden;
+		/* border: 1.1em solid red; */
+		/* border-left: 1.1em solid #000000; */
+		/* border-radius: 50%; */
+		/* animation: loadanime 5s linear; */
+		transition: opacity 0.3s;
+		z-index: 10;
+	}
+
+	#load-screen-image-top{
+		margin-top: 0px;
+		height: 140px;
+		width: 500px;
+		animation: loadright 9s infinite linear;
+	}
+
+	@keyframes loadright {
+		0%   {right: 10%}
+		100% {right: -18%}
 	}
 }

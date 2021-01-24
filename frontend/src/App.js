@@ -15,16 +15,18 @@ import DesignerSignup from './components/DesignerSignup'
 import DesignerProfile from './components/DesignerProfile'
 
 
-function App({ hideLoadScreen }) {
+function App({ hideLoadScreen, showLoadScreen }) {
   useEffect(hideLoadScreen, []);
   const sessionUser = useSelector(state => state.session.user)
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(sessionActions.restoreUser())
+      .then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return isLoaded && (
+  return isLoaded &&(
     <>
       <Switch>
         <Route path="/designer-signup">
@@ -40,7 +42,7 @@ function App({ hideLoadScreen }) {
         </Route>
         <Route path="/orders">
           <Header />
-          <Orders />
+            <Orders />
           <Navigation />
         </Route>
         <Route path="/search">
@@ -49,32 +51,30 @@ function App({ hideLoadScreen }) {
           <Navigation />
         </Route>
         {sessionUser ? 
-          <Route path={`/users/${sessionUser.id}`}>
-            {sessionUser.userType ? 
-              <>
-             <Header />
-             <Account />
-                <Navigation />
-                </>
-              :
-              <>
-              <Header />
-              <DesignerProfile />
-                <Navigation />
-                </>
-            }
-        </Route>
-         :
+        <Route path='/account'>
+          <Header />
+          <Account />
+          <Navigation />
+          </Route>
+          :
           null
-      }
+          
+        }
+        <Route path={`/users/:id`}>
+          <>
+            <Header />
+            <DesignerProfile />
+            <Navigation />
+          </>
+        </Route>
         <Route path="/">
           {sessionUser ? 
             <>
               <Header />
-              <HomePage />
+              <HomePage showLoadScreen={showLoadScreen}/>
               <Navigation />
             </>
-            :
+              :
             <SplashPage />
         }
         </Route>

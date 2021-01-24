@@ -41,22 +41,22 @@ const updateRecommendation = (recommendation) => {
 //   return res
 // }
 
-// export const requestAdd = (request) => async (dispatch) => {
-//   const { userId, images, description, designerId, apparelChoice } = request;
-//   let image = images;
-//   console.log("THIS IS THE STORE IMAGE", image)
-//   const res = await fetch(`/api/requests/${userId}`, {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       image,
-//       description,
-//       designerId,
-//       apparelChoice
-//     }),
-//   })
-//   dispatch(addRequest(res.data.request));
-//   return res
-// }
+export const recommendationAdd = (recommendation) => async (dispatch) => {
+  const { userId, designerId, name, apparelChoice, description, hyperlinksArray } = recommendation;
+  const res = await fetch(`/api/recommendations`, {
+    method: 'POST',
+    body: JSON.stringify({
+      userId,
+      designerId,
+      name,
+      description,
+      hyperlinksArray,
+      apparelChoice
+    }),
+  })
+  dispatch(addRecommendation(res.data.recommendation));
+  return res
+}
 
 // export const search = (user) => async (dispatch) => {
 //   const { urlId } = user;
@@ -85,14 +85,14 @@ const recommendationsReducer = (state = initialState, action) => {
       newState = Object.assign({}, state)
       newState.recommendations = action.recommendations;
       return newState;
-    // case ADD_REQUEST:
-    //   newState = Object.assign({}, state)
-    //   if (newState.requests) {
-    //     newState.requests[newState.requests.length] = action.request
-    //   } else {
-    //     newState.requests[0] = action.request
-    //   }
-    //   return newState;
+    case ADD_RECOMMENDATION:
+      newState = Object.assign({}, state)
+      if (newState.recommendations) {
+        newState.recommendations[newState.recommendations.length] = action.recommendation
+      } else {
+        newState.recommendations[0] = action.recommendation
+      }
+      return newState;
     // case UPDATE_TASK:
     //   newState = Object.assign({}, state)
     //   console.log(newState.tasks)

@@ -53,13 +53,22 @@ const Navigation = () => {
           <p>Orders</p>
         </div>
       </NavLink>
+      {sessionUser.userType ? 
       <NavLink className='navigation-navlinks' to="/search">
         <div onClick={ changeColorSearch } className={`navigation-home-category ${search ? 'navigation-add-color' : null}`}>
           <i className="fas fa-search"></i>
           <p>Search</p>
         </div>
-      </NavLink>
-      <NavLink className='navigation-navlinks' to={`/users/${sessionUser.id}`}>
+        </NavLink>
+        :
+        <NavLink className='navigation-navlinks' to={`/users/${sessionUser.id}`}>
+        <div onClick={ changeColorSearch } className={`navigation-home-category ${search ? 'navigation-add-color' : null}`}>
+        <i className="fas fa-eye"></i>
+          <p>View Profile</p>
+        </div>
+        </NavLink>
+        }
+      <NavLink className='navigation-navlinks' to={`/account`}>
         <div onClick={ changeColorAccount } className={`navigation-home-category ${account ? 'navigation-add-color' : null}`}>
           <i className="fas fa-user"></i>
           <p>Account</p>

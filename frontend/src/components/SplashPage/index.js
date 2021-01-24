@@ -89,7 +89,7 @@ function SplashPage() {
       </div>
       <div className="homepage-buttons_holder">
           <div className="homepage-button_container">
-            <LoginFormModal />
+              <LoginFormModal />
             <SignupFormModal />
         </div>
         <div className='homepage-designers-join'>

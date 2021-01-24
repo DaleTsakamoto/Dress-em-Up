@@ -24,9 +24,16 @@ const validateLogin = [
 
 // /****************** GET USER REQUESTS **************************/
 
-router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)/requests/:userType', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
-  let oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );
+  const userType = req.params.userType
+  console.log("THIS IS THE USERTYPE ON THE BACKEND", userType, typeof (userType))
+  let oldRequests;
+  if (userType === 'true') {
+    oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );
+  } else {
+    oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Requests" JOIN "Users" ON "userId" = "Users".id WHERE "designerId"=${userId} ORDER BY "createdAt"` );
+  }
   let requests = oldRequests[0];
   for (let i = 0; i < requests.length; i++) {
     let imageArray;
@@ -45,9 +52,16 @@ router.get('/:id(\\d+)/requests', requireAuth, asyncHandler(async (req, res) => 
   
 // /****************** GET USER RECOMMENDATIONS **************************/
 
-router.get('/:id(\\d+)/recommendations', requireAuth, asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)/recommendations/:userType', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
-  let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"`);
+  const userType = req.params.userType
+  console.log("THIS IS THE USERTYPE ON THE BACKEND FOR RECOMMENDATIONS", userType)
+  let oldRecommendations;
+  if (userType === "true") {
+    oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"`);
+  } else {
+    oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE "designerId"=${userId} ORDER BY "createdAt"`);
+  }
   let recommendations = oldRecommendations[0];
     return res.json({ recommendations });
 }))

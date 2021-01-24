@@ -3,49 +3,45 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { Modal } from '../../context/Modal';
-import NewRequest from './NewRequest';
+import NewRecommendation from './NewRecommendation';
+import NewRequest from '../NewRequest/NewRequest';
 import '../Header/Header.css'; 
 
 import * as userActions from '../../store/users';
 
-function NewRequestModal() {
+function NewRecommendationModal() {
     const dispatch = useDispatch()
     const [showModal, setShowModal] = useState(false); 
+    const [userId, setUserId] = useState(null)
     const [designerId, setDesignerId] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
     // const [hidden, setHidden] = useState(true);
 
     return(
-        <div className='header-new-request-container'>
+        <div className='header-new-recommendation-container'>
             <div className='header-text-logo-container'>
                 <img className="header-text-logo" src="./images/Text-Logo-02.png" />
             </div>
-            <a className='header-new-request-navlinks' href="https://github.com/DaleTsakamoto/Dress-em-Up">
+            <a className='header-new-recommendation-navlinks' href="https://github.com/DaleTsakamoto/Dress-em-Up">
             <div className='github-logo-container'>
                 <i class="fab fa-github" />
                 <p>Repo</p>
                 </div>
             </a>
-            {sessionUser.userType ?
-            <>
             <Modal open={showModal} onClose={() => setShowModal(false)} >
-                <NewRequest open={showModal} onClose={() => setShowModal(false)} designerId={designerId} setDesignerId={ setDesignerId}/>
+                <NewRecommendation open={showModal} onClose={() => setShowModal(false)} userId={userId}/>
             </Modal>
             <div onClick={() => {
                 setShowModal(true)
-            }} className='header-home-category'>
-              <i className="fab fa-shopify"></i>
-              <p>Request</p>
+            }} className='header-description-category'>
+              <i class="fas fa-sticky-note"></i>
+              <p>Recommend</p>
                     </div>
-                </>
-                :
-                null  
-        }
         </div>
     );
 }
 
-export default NewRequestModal;
+export default NewRecommendationModal;
 
 

@@ -8,7 +8,8 @@ import * as recommendationActions from '../../store/recommendations';
 
 import './HomePage.css';
 
-function HomePage() {
+function HomePage({showLoadScreen}) {
+  // useEffect(showLoadScreen, []);
   const history = useHistory()
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);

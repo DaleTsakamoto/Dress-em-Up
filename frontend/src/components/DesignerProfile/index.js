@@ -91,52 +91,11 @@ function DesignerProfile() {
             <i className="fas fa-user-circle"></i>
           }
           </div>
-          {edit ? 
-          <>
-            <div className='designer-profile-input-container-name'>
-              <div className='designer-profile-input-holder-name'>
-                <input
-                  className='designer-profile-input-first-name'
-                  value={firstName}
-                  type='text'
-                  placeholder='first'
-                  onChange={ e => setFirstName(e.target.value) }
-              />
-                <input
-                  className='designer-profile-input-last-name'
-                  value={lastName}
-                  type='text'
-                  placeholder='last'
-                  onChange={ e => setLastName(e.target.value) }
-                />
-                </div>
-              </div>
-              <input
-                className='designer-profile-input-username'
-                value={username}
-                type='text'
-                placeholder='username'
-                onChange={ e => setUsername(e.target.value) }
-              />
-            <p onClick={updateProfile}>Save</p>
-          </>
-          :
           <div className='designer-profile-header-info'>
             <h1>{user.firstName} {user.lastName}</h1>
             <h2>{user.username}</h2>
             <h2>Walden University</h2>
-            {currentId === id ? 
-              <p onClick={editAccount}>Edit Account</p>
-              :
-              null 
-          }
           </div>
-        }
-          <ul>
-          {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-          ))}
-        </ul>
         </div>
         <div className='designer-profile-recent-requests-title'>
           <p>Recent Recommendations</p>
@@ -177,8 +136,6 @@ function DesignerProfile() {
       })}
         </div>
       </div>
-        {/* <div className='designer-profile-places-spacer'></div> */}
-      <div className='designer-profile-logout' onClick={logout}><p>Log Out</p></div>
       </div>
   )
 }
