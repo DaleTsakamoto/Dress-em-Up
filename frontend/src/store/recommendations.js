@@ -4,6 +4,7 @@ const ADD_RECOMMENDATION = 'recommendations/addRecommendation'
 const UPDATE_RECOMMENDATION = 'recommendations/updateRecommendation'
 const FIND_RECOMMENDATIONS = 'recommendations/findRecommendations'
 const DELETE_RECOMMENDATION = 'recommendations/deleteRecommendation'
+const SET_USER_RECOMMENDATIONS = 'session/setUserRecommendations'
 
 const findRecommendations = (recommendations) => {
   return {
@@ -26,6 +27,13 @@ const updateRecommendation = (recommendation) => {
   }
 }
 
+const setUserRecommendations = (recommendations) => {
+  return {
+    type: SET_USER_RECOMMENDATIONS,
+    recommendations,
+  }
+}
+
 // export const taskUpdate = (task) => async (dispatch) => {
 //   const { taskId, urlId, name, userId } = task
 //   const res = await fetch(`/api/users/${urlId}/tasks`, {
@@ -42,7 +50,8 @@ const updateRecommendation = (recommendation) => {
 // }
 
 export const recommendationAdd = (recommendation) => async (dispatch) => {
-  const { userId, designerId, name, apparelChoice, description, hyperlinksArray } = recommendation;
+  const { userId, designerId, name, apparelChoice, description, hyperlinksArray, requestId } = recommendation;
+  console.log("THIS IS THE STORE QUESTID", requestId)
   const res = await fetch(`/api/recommendations`, {
     method: 'POST',
     body: JSON.stringify({
@@ -51,7 +60,8 @@ export const recommendationAdd = (recommendation) => async (dispatch) => {
       name,
       description,
       hyperlinksArray,
-      apparelChoice
+      apparelChoice,
+      requestId
     }),
   })
   dispatch(addRecommendation(res.data.recommendation));
@@ -68,8 +78,18 @@ export const recommendationAdd = (recommendation) => async (dispatch) => {
 //   return res
 // }
 
-export const searchRecommendations = (id) => async (dispatch) => {
-  const res = await fetch(`/api/recommendations/${id}`, {
+export const searchUserRecommendations = (recommendations) => async (dispatch) => {
+  const { id, userType } = recommendations;
+  const res = await fetch(`/api/session/${id}/recommendations/${userType}`, {
+    method: 'GET',
+  })
+  dispatch(findRecommendations(res.data.recommendations));
+  return res
+}
+
+export const searchRecommendations = (info) => async (dispatch) => {
+  const { userType, id } = info;
+  const res = await fetch(`/api/recommendations/${id}/${userType}`, {
     method: 'GET',
   })
   dispatch(findRecommendations(res.data.recommendations));

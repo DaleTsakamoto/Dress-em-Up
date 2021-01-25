@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import NewRequestModal from '../NewRequest/index.js'
-import NewRecommendationModal from '../NewRecommendation/index.js'
 
 import * as userActions from '../../store/users';
 
@@ -20,11 +19,7 @@ const Header = () => {
           <i className="fas fa-user-circle"></i>
         </div>
       </NavLink> */}
-      {sessionUser.userType ? 
       <NewRequestModal />
-        :
-      <NewRecommendationModal />
-    }
     </div>
   );
 }

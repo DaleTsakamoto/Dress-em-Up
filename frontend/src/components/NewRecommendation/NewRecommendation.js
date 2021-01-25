@@ -6,27 +6,21 @@ import * as requestActions from '../../store/requests';
 import * as userActions from '../../store/users';
 import * as recommendationActions from '../../store/recommendations';
 
-function NewRecommendation({open, onClose, userId}) {
+function NewRecommendation({open, onClose, requestId, setRequestId, setUserId, userId}) {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const designers = useSelector(state => state.users.newRequest)
   const [description, setDescription] = useState('')
   const [name, setName] = useState('')
   const [apparelChoice, setApparelChoice] = useState([])
-  const [hyperlinksArray, setHyperlinksArray] = useState(['', '', ''])
+  const [hyperlink1, setHyperlink1] = useState('')
+  const [hyperlink2, setHyperlink2] = useState('')
+  const [hyperlink3, setHyperlink3] = useState('')
   // const [designerId, setDesignerId] = useState(null)
   const [errors, setErrors] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
   const [hidden, setHidden] = useState(true)
   const designerId = sessionUser.id
-
-//   useEffect(() => {
-//     dispatch(userActions.searchNewRequestDesigners())
-//       .then((res) => {
-//         setDesignerId(Object.values(res.data.designers)[0].id)
-//       })
-//       .then(() => setIsLoaded(true))
-// }, [dispatch])
 
 
   const handleSubmit = (e) => {
@@ -34,7 +28,10 @@ function NewRecommendation({open, onClose, userId}) {
     if (hidden) {
       setHidden(false)
     }
-    dispatch(recommendationActions.recommendationAdd({ userId, description, designerId, apparelChoice, hyperlinksArray }))
+    let hyperlinksArray = [hyperlink1, hyperlink2, hyperlink3]
+    console.log("THIS IS THE REQUESTID!?!?!", requestId)
+    dispatch(recommendationActions.recommendationAdd({ name, userId, description, designerId, apparelChoice, hyperlinksArray, requestId }))
+      .then(() => submitClear())
         .catch(res => {
           if (res.data && res.data.errors) {
             setErrors(res.data.errors)
@@ -42,7 +39,6 @@ function NewRecommendation({open, onClose, userId}) {
             return setErrors([])
           }
         })
-      .then(() => submitClear())
     return errors;
   };
 
@@ -56,10 +52,15 @@ function NewRecommendation({open, onClose, userId}) {
 
 
   const submitClear = () => {
-    setHyperlinksArray(['', '', ''])
+    setRequestId('')
+    setUserId('')
+    setHyperlink1('')
+    setHyperlink2('')
+    setHyperlink3('')
     setName('')
     setDescription('')
     setApparelChoice([])
+    document.getElementById('new-recommendation-form').reset()
     onClose()
   }
 
@@ -75,10 +76,10 @@ function NewRecommendation({open, onClose, userId}) {
         }></i>
       </div>
       <h1 className='new-recommendation-form-title'>New Recommendation</h1>
-      <div className='pattern-cross-dots-lg new-recommendation-form-container-background'>
+      <div className='new-recommendation-form-container-background'>
           <h1 className='new-recommendation-form-subtitle-2'>More Details</h1>
           <div className='new-recommendation-main-form-container'>
-          <form onSubmit={handleSubmit}
+          <form id='new-recommendation-form' onSubmit={handleSubmit}
             className="new-recommendation-form">
             <ul>
                 {errors.map((error, idx) => (
@@ -99,25 +100,25 @@ function NewRecommendation({open, onClose, userId}) {
             <input
               className='signup-input-hyperlinks'
               placeholder='hyperlink'
-              value={hyperlinksArray[0]}
+              value={hyperlink1}
               type='text'
-              onChange={ e => setHyperlinksArray[0](e.target.value) }
+              onChange={ e => setHyperlink1(e.target.value) }
               required
             />
             <input
               className='signup-input-hyperlinks'
               placeholder='hyperlink'
-              value={hyperlinksArray[1]}
+              value={hyperlink2}
               type='text'
-              onChange={ e => setHyperlinksArray[1](e.target.value) }
+              onChange={ e => setHyperlink2(e.target.value) }
               required
             />
             <input
               className='signup-input-hyperlinks'
               placeholder='optional hyperlink'
-              value={hyperlinksArray[2]}
+              value={hyperlink3}
               type='text'
-              onChange={ e => setHyperlinksArray[2](e.target.value) }
+              onChange={ e => setHyperlink3(e.target.value) }
             />
           </div>
           <div className='new-recommendation-textarea-holder'>

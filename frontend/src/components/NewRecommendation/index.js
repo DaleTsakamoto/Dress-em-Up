@@ -12,9 +12,6 @@ import * as userActions from '../../store/users';
 function NewRecommendationModal() {
     const dispatch = useDispatch()
     const [showModal, setShowModal] = useState(false); 
-    const [userId, setUserId] = useState(null)
-    const [designerId, setDesignerId] = useState(null)
-    const [isLoaded, setIsLoaded] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
     // const [hidden, setHidden] = useState(true);
 
@@ -30,7 +27,7 @@ function NewRecommendationModal() {
                 </div>
             </a>
             <Modal open={showModal} onClose={() => setShowModal(false)} >
-                <NewRecommendation open={showModal} onClose={() => setShowModal(false)} userId={userId}/>
+                <NewRecommendation open={showModal} onClose={() => setShowModal(false)} />
             </Modal>
             <div onClick={() => {
                 setShowModal(true)

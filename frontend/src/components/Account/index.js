@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, Redirect } from 'react-router-dom'
 
+
 import * as sessionActions from '../../store/session';
 
 import './Account.css';
@@ -15,6 +16,7 @@ function Account() {
   const [firstName, setFirstName] = useState(sessionUser.firstName)
   const [lastName, setLastName] = useState(sessionUser.lastName)
   const [email, setEmail] = useState(sessionUser.email)
+  const [education, setEducation] = useState(sessionUser.education)
   const [username, setUsername] = useState(sessionUser.username)
   const [address, setAddress] = useState(sessionUser.address)
   const [city, setCity] = useState(sessionUser.city)
@@ -23,6 +25,15 @@ function Account() {
   const [errors, setErrors] = useState([])
   const id = sessionUser.id
   
+  const [hugs, setHugs] = useState('edsafds')
+
+  
+  function resize(e) {
+  let el = document.querySelector(".input-wrap .input");
+  let widthMachine = document.querySelector(".input-wrap .width-machine");
+  widthMachine.innerHTML = el.value;
+}
+
   const logout = (e) => {
     dispatch(sessionActions.logout())
     let path = '/'
@@ -40,7 +51,7 @@ function Account() {
       setUsername(sessionUser.username)
       return setErrors(['You may not change the demo_user username!!'])
     }
-    dispatch(sessionActions.userUpdate({ firstName, lastName, email, username, address, city, state, zipCode, id }))
+    dispatch(sessionActions.userUpdate({ firstName, lastName, email, username, address, city, state, zipCode, id, education }))
       .catch(res => {
       if (res.data && res.data.errors) setErrors(res.data.errors);
     })
@@ -60,35 +71,86 @@ function Account() {
           <>
             <div className='account-input-container-name'>
               <div className='account-input-holder-name'>
-                <input
-                  className='account-input-first-name'
-                  value={firstName}
-                  type='text'
-                  placeholder='first'
-                  onChange={ e => setFirstName(e.target.value) }
-              />
-                <input
+                <div className='account-input-first-name'>
+                    <span className="input-wrap">
+                      <span className="width-machine" aria-hidden="true">{firstName}</span>
+                        <input
+                        className='input'
+                        value={firstName}
+                        type='text'
+                        placeholder='First Name'
+                        onChange={e => {
+                          setFirstName(e.target.value)
+                          resize(e)
+                        }
+                        }
+                        />
+                      </span>
+                  </div>
+                  <div className='account-input-last-name'>
+                    <span className="input-wrap">
+                      <span className="width-machine" aria-hidden="true">{lastName}</span>
+                        <input
+                        className='input'
+                        value={lastName}
+                        type='text'
+                        placeholder='Last Name'
+                        onChange={e => {
+                          setLastName(e.target.value)
+                          resize(e)
+                        }
+                        }
+                        />
+                    </span>
+                  </div>
+                {/* <input
                   className='account-input-last-name'
                   value={lastName}
                   type='text'
                   placeholder='last'
                   onChange={ e => setLastName(e.target.value) }
-                />
+                /> */}
                 </div>
-              </div>
-              <input
-                className='account-input-username'
+            </div>
+            <div className='account-input-username'>
+            <span className="input-wrap">
+              <span className="width-machine" aria-hidden="true">{username}</span>
+                <input
+                className='input'
                 value={username}
                 type='text'
                 placeholder='username'
-                onChange={ e => setUsername(e.target.value) }
-              />
+                onChange={e => {
+                  setUsername(e.target.value)
+                  resize(e)
+                }
+                }
+                />
+              </span>
+            </div>
+            <div className='account-input-education'>
+            <span className="input-wrap">
+              <span className="width-machine" aria-hidden="true">{education}</span>
+                <input
+                className='input'
+                value={education}
+                type='text'
+                placeholder='education'
+                onChange={e => {
+                  setEducation(e.target.value)
+                  resize(e)
+                }
+                }
+                />
+              </span>
+            </div>
             <p onClick={updateProfile}>Save</p>
           </>
           :
           <>
             <h1>{firstName} {lastName}</h1>
             <h2>{username}</h2>
+            <h2>{sessionUser.education}</h2>
             <p onClick={editAccount}>Edit Account</p>
           </>
         }
@@ -106,13 +168,29 @@ function Account() {
           <p className='account-places-home-header'>Primary</p>
         <div className='account-places-email'>
           {edit ? 
-            <input
-              className='account-input-email'
-              value={email}
-              type='text'
-              placeholder='email'
-              onChange={ e => setEmail(e.target.value) }
-              />
+            // <input
+            //   className='account-input-email'
+            //   value={email}
+            //   type='text'
+            //   placeholder='email'
+            //   onChange={ e => setEmail(e.target.value) }
+            // />
+            <div className='account-input-email'>
+              <span className="input-wrap">
+                <span className="width-machine" aria-hidden="true">{email}</span>
+                  <input
+                  className='input'
+                  value={email}
+                  type='text'
+                  placeholder='email'
+                  onChange={e => {
+                    setEmail(e.target.value)
+                    resize(e)
+                  }
+                  }
+                  />
+              </span>
+            </div>
             :
           <p>{email}</p>
         }
@@ -127,35 +205,71 @@ function Account() {
           <div className='account-places-home-address'>
           {edit ?
             <>
-              <input
-                className='account-input-address'
-                value={address}
-                type='text'
-                placeholder='address'
-                onChange={ e => setAddress(e.target.value) }
-              />
-            <div className='account-input-holder-address'>
-              <input
-                className='account-input-city'
-                value={city}
-                type='text'
-                placeholder='city'
-              onChange={ e => setCity(e.target.value) }
-              />
-            <input
-              className='account-input-state'
-              value={state}
-              type='text'
-              placeholder='st'
-              onChange={ e => setState(e.target.value) }
-            />
-            <input
-              className='account-input-zipcode'
-              value={zipCode}
-              type='text'
-              placeholder='zip'
-              onChange={ e => setZipCode(e.target.value) }
-            />
+              <div className='account-input-address'>
+                <span className="input-wrap">
+                  <span className="width-machine" aria-hidden="true">{address}</span>
+                    <input
+                    className='input'
+                    value={address}
+                    type='text'
+                    placeholder='address'
+                    onChange={e => {
+                      setAddress(e.target.value)
+                      resize(e)
+                    }
+                    }
+                    />
+                </span>
+              </div>
+              <div className='account-input-holder-address'>
+                <div className='account-input-city'>
+                  <span className="input-wrap">
+                    <span className="width-machine" aria-hidden="true">{city}</span>
+                      <input
+                      className='input'
+                      value={city}
+                      type='text'
+                      placeholder='city'
+                      onChange={e => {
+                        setCity(e.target.value)
+                        resize(e)
+                      }
+                      }
+                      />
+                  </span>
+                </div>
+                <div className='account-input-state'>
+                  <span className="input-wrap">
+                    <span className="width-machine" aria-hidden="true">{state}</span>
+                      <input
+                      className='input'
+                      value={state}
+                      type='text'
+                      placeholder='state'
+                      onChange={e => {
+                        setState(e.target.value)
+                        resize(e)
+                      }
+                      }
+                      />
+                  </span>
+                </div>
+                <div className='account-input-zipcode'>
+                  <span className="input-wrap">
+                    <span className="width-machine" aria-hidden="true">{zipCode}</span>
+                      <input
+                      className='input'
+                      value={zipCode}
+                      type='text'
+                      placeholder='Zip Code'
+                      onChange={e => {
+                        setZipCode(e.target.value)
+                        resize(e)
+                      }
+                      }
+                      />
+                  </span>
+                </div>
               </div>
               </>
           :

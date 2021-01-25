@@ -68,25 +68,24 @@ export const requestAdd = (request) => async (dispatch) => {
   return res
 }
 
-// export const searchRequest = (request) => async (dispatch) => {
-//   const { image } = request;
-//   console.log("THE INITIAL IMAGE", image)
-//   const res = await fetch(`/api/requests/${image}`, {
-//     method: 'GET',
-//   })
-//   dispatch(findRequest(res.data.request));
-//   return res
-// }
+export const searchRequests = (info) => async (dispatch) => {
+  const {id, userType} = info
+  const res = await fetch(`/api/requests/${id}/${userType}`, {
+    method: 'GET',
+  })
+  dispatch(findRequests(res.data.requests));
+  return res
+}
 
 const initialState = { requests: null }
 
 const requestsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    // case FIND_TASKS:
-    //   newState = Object.assign({}, state)
-    //   newState.tasks = action.tasks;
-    //   return newState;
+    case FIND_REQUESTS:
+      newState = Object.assign({}, state)
+      newState.requests = action.requests;
+      return newState;
     case ADD_REQUEST:
       newState = Object.assign({}, state)
       if (newState.requests) {

@@ -14,7 +14,7 @@ const Op = Sequelize.Op;
 /****************** REQUESTS ERRORS MIDDLEWARE **************************/
 
 const validateRecommendation = [
-  check('hyperlinks')
+  check('hyperlinksArray')
     .exists({ checkFalsy: true })
     .withMessage('Please provide at least one hyperlink.'),
   check('apparelChoice')
@@ -69,11 +69,13 @@ router.post(
   validateRecommendation,
   requireAuth,
   asyncHandler(async (req, res) => {
-    let { userId, designerId, name, apparelChoice, description, hyperlinksArray } = req.body;
+    let { userId, designerId, name, apparelChoice, description, hyperlinksArray, requestId } = req.body;
     hyperlinks = hyperlinksArray.join(',')
     apparelChoice = apparelChoice.join(',')
-    const recommendation = await Recommendation.build({ userId, designerId, name, apparelChoice, description, hyperlinks });
-    await recommendation.save();
+    const recommendationSave = await Recommendation.build({ userId, designerId, name, apparelChoice, description, hyperlinks, requestId });
+    await recommendationSave.save();
+    oldRecommendation = await sequelize.query(`SELECT "Recommendations".id, name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE "Recommendations".id = ${recommendationSave.dataValues.id}`);
+    let recommendation = oldRecommendation[0][0];
     return res.json({
       recommendation,
     });
@@ -83,9 +85,18 @@ router.post(
 
 /****************** GET RECOMMENDATIONS **************************/
 
-router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-    const user = req.params.id
-  let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "apparelChoice", "Recommendations".description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE NOT "userId"=${user}`);
+router.get('/:id(\\d+)/:userType', requireAuth, asyncHandler(async (req, res) => {
+  const userId = req.params.id
+  const userType = req.params.userType
+
+  if (userType === "true") {
+    oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"`);
+  } else if (userType === "false") {
+    oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE "designerId"=${userId} ORDER BY "createdAt"`);
+  } else {
+    oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "apparelChoice", "Recommendations".description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE NOT "userId"=${userId}`);
+  }
+  
   // UNION SELECT name, "apparelChoice", description, hyperlinks, "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id
   let recommendations = oldRecommendations[0];
     return res.json({ recommendations });

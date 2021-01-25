@@ -34,6 +34,11 @@ module.exports = {
         allowNull: false,
         references: {model: 'Users'}
       },
+      requestId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {model: 'Requests'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

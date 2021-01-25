@@ -1,9 +1,13 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, Redirect } from 'react-router-dom'
-import axios from 'axios';
+
+import { Modal } from '../../context/Modal';
+import NewRecommendation from '../NewRecommendation/NewRecommendation';
 
 import * as sessionActions from '../../store/session';
+import * as recommendationActions from '../../store/recommendations';
+import * as requestActions from '../../store/requests';
 import Upload from '../../imageUploader/Upload'
 import Gallery from '../../imageUploader/Gallery'
 
@@ -13,8 +17,11 @@ function Orders() {
   const history = useHistory()
   const dispatch = useDispatch()
   let sessionUser = useSelector(state => state.session.user);
-  const userRequests = useSelector(state => state.session.requests)
-  const userRecommendations = useSelector(state => state.session.recommendations)
+  const userRequests = useSelector(state => state.requests.requests)
+  const userRecommendations = useSelector(state => state.recommendations.recommendations)
+  const [showModal, setShowModal] = useState(false); 
+  const [requestId, setRequestId] = useState(); 
+  const [userId, setUserId] = useState(); 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoaded2, setIsLoaded2] = useState(false);
   const componentIsMounted = useRef(true)
@@ -22,12 +29,12 @@ function Orders() {
   const userType = sessionUser.userType
 
   useEffect(() => {
-    dispatch(sessionActions.searchUserRequests({ id, userType }))
+    dispatch(recommendationActions.searchRecommendations({ id, userType }))
     .then(() => setIsLoaded(true))
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(sessionActions.searchUserRecommendations({ id, userType }))
+    dispatch(requestActions.searchRequests({ id, userType }))
     .then(() => setIsLoaded2(true))
   }, [dispatch])
 
@@ -37,61 +44,14 @@ function Orders() {
     }
   }, [])
 
-  // useEffect(() => {
-  //   let testArray = [];
-  //   const getAWSImage = async () => {
-  //     Object.values(userRequests).map((req, idx) => {
-  //         console.log("THIS IS THE IMAGE EACH TIME", req.image)
-  //         const generateGetUrl = 'api/uploads/get-url';
-  //         const options2 = {
-  //           params: {
-  //             Key: req.image,
-  //             ContentType: 'image/jpeg',
-  //             expires: 31536000,
-  //           }
-  //         };
-    
-  //         axios.get(generateGetUrl, options2).then(res => {
-  //           const { data: getURL } = res;
-  //           console.log("THIS IS THE RETURNED URL", getURL)
-  //           if (!getURL.message && componentIsMounted.current) {
-  //             setCurrentImageKey([getURL, ...currentImageKey])
-  //             testArray.push(getURL)
-  //             // console.log("THIS IS THE CURRENTIMAGEKEY", currentImageKey)
-  //             return getURL
-  //           }
-  //         });
-  //       })
-  //     }
-  //   if (userRequests) {
-  //       console.log(userRequests)
-  //       getAWSImage()
-  //         .then(() => {
-  //           setIsLoaded3(true)
-  //           console.log("THIS IS THE TEST ARRAY!!@)!*434", testArray)
-  //         }
-  //         )
-  //     }
-  // }, [userRequests])
-  
-  // let renderImages = async () => {
-  //   Object.values(userRequests).map( async (req, idx) => {
-  //     // await getAWSImage(req.image)
-  //     return(
-  //   <>
-  //     <div className="orders-request-ind" key={idx }>
-  //       <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
-  //       <p className='order-requests-ind-message'>Message:</p>
-  //       <p className='order-requests-ind-message-description'>{req.description}</p>
-  //       <div className='orders-requests-images'>
-  //         { console.log("THIS IS THE IMAGE!!!!!!!!", req.image) }
-  //       <img className='orders-request-single-image' src={currentImageKey} />
-  //       </div>
-  //     </div>
-  //     <div className='orders-requests-line'></div>
-  //   </>
-  //   )})
-  // }
+  const createRecommendation = (e) => {
+    let idArray = e.target.parentElement.id.split('-')
+    setRequestId(parseInt(idArray[2], 10))
+    setUserId(parseInt(idArray[3], 10))
+    setShowModal(true)
+
+    // console.log(document.getElementById("myLI").parentElement.nodeName;
+  }
 
   let hyperlinksArray;
   let clothes;
@@ -102,6 +62,7 @@ function Orders() {
   }
 
   return isLoaded && isLoaded2 &&(
+    <>
     <div className='orders-container'>
       <h1 className='orders-main-header'>Orders</h1>
       <div className="orders-requests-container">
@@ -111,7 +72,8 @@ function Orders() {
         {userRequests ? Object.values(userRequests).map((req, idx) => {
           return(
         <>
-              <div className="orders-request-ind" key={idx}>
+              <div className="orders-request-ind" id={`orders-request-${req.id}-${req.userId}`} key={req.id}>
+                {console.log('THIS IS THE VALUE OF THE KEY!?!?!', req.id)}
                 {userType ? 
                 <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
                   :
@@ -122,15 +84,20 @@ function Orders() {
                 <div className='orders-requests-images'>
                   {Array.isArray(req.imageUrl)
                     ?
-                    req.imageUrl.map((img) => {
+                    req.imageUrl.map((img, idx) => {
                       return (
-                        <img className='orders-request-single-image' src={img} />
+                        <img key={ idx }className='orders-request-single-image' src={img} />
                       )
                     })
                     :
                     <img className='orders-request-single-image' src={req.imageUrl} />
                 }
-            </div>
+                </div>
+                {!userType ? 
+                <button onClick={(e) => createRecommendation(e)}>Respond</button>
+                  :
+                  null
+                }
           </div>
           <div className='orders-requests-line'></div>
         </>
@@ -153,8 +120,8 @@ function Orders() {
         }
           return (
           <>
-          <div className='orders-recommendations-feed'>
-            <div key={ idx } className='orders-recommendations-feed-box'>
+          <div key={ idx } className='orders-recommendations-feed'>
+            <div className='orders-recommendations-feed-box'>
               <div className='orders-recommendations-feed-text'>
                 {userType ? 
                 <p className='orders-recommendations-feed-names'>{rec.designerFirstName} {rec.designerLastName} recommended clothes for you!</p>
@@ -180,8 +147,16 @@ function Orders() {
               </>
         )
       })}
-        </div>
       </div>
+      </div>
+      {!sessionUser.userType ?
+        <Modal open={showModal} onClose={() => setShowModal(false)} >
+          <NewRecommendation open={showModal} onClose={() => setShowModal(false)} setRequestId={setRequestId} setUserId={ setUserId } requestId={requestId} userId={ userId}/>
+        </Modal>
+        :
+        null
+      }
+    </>
     // </div>
   );
 }

@@ -9,14 +9,14 @@
 
 .new-recommendation-header > i {
     font-size: 64px;
-    color: #23BDBC;
+    color: black;
     padding-right: 2vh;
     cursor: pointer;
 }
 
 .new-recommendation-form-holder-open {
   position: absolute;
-  background-color: white;
+  background-color: #DD356E;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@
   animation-fill-mode: forwards;
 	animation-timing-function: linear;
   animation-duration: .3s;
-  z-index: 3;
+  z-index: 10;
   overflow: scroll;
 }
 
@@ -45,7 +45,7 @@
 
 .new-recommendation-form-holder-close {
   position: absolute;
-  background-color: white;
+  background-color: #DD356E;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,7 +59,7 @@
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   animation-duration: .3s;
-  z-index: 0;
+  z-index: 10;
   overflow: scroll;
 }
 
@@ -69,7 +69,7 @@
   }
 
 .new-recommendation-form-title{
-  color: #DD356E;
+  color: black;
   font-size: 66px;
   margin-top: 1vh;
   margin-bottom: 1vh;
@@ -97,15 +97,10 @@
   /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 25px; */
 }
 
-.pattern-cross-dots-lg{
-  color: #23BDBC;
-  background-color: #fef0bc
-}
-
 .new-recommendation-upload-container{
   margin-top: 1vh;
   height: 25vh;
-  color: #DD356E;
+  color: black;
   /* font-size: 20px */
 }
 
@@ -122,7 +117,7 @@
 .new-recommendation-form {
   height: 100%; 
   width: 100%; 
-  color: #DD356E;
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -233,7 +228,7 @@
   width: 45vw; 
   border-radius: 3px; 
   box-sizing:border-box;
-  background:#DD356E;
+  background:#23BDBC;
   color: white;
   font-weight:bold;
   font-size: 20pt;
@@ -307,7 +302,6 @@
   .new-recommendation-upload-container{
     margin-top: 10px;
     height: 200px;
-    color: #DD356E;
   }
 
   .new-recommendation-upload-container > p{

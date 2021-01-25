@@ -23,6 +23,16 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        image: 'ea1cdc35-90ef-46f4-b415-49e4206f72d5.jpg,f52fc2ca-889b-4318-9f0f-cd5b33fc1633.jpg',
+        description: 'Pablo is very expressive and artistic.  He loves coats and outerwear.  Please find him that or a nice shirt!',
+        apparelChoice: 'outerwear,shirt',
+        isCompleted: false,
+        userId: 6,
+        designerId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
     ], {});
   },
 

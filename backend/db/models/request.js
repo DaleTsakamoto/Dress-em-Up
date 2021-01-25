@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Request.associate = function (models) {
+    Request.hasOne(models.Recommendation, { foreignKey: "requestId" })
   };
   return Request;
 };

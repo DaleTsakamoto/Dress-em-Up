@@ -25,7 +25,8 @@ function HomePage({showLoadScreen}) {
   
   useEffect(() => {
     let id = sessionUser.id
-    dispatch(recommendationActions.searchRecommendations(id))
+    let userType = 'either'
+    dispatch(recommendationActions.searchRecommendations({ id, userType }))
       .then(() => setIsLoaded2(true))
 },[dispatch])
 

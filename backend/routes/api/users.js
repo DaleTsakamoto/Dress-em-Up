@@ -114,8 +114,8 @@ router.put(
   validateEdit,
   asyncHandler(async (req, res) => {
     const id = req.params.id
-    const { email, username, firstName, lastName, address, city, state, zipCode } = req.body;
-    const oldUser = await User.update({ email, username, firstName, lastName, address, city, state, zipCode }, {
+    const { education, email, username, firstName, lastName, address, city, state, zipCode } = req.body;
+    const oldUser = await User.update({ education, email, username, firstName, lastName, address, city, state, zipCode }, {
       where: {
         id: id
       },

@@ -27,9 +27,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       references: {model: 'Users'}
     },
+    requestId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {model: 'Requests'}
+    },
   }, {});
   Recommendation.associate = function(models) {
-    // associations can be defined here
+    Recommendation.belongsTo(models.Request, { foreignKey: "requestId" })
   };
   return Recommendation;
 };

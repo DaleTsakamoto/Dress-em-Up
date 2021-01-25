@@ -3,8 +3,8 @@ import axios from 'axios';
 
 const SET_USER = 'session/setUser'
 // const EDIT_USER = 'session/editUser'
-const SET_USER_REQUESTS = 'session/setUserRequests'
-const SET_USER_RECOMMENDATIONS = 'session/setUserRecommendations'
+// const SET_USER_REQUESTS = 'session/setUserRequests'
+// const SET_USER_RECOMMENDATIONS = 'session/setUserRecommendations'
 const SET_USER_DESIGNERS = 'session/setUserDesigners'
 const REMOVE_USER = 'session/removeUser'
 
@@ -29,19 +29,19 @@ const setUserDesigners = (designers) => {
   }
 }
 
-const setUserRequests = (requests) => {
-  return {
-    type: SET_USER_REQUESTS,
-    requests,
-  }
-}
+// const setUserRequests = (requests) => {
+//   return {
+//     type: SET_USER_REQUESTS,
+//     requests,
+//   }
+// }
 
-const setUserRecommendations = (recommendations) => {
-  return {
-    type: SET_USER_RECOMMENDATIONS,
-    recommendations,
-  }
-}
+// const setUserRecommendations = (recommendations) => {
+//   return {
+//     type: SET_USER_RECOMMENDATIONS,
+//     recommendations,
+//   }
+// }
 
 const removeUser = () => {
   return {
@@ -57,23 +57,23 @@ export const searchUserDesigners = (id) => async (dispatch) => {
   return res
 }
 
-export const searchUserRequests = (requests) => async (dispatch) => {
-  const {id, userType} = requests
-  const res = await fetch(`/api/session/${id}/requests/${userType}`, {
-    method: 'GET',
-  })
-  dispatch(setUserRequests(res.data.requests));
-  return res
-}
+// export const searchUserRequests = (requests) => async (dispatch) => {
+//   const {id, userType} = requests
+//   const res = await fetch(`/api/session/${id}/requests/${userType}`, {
+//     method: 'GET',
+//   })
+//   dispatch(setUserRequests(res.data.requests));
+//   return res
+// }
 
-export const searchUserRecommendations = (recommendations) => async (dispatch) => {
-  const { id, userType } = recommendations;
-  const res = await fetch(`/api/session/${id}/recommendations/${userType}`, {
-    method: 'GET',
-  })
-  dispatch(setUserRecommendations(res.data.recommendations));
-  return res
-}
+// export const searchUserRecommendations = (recommendations) => async (dispatch) => {
+//   const { id, userType } = recommendations;
+//   const res = await fetch(`/api/session/${id}/recommendations/${userType}`, {
+//     method: 'GET',
+//   })
+//   dispatch(setUserRecommendations(res.data.recommendations));
+//   return res
+// }
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -115,10 +115,11 @@ export const signup = (user) => async (dispatch) => {
 }
 
 export const userUpdate = (user) => async (dispatch) => {
-  const { email, username, firstName, lastName, address, city, state, zipCode, id } = user;
+  const { email, username, firstName, lastName, address, city, state, zipCode, id, education } = user;
   const res = await fetch(`/api/users/${id}`, {
     method: 'PUT',
     body: JSON.stringify({
+      education,
       email,
       username,
       firstName,
@@ -141,7 +142,7 @@ export const logout = () => async (dispatch) => {
   return res;
 };
 
-const initialState = { user:null, requests:null, recommendations:null, designers:null }
+const initialState = { user:null, designers:null }
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -149,14 +150,6 @@ const sessionReducer = (state = initialState, action) => {
     case SET_USER:
       newState = Object.assign({}, state);
       newState.user = action.user;
-      return newState;
-    case SET_USER_REQUESTS:
-      newState = Object.assign({}, state);
-      newState.requests = action.requests;
-      return newState;
-    case SET_USER_RECOMMENDATIONS:
-      newState = Object.assign({}, state);
-      newState.recommendations = action.recommendations;
       return newState;
     case SET_USER_DESIGNERS:
       newState = Object.assign({}, state);

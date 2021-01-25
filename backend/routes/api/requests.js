@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Request } = require('../../db/models');
+const { Request, sequelize } = require('../../db/models');
 
 const router = express.Router();
 
@@ -57,6 +57,35 @@ router.post(
 //   }
 //     return res.json('No User Found!');
 //   }))
+
+// /****************** GET USER REQUESTS **************************/
+
+router.get('/:id(\\d+)/:userType', requireAuth, asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.id, 10)
+  const userType = req.params.userType
+  console.log("THIS IS THE USERTYPE ON THE BACKEND", userType, typeof (userType))
+  let oldRequests;
+  if (userType === 'true') {
+    oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );
+  } else {
+    oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Requests" JOIN "Users" ON "userId" = "Users".id WHERE "designerId"=${userId} ORDER BY "createdAt"` );
+  }
+  let requests = oldRequests[0];
+  for (let i = 0; i < requests.length; i++) {
+    let imageArray;
+    if (requests[i].image.includes(',')) {
+      imageArray = requests[i].image.split(',')
+      requests[i].imageUrl = [];
+      imageArray.forEach(img => {
+        requests[i].imageUrl.push(`https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/requests/${img}`)
+      })
+    } else {
+      requests[i].imageUrl = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/requests/${requests[i].image}`
+    }
+  }
+    return res.json({ requests });
+}))
+  
 
 
 // /****************** GET REQUEST **************************/
