@@ -44,13 +44,17 @@ body{
   width: 100vw;
   padding-top: 5.4vh;
   position: absolute;
-  text-align: center;
+  /* text-align: center; */
+  /* margin-left: -15vh; */
 }
 
 .homepage-text-logo{
+  position: relative;
   text-align: center;
+  margin-top: .1vh;
   height: 10vh;
-  width: 60vw;
+  margin-left: -26vh;
+  width: 140vw;
 }
 
 .about_carousel_circles{
@@ -370,7 +374,7 @@ body{
   }
   
   .about_carousel{
-    padding-top: 40px;
+    padding-top: 66px;
     height: 540px;
     width: 500px;
   }
@@ -492,14 +496,16 @@ body{
   .homepage-text-logo-container{
     top: 0;
     width: 500px;
-    padding-top: 24px;
+    overflow-x: hidden;
+    padding-top: 28px;
     position: fixed;
   }
   
   .homepage-text-logo{
-    height: 60px;
-    width: 300px;
-    text-align: center;
+    margin-left: -240px;
+    height: 90px;
+    width: 600px;
+    /* text-align: center; */
   }
 
   /************** OVERLAYS **************/

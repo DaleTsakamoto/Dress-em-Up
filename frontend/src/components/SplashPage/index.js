@@ -35,7 +35,7 @@ function SplashPage() {
     <div className="homepage-main">
         <div className="about_carousel">
           <div className='homepage-text-logo-container'>
-            <img className="homepage-text-logo" src="./images/Text-Logo-02.png" />
+            <img className="homepage-text-logo" src="./images/Text-Logo-Final.png" />
           </div>
           <div className="about_carousel_screens">
             <div id="screen-1">
