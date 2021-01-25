@@ -128,6 +128,7 @@ function Account() {
                 />
               </span>
             </div>
+            {!sessionUser.userType ?
             <div className='account-input-education'>
             <span className="input-wrap">
               <span className="width-machine" aria-hidden="true">{education}</span>
@@ -143,7 +144,10 @@ function Account() {
                 }
                 />
               </span>
-            </div>
+              </div>
+              :
+              null 
+            }
             <p onClick={updateProfile}>Save</p>
           </>
           :
