@@ -156,7 +156,8 @@ const firstUpdate = useRef(true);
         }></i>
       </div>
       <h1 className='new-request-form-title'>New Request</h1>
-      <div className='pattern-cross-dots-lg new-request-form-container-background'>
+      <img id="new-request-load-screen-image-top" src="./images/clothesline-top.png"/>
+      <div className='new-request-form-container-background'>
         <h1 className='new-request-form-subtitle'>Upload Images</h1>
         <div className='new-request-upload-container'>
           {images.length < 3 ? 
@@ -208,14 +209,13 @@ const firstUpdate = useRef(true);
           <label id='description-label' htmlFor='description'>Description</label>
             <textarea
             name='description'
-            className='signup-input-description'
-            placeholder='Give more details'
+            className='new-request-input-description'
+            placeholder='Tell us a little more about their style...'
             value={description}
             onChange={ e => setDescription(e.target.value) }
             required
           />
         </div>
-          <h2 className='new-request-clothing-type'>Type of Clothing</h2>
             <div className='new-request-input-holder'>
               <div className='new-request-input-holder-ind'>
                 <label htmlFor='outerwear'>Outerwear</label>
@@ -259,7 +259,6 @@ const firstUpdate = useRef(true);
               </div>
         </div>
         <div className='new-request-designers'>
-        <p id='new-request-designers-label'> Choose a Designer: </p>
           <select id='designer' onChange={e => setDesignerId(e.target.value)} name="designer">
                 {designers ? Object.values(designers).map((person, idx) => {
                   if (person.active) {

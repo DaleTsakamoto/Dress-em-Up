@@ -341,11 +341,11 @@
 	margin-top: 6vh;
 	height: 18vh;
 	width: 120vw;
-	animation: requestloadright 10s infinite ease-in-out;
+	animation: recommendationloadright 10s infinite ease-in-out;
 	z-index: -1;
 }
 
-@keyframes requestloadright {
+@keyframes recommendationloadright {
   /* 0%   {right: -12%}
   4%   {right: -25%}
   24%  {right: -25%}
