@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 
 import { Modal } from '../../context/Modal';
 import NewRecommendation from './NewRecommendation';
-import NewRequest from '../NewRequest/NewRequest';
 import '../Header/Header.css'; 
 
 import * as userActions from '../../store/users';
@@ -27,7 +26,7 @@ function NewRecommendationModal() {
                 </div>
             </a>
             <Modal open={showModal} onClose={() => setShowModal(false)} >
-                <NewRecommendation open={showModal} onClose={() => setShowModal(false)} />
+                    <NewRecommendation open={showModal} onClose={() => setShowModal(false)} />
             </Modal>
             <div onClick={() => {
                 setShowModal(true)

@@ -17,6 +17,7 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
+	font-family: 'Libre Baskerville', serif;
 	vertical-align: baseline;
 }
 
@@ -88,7 +89,6 @@ table {
   color: #DD356E;
 	position: absolute;
 	margin-top: 10vh;
-  font-family: sans-serif;
   text-transform: uppercase;
   font-size: 2em;
   letter-spacing: 4px;

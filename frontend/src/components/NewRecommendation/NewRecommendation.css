@@ -1,6 +1,7 @@
 .new-recommendation-header{
-  height: 6vh;
-  width: 100vw;
+  position: relative;
+  height: 10vh;
+  width: 80vw;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -8,7 +9,7 @@
 }
 
 .new-recommendation-header > i {
-    font-size: 64px;
+    font-size: 44px;
     color: black;
     padding-right: 2vh;
     cursor: pointer;
@@ -20,59 +21,104 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 15px 15px 0 0;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  bottom: 0; 
-  animation-name: signup-slide-right;
+  border-radius: 15px;
+  height: 60vh;
+  width: 80vw;
+  top: 20%;
+  left: 10%;
+  right: 10%;
+  bottom: 20%; 
+  /* animation-name: signup-slide-right;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 	animation-timing-function: linear;
-  animation-duration: .3s;
+  animation-duration: .3s; */
   z-index: 10;
   overflow: scroll;
 }
+
+.scale-up-center {
+	-webkit-animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 
 .new-recommendation-form-holder-open::-webkit-scrollbar{
   display: none;
 }
 
-@keyframes signup-slide-right {
-  0%   {left: -100vw}
-  100% {left: 0vw}
-  }
-
 .new-recommendation-form-holder-close {
-  position: absolute;
+  /* position: absolute; */
   background-color: #DD356E;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 15px 15px 0 0;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  bottom: 0; 
-  animation-name: signup-slide-left;
+  border-radius: 15px;
+  height: 80vh;
+  width: 80vw;
+  /* top: 0;
+  bottom: 0;  */
+  /* animation-name: signup-slide-left;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-timing-function: linear;
-  animation-duration: .3s;
+  animation-duration: .3s; */
   z-index: 10;
   overflow: scroll;
 }
 
-@keyframes signup-slide-left {
-  0%   {left: 0vw; display: flex}
-  100% {left: -102vw}
+.scale-down-center {
+	-webkit-animation: scale-down-center 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-down-center 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
+  100% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
+}
+@keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
+}
+
 
 .new-recommendation-form-title{
   color: black;
-  font-size: 66px;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
+  font-size: 46px;
+  margin-top: 0vh;
 }
 
 .new-recommendation-form-subtitle, .new-recommendation-form-subtitle-2{
@@ -90,9 +136,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2vh;
-  height: 75vh;
-  width: 100%;
+  margin-top: 8vh;
+  height: 50vh;
+  width: 80%;
   overflow: scroll;
   /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 25px; */
 }
@@ -131,9 +177,35 @@
   height: 1vh;
 }
 
+.new-recommendation-input-name{
+  margin-top: -2vh;
+  height: 2.8vh; 
+  width: 40vw; 
+  box-sizing: border-box; 
+  border: .5px solid #DD356E;
+  padding: 10px; 
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.new-recommendation-hyperlinks-holder{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-recommendation-input-hyperlinks{
+  height: 2.8vh; 
+  margin-top: 1vh;
+  width: 40vw; 
+  box-sizing: border-box; 
+  border: .5px solid #DD356E;
+  padding: 10px; 
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .new-recommendation-textarea-holder{
-  height: 9vh;
-  width: 80%;
+  height: 9vh; 
+  width: 40vw; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -141,16 +213,26 @@
 }
 
 .new-recommendation-textarea-holder > textarea{
-  height: 85%;
   width: 100%;
+  height: 100%;
+  margin-top: 1vh;
+  box-sizing: border-box; 
+  border: .5px solid #DD356E;
+  padding: 10px; 
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .new-recommendation-input-holder{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
-  /* margin: .6vh; */
+  margin-top: 1vh;
+  height: 8vh; 
+  width: 40vw; 
+  box-sizing: border-box; 
+  border: .5px solid #DD356E;
+  padding: 10px; 
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .new-recommendation-input-holder-ind{
@@ -158,7 +240,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 15vw;
+  width: 20vw;
 }
 
 .new-recommendation-input-holder > div > input{
@@ -222,22 +304,24 @@
 }
 
 .new-recommendation-button{
-  margin-top: .8vh;
+  margin-top: 2vh;
   margin-left: 1vw;
   height: 3vh; 
   width: 45vw; 
   border-radius: 3px; 
   box-sizing:border-box;
-  background:#23BDBC;
-  color: white;
+  background: rgba(255, 255, 255, 0.5);
+  color: #DD356E;
   font-weight:bold;
   font-size: 20pt;
   transition: background-color 0.1s;
+  border: none;
+  border-radius: 10vh;
   cursor: pointer;  
 }
   
 .new-recommendation-button:hover{
-  background:#23BDBC;
+  background:whitesmoke;
 }
 
 .show-picture{
@@ -250,14 +334,49 @@
   display: none;
 }
 
+#new-recommendation-load-screen-image-top{
+	position: absolute;
+	margin-top: 6vh;
+	height: 18vh;
+	width: 120vw;
+	animation: requestloadright 10s infinite ease-in-out;
+	z-index: -1;
+}
+
+@keyframes requestloadright {
+  /* 0%   {right: -12%}
+  4%   {right: -25%}
+  24%  {right: -25%}
+  28%  {right: -38%}
+  50%  {right: -38%}
+  54%  {right: -25%}
+  76%  {right: -25%}
+  80%  {right: -12%}
+  100% {right: -12%} */
+  0%   {right: -12%}
+  50%  {right: -38%}
+  100% {right: -12%}
+
+}
+
 
 /*************** @MEDIA QUERIES ***************/
 
 
 @media screen and (min-aspect-ratio: 1/1){
   .new-recommendation-form-holder-open {
-    height: 100vh;
     width: 500px;
+    position: absolute;
+    background-color: #DD356E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    height: 60vh;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+    bottom: 20%; 
   }
 
   .new-recommendation-form-holder-close {

@@ -94,7 +94,7 @@ function DesignerProfile() {
           <div className='designer-profile-header-info'>
             <h1>{user.firstName} {user.lastName}</h1>
             <h2>{user.username}</h2>
-            <h2>Walden University</h2>
+          <h2>{ user.education }</h2>
           </div>
         </div>
         <div className='designer-profile-recent-requests-title'>

@@ -98,7 +98,6 @@
 }
 
 .account-places-email > p{
-  font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   box-sizing: border-box; 
 }
@@ -154,7 +153,6 @@ width: 100vw;
 }
 
 .account-input-first-name, .account-input-last-name{
-  font-family: 'Open Sans', sans-serif;
   font-size: 72px;
   border: none;
   padding: 0;
@@ -162,7 +160,6 @@ width: 100vw;
 }
 
 .account-input-username{
-  font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   box-sizing: border-box; 
   border: none;
@@ -175,7 +172,6 @@ width: 100vw;
 }
 
 .account-input-education{
-  font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   box-sizing: border-box; 
   border: none;
@@ -187,7 +183,6 @@ width: 100vw;
 }
 
 .account-input-email{
-  font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   box-sizing: border-box; 
   border: none;
@@ -206,14 +201,12 @@ width: 100vw;
 }
 
 .account-input-address{
-  font-family: 'Open Sans', sans-serif;
   font-size: 32px;
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
 .account-input-city, .account-input-state, .account-input-zipcode{
-  font-family: 'Open Sans', sans-serif;
   font-size: 32px;
   border: none;
   /* width: 10vw; */
@@ -351,7 +344,6 @@ width: 100vw;
 
 .account-input-first-name, .account-input-last-name{
   width: 95px;
-  font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   border: none;
   padding: 0;
@@ -372,7 +364,6 @@ width: 100vw;
 }
 
 .account-input-address{
-  font-family: 'Open Sans', sans-serif;
   font-size: 12px;
   width: 200px;
   border: none;
@@ -380,7 +371,6 @@ width: 100vw;
 }
 
 .account-input-city, .account-input-state, .account-input-zipcode{
-  font-family: 'Open Sans', sans-serif;
   font-size: 12px;
   border: none;
   width: 32px;

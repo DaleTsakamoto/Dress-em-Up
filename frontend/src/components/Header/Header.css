@@ -127,6 +127,13 @@
   text-decoration: none;
 }
 
+.modal-new-recommendation-holder{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 @media screen and (min-aspect-ratio: 1/1){
 	.header-container {
     width: 500px;
