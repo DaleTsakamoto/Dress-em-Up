@@ -25,7 +25,7 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
   return res.json({ ratings });
 }))
 
-/****************** GET RATING **************************/
+/****************** GET RATING/DESIGNER RATINGS **************************/
 
 router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
   let id = req.params.id
@@ -34,12 +34,16 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
       designerId: id,
     },
     attributes: ['designerId', [sequelize.fn('AVG', sequelize.col('designerRating')), 'avgRating']],
-    group: 'designerId'
+    group: 'designerId',
   })
+
+  const oldRatings = await sequelize.query(`SELECT "Ratings".id, comment, "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Ratings" JOIN "Users" ON "userId" = "Users".id WHERE "Ratings"."designerId" = ${id} ORDER BY "Ratings"."updatedAt"`);
+  let ratings = oldRatings[0];
+  console.log("THIS IS THE RATING OBJECT", ratings)
   if (!rating) {
     return res.json('No ratings found')
   }
-  return res.json({ rating });
+  return res.json({ rating, ratings });
 }))
 
 
