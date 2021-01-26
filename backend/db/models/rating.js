@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    comment: {
+      type: DataTypes.TEXT,
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,

@@ -12,6 +12,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      comment: {
+        type: Sequelize.TEXT,
+      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
