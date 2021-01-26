@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, Redirect } from 'react-router-dom'
+import { GiLargeDress } from 'react-icons/gi';
 
 import * as sessionActions from '../../store/session';
 import * as userActions from '../../store/users'
@@ -17,6 +18,8 @@ function Search() {
   const designerRatings = useSelector(state => state.ratings.ratings)
   const [keywordSearch, setKeywordSearch] = useState('')
   const [isLoaded, setIsLoaded] = useState(false);
+  const [dress, setDress] = useState(0)
+  const [hover, setHover] = useState (0)
   let id = sessionUser.id;
 
   useEffect(() => {
@@ -36,26 +39,26 @@ function Search() {
   //   .then(setIsLoaded(true))
   // },[])
 
-  const addRating = (e) => {
-    let designerRating;
-    if (e.target.classList[1] === 'ratings-0') {
-      designerRating = 1;
-    } else if (e.target.classList[1] === 'ratings-1'){
-      designerRating = 2;
-    } else if (e.target.classList[1] === 'ratings-2') {
-      designerRating = 3;
-    } else if (e.target.classList[1] === 'ratings-3') {
-      designerRating = 4;
-    } else {
-      designerRating = 5;
-    }
-    // console.log("THIS IS THE TARGET!!!!?!?!?!", e.target.parentNode.classList[0].slice(3))
-    const designerId = parseInt(e.target.parentNode.classList[0].slice(3))
-    let userId = id
-    designerRating = parseInt(designerRating)
-    let designer = { userId, designerId, designerRating }
-    dispatch(ratingActions.ratingAdd(designer))
-  }
+  // const addRating = (e) => {
+  //   let designerRating;
+  //   if (e.target.classList[1] === 'ratings-0') {
+  //     designerRating = 1;
+  //   } else if (e.target.classList[1] === 'ratings-1'){
+  //     designerRating = 2;
+  //   } else if (e.target.classList[1] === 'ratings-2') {
+  //     designerRating = 3;
+  //   } else if (e.target.classList[1] === 'ratings-3') {
+  //     designerRating = 4;
+  //   } else {
+  //     designerRating = 5;
+  //   }
+  //   // console.log("THIS IS THE TARGET!!!!?!?!?!", e.target.parentNode.classList[0].slice(3))
+  //   const designerId = parseInt(e.target.parentNode.classList[0].slice(3))
+  //   let userId = id
+  //   designerRating = parseInt(designerRating)
+  //   let designer = { userId, designerId, designerRating }
+  //   dispatch(ratingActions.ratingAdd(designer))
+  // }
 
   // const halfRatings = (num) => {
   //   return (Math.round(num * 2) / 2).toFixed(1)
@@ -67,7 +70,7 @@ function Search() {
     currentRating = Math.round(num)
     // if (currentRating % 1 === 0) {
       for (let i = 0; i < currentRating; i++) {
-        finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${i}`} src='../images/Dress-color.png' />)
+        finalRatings.push(<img className={`rate ratings-${i}`} src='../images/Dress-color.png' />)
       }
     // } else {
     //   for (let i = 0; i < Math.floor(currentRating); i++) {
@@ -76,7 +79,7 @@ function Search() {
     //     finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${Math.floor(currentRating)}`} id='search-my-designers-ratings-half-dress' src='../images/Dress-half-color.png' />)
     // }
     for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
-      finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
+      finalRatings.push(<img className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
     }
     return finalRatings;
   }
@@ -162,14 +165,14 @@ function Search() {
                       <div className={`did${designerRatings[`${person.designerId}`].designerId} search-my-designers-ratings-container`}>
                         {renderRatings(designerRatings[`${person.designerId}`].avgRating)}
                         </div>
-                      </div>
+                    </div>
                     </div>
                 </div>
               )
             })
           :
           null}
-      </div>
+      </div> 
       <div className='search-margin-spacer'></div>
     </div>
   )

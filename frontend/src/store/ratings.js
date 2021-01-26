@@ -1,6 +1,7 @@
 import { fetch } from './csrf'
 
 const ADD_RATING = 'requests/addRating'
+const FIND_RATING = 'requests/findRating'
 const UPDATE_RATINGS = 'requests/updateRatings'
 const FIND_RATINGS = 'requests/findRatings'
 const DELETE_RATINGS = 'requests/deleteRatings'
@@ -9,6 +10,13 @@ const findRatings = (ratings) => {
   return {
     type: FIND_RATINGS,
     ratings
+  }
+}
+
+const findRating = (rating) => {
+  return {
+    type: FIND_RATING,
+    rating
   }
 }
 
@@ -45,8 +53,13 @@ export const ratingAdd = (rating) => async (dispatch) => {
 
 export const searchRatings = () => async (dispatch) => {
   const res = await fetch(`/api/ratings`)
-  // console.log("THIS IS WHAT RATINGS LOOK LIKE!!?!?!", res.data.ratings)
   dispatch(findRatings(res.data.ratings));
+  return res
+}
+
+export const searchRating = (id) => async (dispatch) => {
+  const res = await fetch(`/api/ratings/${id}`)
+  dispatch(findRating(res.data.rating[0]));
   return res
 }
 
@@ -60,7 +73,7 @@ export const searchRatings = () => async (dispatch) => {
 //   return res
 // }
 
-const initialState = { ratings: null }
+const initialState = { ratings: null, rating: null }
 
 const ratingsReducer = (state = initialState, action) => {
   let newState;
@@ -69,19 +82,12 @@ const ratingsReducer = (state = initialState, action) => {
       newState = Object.assign({}, state)
       newState.ratings = action.ratings;
       return newState;
+    case FIND_RATING:
+      newState = Object.assign({}, state)
+      newState.rating = action.rating;
+      return newState;
     case ADD_RATING:
       return { ratings: {...state.ratings, ...action.rating }}
-      // console.log("IST IT POSSIBLE TO CONOSLSE LOG HERE!?!?!??!?!??!?", newState.ratings['5'])
-      // for (let key in newState.ratings) {
-        // console.log("THIS IS A NEWSTATE", key)
-        // if (key === Object.keys(action.rating)[0]) {
-        //   console.log("OK IS THIS WORKING NOW!?!?!?!", action.rating[key])
-          // newState.ratings[action.rating.designerId] = action.rating
-        // } else {
-        //   newState.ratings[key] = newState.ratings[key]
-        // }
-      // }
-      // return newState;
     // case UPDATE_TASK:
     //   newState = Object.assign({}, state)
     //   console.log(newState.tasks)

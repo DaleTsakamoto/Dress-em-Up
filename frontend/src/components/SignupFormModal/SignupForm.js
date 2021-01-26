@@ -33,8 +33,10 @@ function SignupForm({open, hidden, setHidden}) {
   };
 
   return (
-    <div className={`pattern-diagonal-lines-xl ${open ? 'signup-form-holder-open' : hidden ? 'signup-form-holder-close sign-up-hide' : 'signup-form-holder-close'}`}>
-        <h1 className='signup-form-title'>Sign-Up</h1>
+    <div className={`${open ? 'signup-form-holder-open' : hidden ? 'signup-form-holder-close sign-up-hide' : 'signup-form-holder-close'}`}>
+      <div className='signup-form-title'>
+        <h1>Sign Up</h1>
+      </div>
         <form onSubmit={handleSubmit} className="signup-form">
             <ul>
                 {errors.map((error, idx) => (

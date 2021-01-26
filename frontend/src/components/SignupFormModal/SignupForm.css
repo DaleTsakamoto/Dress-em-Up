@@ -1,21 +1,44 @@
 .signup-form-holder-open {
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+	-webkit-animation: flow 8s ease-in-out infinite, signup-slide-up .4s linear 0s 1 forwards;
+          animation: flow 8s ease-in-out infinite, signup-slide-up .4s linear 0s 1 forwards;
+  background-size: 500%;
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 15px 15px 0 0;
-  height: 38vh;
+  height: 34vh;
   width: 100%;
   left: 0; 
   right: 0; 
   bottom: 0; 
-  animation-name: signup-slide-up;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-	animation-timing-function: linear;
-  animation-duration: .4s;
   z-index: 3;
+}
+
+@-webkit-keyframes flow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes flow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 @keyframes signup-slide-up {
@@ -25,12 +48,16 @@
 
 .signup-form-holder-close {
   position: absolute;
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+	-webkit-animation: flow 8s ease-in-out infinite, signup-slide-down .4s linear 0s 1 forwards;
+	        animation: flow 8s ease-in-out infinite, signup-slide-down .4s linear 0s 1 forwards;
   display: flex;
+  background-size: 500%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 15px 15px 0 0;
-  height: 38vh;
+  height: 34vh;
   width: 100%;
   left: 0; 
   right: 0; 
@@ -40,7 +67,7 @@
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   animation-duration: .4s;
-  z-index: 3;
+  z-index: 5;
 }
 
 @keyframes signup-slide-down {
@@ -48,17 +75,27 @@
   100% {bottom: -42vh}
   }
 
-.pattern-cross-dots-lg{
-  color: #23BDBC;
-  background-color: #fef0bc
+.signup-form-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 4.5vh;
+  width: 100vw;
+  margin-top: 2vh;
+  margin-bottom: 1vh;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-.signup-form-title{
-  color: #DD356E;
+.signup-form-title > h1{
+  color: grey;
   font-size: 50px;
-  margin-top: 4vh;
-  margin-bottom: 1vh;
 }
+
+/* .signup-form-title > img{
+  height: 4vh;
+  width: 4vh;
+} */
 
 .signup-form {
   height: 100%; 
@@ -73,13 +110,14 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: .6vh;
+  margin: 1vh;
 }
 
 .signup-input-container-name{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 3.8vh;
 }
 
 .signup-input-holder-name{
@@ -87,25 +125,33 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: .6vh;
+  margin: 1vh;
 }
 
 .signup-input{
   height: 2.8vh; 
   width: 70vw; 
   box-sizing: border-box; 
-  border: .5px solid #DD356E;
+  border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.signup-input::placeholder{
+  font-size: 24px;
 }
 
 .signup-input-name{
   height: 2.8vh; 
   width: 34vw; 
   box-sizing: border-box; 
-  border: .5px solid #DD356E;
+  border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.signup-input-name::placeholder{
+  font-size: 24px;
 }
 
 .signup-input:focus, .signup-input-name:focus{
@@ -120,21 +166,22 @@
 }
 
 .signup-button{
-  margin-top: .8vh;
-  margin-left: 1vw;
+  margin-top: 1.5vh;
   height: 3vh; 
   width: 45vw; 
   border-radius: 3px; 
   box-sizing:border-box;
-  background:#DD356E;
-  color: white;
+  background: rgba(255, 255, 255, 0.5);
+  color: grey;
   font-weight:bold;
   font-size: 20pt;
   transition: background-color 0.1s;
+  border: none;
+  border-radius: 10vh;
   cursor: pointer;  
 }
 
-.signup-form-demo-user-button, .signup-form-demo-designer-button{
+/* .signup-form-demo-user-button, .signup-form-demo-designer-button{
   margin-top: .5vh;
   height: 3vh; 
   width: 45vw; 
@@ -146,10 +193,10 @@
   font-size: 20pt;
   transition: background-color 0.1s;
   cursor: pointer;  
-}
+} */
 
 .signup-button:hover, .signup-form-demo-user-button:hover, .signup-form-demo-designer-button:hover {
-  background:#fef0bc;
+  background:whitesmoke;
 }
 
 .button-modal{
@@ -159,7 +206,7 @@
   border: rgba(0,0,0,0.3) 0px solid; 
   box-sizing:border-box;
   padding:10px; 
-  background:#f1bc8f;
+  background:whitesmoke;
   color:#FFF;
   font-weight:bold;
   font-size: 12pt;
@@ -168,7 +215,7 @@
 }
 
 .button-modal:hover {
-  background:#da4339;
+  background: #DD356E;
 }
 
 .sign-up-hide{
@@ -180,14 +227,17 @@
 
 @media screen and (min-aspect-ratio: 1/1){
   .signup-form-holder-open {
-    height: 400px;
+    height: 350px;
     width: 100%;
   }
+
   .signup-form-title{
-    color: #DD356E;
-    font-size: 35px;
-    margin-top: 30px;
-    margin-bottom: 5px;
+    padding: 10px 0;
+    width: 500px;
+  }
+
+  .signup-form-title > h1{
+    font-size: 28px;
   }
   
   .signup-form {
@@ -199,19 +249,32 @@
     margin: 8px;
   }
   
+  .signup-input-container-name{
+    height: 39px;
+  }
+
   .signup-input-holder-name{
     width: 340px; 
     margin: 4px 8px;
   }
   
   .signup-input{
-    height: 28px; 
+    height: 30px; 
     width: 100%; 
+    margin-bottom: 5px;
+  }
+
+  .signup-input::placeholder{
+    font-size: 16px;
   }
   
   .signup-input-name{
-    height: 28px; 
+    height: 30px; 
     width: 130px; 
+  }
+
+  .signup-input-name::placeholder{
+    font-size: 16px;
   }
   
   .signup-button-holder{
@@ -219,36 +282,12 @@
   }
   
   .signup-button{
-    margin-top: 3px;
+    margin-top: 10px;
     margin-left: 1vw;
     height: 30px; 
     width: 120px; 
     border-radius: 3px; 
-    box-sizing:border-box;
-    background:#DD356E;
-    color: white;
-    font-weight:bold;
     font-size: 12px;
-    transition: background-color 0.1s;
-    cursor: pointer;  
-  }
-  
-  .signup-form-demo-user-button, .signup-form-demo-designer-button{
-    margin-top: .5vh;
-    height: 3vh; 
-    width: 45vw; 
-    border-radius: 3px; 
-    box-sizing:border-box;
-    background:#DD356E;
-    color: white;
-    font-weight:bold;
-    font-size: 20pt;
-    transition: background-color 0.1s;
-    cursor: pointer;  
-  }
-  
-  .signup-button:hover, .signup-form-demo-user-button:hover, .signup-form-demo-designer-button:hover {
-    background:#fef0bc;
   }
   
   .button-modal{

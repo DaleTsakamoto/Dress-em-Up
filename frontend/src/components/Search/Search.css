@@ -199,7 +199,7 @@
   background-color: red;
 } */
 
-.rate:hover{
+/* .rate:hover{
   animation: dress .5s;
 }
 
@@ -210,7 +210,7 @@
   50%{
     transform: scale(2);
   }
-}
+} */
 
 .search-my-designers-ratings-container > #search-my-designers-ratings-half-dress{
   height: 1.5vh;
@@ -371,14 +371,14 @@
     margin-right: -2px;
   }
 
-  .rate:hover{
+  /* .rate:hover{
     animation: none;
     cursor: pointer;
   }
 
   .rate:active{
     animation: dress .5s;
-  }
+  } */
 
   .search-my-designers-ratings-container > #search-my-designers-ratings-half-dress{
     height: 18px;

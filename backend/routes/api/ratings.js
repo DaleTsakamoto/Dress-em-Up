@@ -25,6 +25,24 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
   return res.json({ ratings });
 }))
 
+/****************** GET RATING **************************/
+
+router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+  let id = req.params.id
+  const rating = await Rating.findAll({
+    where: {
+      designerId: id,
+    },
+    attributes: ['designerId', [sequelize.fn('AVG', sequelize.col('designerRating')), 'avgRating']],
+    group: 'designerId'
+  })
+  if (!rating) {
+    return res.json('No ratings found')
+  }
+  return res.json({ rating });
+}))
+
+
 /****************** POST RATINGS **************************/
 
 router.post('/', requireAuth, asyncHandler(async (req, res) => {

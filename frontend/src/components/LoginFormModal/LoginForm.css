@@ -4,18 +4,41 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+	-webkit-animation: flow 8s ease-in-out infinite, login-slide-up .4s linear 0s 1 forwards;
+          animation: flow 8s ease-in-out infinite, login-slide-up .4s linear 0s 1 forwards;
+  background-size: 500%;
   border-radius: 15px 15px 0 0;
   height: 30vh;
   width: 100%;
   left: 0; 
   right: 0; 
   bottom: 0; 
-  animation-name: login-slide-up;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-	animation-timing-function: linear;
-  animation-duration: .4s;
   z-index: 3;
+}
+
+@-webkit-keyframes flow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes flow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 @keyframes login-slide-up {
@@ -29,17 +52,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+	-webkit-animation: flow 8s ease-in-out infinite, login-slide-down .4s linear 0s 1 forwards;
+          animation: flow 8s ease-in-out infinite, login-slide-down .4s linear 0s 1 forwards;
+  background-size: 500%;
   border-radius: 15px 15px 0 0;
   height: 30vh;
   width: 100%;
   left: 0; 
   right: 0; 
   bottom: 0; 
-  animation-name: login-slide-down;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear;
-  animation-duration: .4s;
   z-index: 3;
 }
 
@@ -48,21 +70,21 @@
   100% {bottom: -34vh}
   }
 
-/* .pattern-cross-dots-lg{
-  color: #23BDBC;
-  background-color: #fef0bc
-} */
-
-/* .pattern-diagonal-lines-xl{
-  color: black;
-  background-color: white;
-} */
-
 .login-form-title{
-  color: #DD356E;
-  font-size: 50px;
-  margin-top: 4vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 4.5vh;
+  width: 100vw;
+  margin-top: 2vh;
   margin-bottom: 1vh;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-form-title > h1{
+  color: grey;
+  font-size: 50px;
 }
 
 .login-form {
@@ -85,9 +107,13 @@
   height: 3vh; 
   width: 55vw; 
   box-sizing: border-box; 
-  border: .5px solid #DD356E;
+  border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-input::placeholder{
+  font-size: 24px;
 }
 
 .login-input:focus{
@@ -102,36 +128,39 @@
 }
 
 .login-button{
-  margin-top: .8vh;
-  /* margin-left: 1vw; */
-  height: 2.7vh; 
-  width: 35vw; 
+  margin-top: 1vh;
+  height: 3vh; 
+  width: 45vw; 
   border-radius: 3px; 
   box-sizing:border-box;
-  background:#DD356E;
-  color: white;
+  background: rgba(255, 255, 255, 0.5);
+  color: grey;
   font-weight:bold;
   font-size: 20pt;
   transition: background-color 0.1s;
+  border: none;
+  border-radius: 10vh;
   cursor: pointer;  
 }
 
 .login-form-demo-user-button, .login-form-demo-designer-button{
-  margin-top: .8vh;
+  margin-top: 1vh;
   height: 3vh; 
-  width: 35vw; 
+  width: 45vw; 
   border-radius: 3px; 
   box-sizing:border-box;
-  background:#DD356E;
-  color: white;
+  background: rgba(255, 255, 255, 0.5);
+  color: grey;
   font-weight:bold;
   font-size: 20pt;
   transition: background-color 0.1s;
-  cursor: pointer;  
+  border: none;
+  border-radius: 10vh;
+  cursor: pointer;   
 }
 
 .login-button:hover, .login-form-demo-user-button:hover, .login-form-demo-designer-button:hover {
-  background:#fef0bc;
+  background: whitesmoke;
 }
 
 .button-modal{
@@ -141,7 +170,7 @@
   border: rgba(0,0,0,0.3) 0px solid; 
   box-sizing:border-box;
   padding:10px; 
-  background:#f1bc8f;
+  background:whitesmoke;
   color:#FFF;
   font-weight:bold;
   font-size: 12pt;
@@ -168,10 +197,12 @@
   }
 
   .login-form-title{
-    color: #DD356E;
-    font-size: 35px;
-    margin-top: 30px;
-    margin-bottom: 5px;
+    padding: 10px 0;
+    width: 500px;
+  }
+
+  .login-form-title > h1{
+    font-size: 28px;
   }
   
   .login-form {
@@ -187,6 +218,10 @@
     height: 30px; 
     width: 250px; 
   }
+
+  .login-input::placeholder{
+    font-size: 16px;
+  }
   
   .login-button-holder{
     display: flex;
@@ -196,32 +231,21 @@
   }
   
   .login-button{
-    margin-top: 2px;
-    margin-left: 0;
+    margin-top: 5px;
+    margin-left: 1vw;
     height: 30px; 
-    width: 150px; 
+    width: 140px; 
     border-radius: 3px; 
-    box-sizing:border-box;
-    background:#DD356E;
-    color: white;
-    font-weight:bold;
-    font-size: 12px;
-    transition: background-color 0.1s;
-    cursor: pointer;  
+    font-size: 12px; 
   }
   
   .login-form-demo-user-button, .login-form-demo-designer-button{
     margin-top: 5px;
+    margin-left: 1vw;
     height: 30px; 
-    width: 150px; 
+    width: 140px; 
     border-radius: 3px; 
-    box-sizing:border-box;
-    background:#DD356E;
-    color: white;
-    font-weight:bold;
     font-size: 12px;
-    transition: background-color 0.1s;
-    cursor: pointer;  
   }
   
   .button-modal{
@@ -231,7 +255,7 @@
     border: rgba(0,0,0,0.3) 0px solid; 
     box-sizing:border-box;
     padding:10px; 
-    background:#f1bc8f;
+    background: whitesmoke;
     color:#FFF;
     font-weight:bold;
     font-size: 12pt;

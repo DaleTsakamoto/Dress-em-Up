@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, Redirect } from 'react-router-dom'
+import { GiLargeDress } from 'react-icons/gi';
 
 import * as sessionActions from '../../store/session';
 import * as userActions from '../../store/users'
+import * as ratingActions from '../../store/ratings'
 
 import './designerProfile.css';
 
@@ -12,6 +14,7 @@ function DesignerProfile() {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
   const userRecommendations = useSelector(state => state.users.recommendations)
+  const userRating = useSelector(state => state.ratings.rating)
   const user = useSelector(state => state.users.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoaded2, setIsLoaded2] = useState(false);
@@ -25,48 +28,34 @@ function DesignerProfile() {
   const [state, setState] = useState(sessionUser.state)
   const [zipCode, setZipCode] = useState(sessionUser.zipCode)
   const [errors, setErrors] = useState([])
+  const [dress, setDress] = useState(0)
+  const [hover, setHover] = useState (0)
   const id = sessionUser.id
   const currentId = parseInt(window.location.pathname.split('/')[2]);
   
   useEffect(() => {
     dispatch(userActions.searchUser(currentId))
+    dispatch(ratingActions.searchRating(currentId))
     .then(() => setIsLoaded(true))
   }, [dispatch])
-  
-  // useEffect(() => {
-  //   let id = currentId
-  //   dispatch(sessionActions.searchUserRecommendations(id))
-  //   .then(() => setIsLoaded2(true))
-  // }, [dispatch])
 
   useEffect(() => {
     dispatch(userActions.searchProfileRecommendations(currentId))
     .then(() => setIsLoaded2(true))
   }, [dispatch])
 
-  const logout = (e) => {
-    dispatch(sessionActions.logout())
-    let path = '/'
-    return history.push(path);
-  };
-
-  const editAccount = () => {
-    setErrors([])
-    setEdit(true);
-  }
-
-  const updateProfile = () => {
-    if (username !== 'Demo_user' && username !== 'Demo_designer') {
-      setEdit(false);
-      setUsername(sessionUser.username)
-      return setErrors(['You may not change the demo_user username!!'])
+  let currentRating;
+  const renderRating = (num) => {
+    let finalRatings =[]
+    currentRating = Math.round(num)
+      for (let i = 0; i < currentRating; i++) {
+        finalRatings.push(<img className={`rate ratings-${i}`} src='../images/Dress-color.png' />)
+      }
+    for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
+      finalRatings.push(<img className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
     }
-    dispatch(sessionActions.userUpdate({ firstName, lastName, email, username, address, city, state, zipCode, id }))
-      .catch(res => {
-      if (res.data && res.data.errors) setErrors(res.data.errors);
-    })
-    setEdit(false);
-    return
+    console.log("THESE ARE THE FINAL RATINGS", finalRatings)
+    return finalRatings;
   }
 
   let hyperlinksArray;
@@ -81,7 +70,6 @@ function DesignerProfile() {
       <div className="designer-profile-main pattern-cross-dots-lg">
       <div className='designer-profile-header'>
         <div className='designer-profile-header-background'>
-          {/* <img src='./images/fashion-designer-desk.jpg' /> */}
           <img src='https://dress-em-up.s3-us-west-1.amazonaws.com/designers/background-profile/05e08f55-bb29-4002-a865-47bd55f96075.jpg'/>
         </div>
         <div className='designer-profile-profile-avatar'>
@@ -91,7 +79,10 @@ function DesignerProfile() {
             <i className="fas fa-user-circle"></i>
           }
           </div>
-          <div className='designer-profile-header-info'>
+        <div className='designer-profile-header-info'>
+          <div className="designer-profile-ratings-container">
+          {userRating ? renderRating(userRating.avgRating) : null}
+            </div> 
             <h1>{user.firstName} {user.lastName}</h1>
             <h2>{user.username}</h2>
           <h2>{ user.education }</h2>
@@ -114,7 +105,7 @@ function DesignerProfile() {
           <div className='orders-recommendations-feed'>
             <div key={ idx } className='orders-recommendations-feed-box'>
             <div className='orders-recommendations-feed-text'>
-                    <p className='orders-recommendations-feed-names'>{user.firstName} {user.lastName} recommended clothes for { rec.userFirstName } { rec.userLastName }!</p>
+              <p className='orders-recommendations-feed-names'>{user.firstName} {user.lastName} recommended clothes for { rec.userFirstName } { rec.userLastName }!</p>
               <p className='orders-recommendations-feed-title'>{rec.name}</p>
               <p className='orders-recommendations-feed-description'>{rec.description}</p>
             </div>
@@ -141,3 +132,27 @@ function DesignerProfile() {
 }
 
 export default DesignerProfile;
+
+
+
+
+// {[...Array(5)].map((star, index) => {
+//   index += 1;
+//   return (
+//     <label>
+//     <input
+//       type="radio"
+//       className='dress-ratings-radio'
+//       name="rating"
+//       value={index}
+//       onClick={() => setDress(index)}
+//       />
+//       <GiLargeDress
+//         className='dress-ratings'
+//         color= {index <= (hover || dress) ? "#DD356E" : "lightgrey"}
+//         onMouseEnter={() => setHover(index)}
+//         onMouseLeave={() => setHover(dress)}
+//       />
+//     </label>
+//   );
+// })}

@@ -53,7 +53,7 @@ body{
   text-align: center;
   margin-top: .1vh;
   height: 10vh;
-  margin-left: -26vh;
+  margin-left: -29vh;
   width: 140vw;
 }
 
@@ -502,7 +502,7 @@ body{
   }
   
   .homepage-text-logo{
-    margin-left: -240px;
+    margin-left: -250px;
     height: 90px;
     width: 600px;
     /* text-align: center; */

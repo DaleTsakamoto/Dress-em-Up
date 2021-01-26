@@ -45,7 +45,7 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
   const uploadFile = e => {
     e.preventDefault();
     setMessage('Uploading...')
-    const contentType = file.type; // eg. image/jpeg or image/svg+xml
+    const contentType = file.type;
     const generatePutUrl = 'api/uploads/put-url';
     const options = {
       params: {
@@ -66,7 +66,6 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
         .put(putURL, file, options)
         .then(res => {
           setMessage('Upload Successful')
-          // findImages()
           setTimeout(()=>{
             setMessage('');
             setImage(realKey)
@@ -113,7 +112,6 @@ const firstUpdate = useRef(true);
     if (hidden) {
       setHidden(false)
     }
-    console.log("DISPATCH IS ABOUT TO BEGIN!!!!!!")
     dispatch(requestActions.requestAdd({ userId, imagesArray, description, designerId, apparelChoice }))
         .catch(res => {
           if (res.data && res.data.errors) {

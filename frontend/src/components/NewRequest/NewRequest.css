@@ -292,6 +292,10 @@
 
 }
 
+.new-request-hide{
+  display: none;
+}
+
 
 /*************** @MEDIA QUERIES ***************/
 

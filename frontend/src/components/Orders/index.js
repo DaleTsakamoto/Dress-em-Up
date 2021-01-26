@@ -24,6 +24,7 @@ function Orders() {
   const [userId, setUserId] = useState(); 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoaded2, setIsLoaded2] = useState(false);
+
   const componentIsMounted = useRef(true)
   const id = sessionUser.id
   const userType = sessionUser.userType
@@ -67,7 +68,7 @@ function Orders() {
       <h1 className='orders-main-header'>Orders</h1>
       <div className="orders-requests-container">
         <div className='orders-requests-header-container pattern-cross-dots-lg'>
-          <h1 className='orders-requests-header'>Requests</h1>
+            <h1 className='orders-requests-header'>Requests</h1>
         </div>
         {userRequests ? Object.values(userRequests).map((req, idx) => {
           return(
@@ -141,8 +142,8 @@ function Orders() {
                     </a>
                   )
               })}
+            </div> 
           </div>
-        </div>
               <div className={`orders-recommendations-feed-line ${(userRecommendations.length - 1 === idx) ? 'orders-recommendations-feed-spacer' : null}`} />
               </>
         )
