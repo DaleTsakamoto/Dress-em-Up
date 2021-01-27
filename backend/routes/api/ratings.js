@@ -37,8 +37,11 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     group: 'designerId',
   })
 
-  const oldRatings = await sequelize.query(`SELECT "Ratings".id, comment, "designerId", "designerRating", "userId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Ratings" JOIN "Users" ON "userId" = "Users".id WHERE "Ratings"."designerId" = ${id} ORDER BY "Ratings"."updatedAt"`);
+  const oldRatings = await sequelize.query(`SELECT "Ratings".id, comment, "designerId", "designerRating", "userId", "Users"."firstName" AS "userFirstName", "Users".avatar AS "userAvatar", "Users"."lastName" AS "userLastName" FROM "Ratings" JOIN "Users" ON "userId" = "Users".id WHERE "Ratings"."designerId" = ${id} ORDER BY "Ratings"."updatedAt"`);
   let ratings = oldRatings[0];
+  for (let i = 0; i < ratings.length; i++) {
+    ratings[i].userAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${ratings[i].userAvatar}`
+  }
   if (!rating) {
     return res.json('No ratings found')
   }
