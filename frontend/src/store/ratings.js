@@ -2,9 +2,7 @@ import { fetch } from './csrf'
 
 const ADD_RATING = 'requests/addRating'
 const FIND_RATING = 'requests/findRating'
-const UPDATE_RATINGS = 'requests/updateRatings'
 const FIND_RATINGS = 'requests/findRatings'
-const DELETE_RATINGS = 'requests/deleteRatings'
 
 const findRatings = (ratings) => {
   return {
@@ -20,34 +18,30 @@ const findRating = (rating) => {
   }
 }
 
-const addRating = (rating) => {
+const addRating = (ratingAvg, rating) => {
   return {
     type: ADD_RATING,
-    rating,
-  }
-}
-
-const updateRatings = (rating) => {
-  return {
-    type: UPDATE_RATINGS,
-    rating,
+    ratingAvg,
+    rating
   }
 }
 
 export const ratingAdd = (rating) => async (dispatch) => {
-  const { designerId, userId, designerRating } = rating
+  const { designerId, userId, designerRating, comment } = rating
+  console.log("RATINGS ARE MAKING IT TO THE STORE")
   const res = await fetch(`/api/ratings/`, {
     method: 'POST',
     body: JSON.stringify({
       designerRating,
       designerId,
       userId,
+      comment,
     }),
   })
   if (!res.data) {
     return
   }
-  dispatch(addRating(res.data.ratingUpdate));
+  dispatch(addRating(res.data.ratingAvg, res.data.rating));
   return res
 }
 
@@ -60,18 +54,9 @@ export const searchRatings = () => async (dispatch) => {
 export const searchRating = (id) => async (dispatch) => {
   const res = await fetch(`/api/ratings/${id}`)
   dispatch(findRating(res.data.rating[0]));
+  dispatch(findRatings(res.data.ratings));
   return res
 }
-
-// export const search = (user) => async (dispatch) => {
-//   const { urlId } = user;
-//   console.log("THE INITIAL URLID", urlId)
-//   const res = await fetch(`/api/users/${urlId}/tasks`, {
-//     method: 'GET',
-//   })
-//   dispatch(findTasks(res.data.tasks));
-//   return res
-// }
 
 const initialState = { ratings: null, rating: null }
 
@@ -87,19 +72,20 @@ const ratingsReducer = (state = initialState, action) => {
       newState.rating = action.rating;
       return newState;
     case ADD_RATING:
-      return { ratings: {...state.ratings, ...action.rating }}
-    // case UPDATE_TASK:
-    //   newState = Object.assign({}, state)
-    //   console.log(newState.tasks)
-    //   for (let i = 0; i < newState.tasks.length; i++){
-    //     let task = newState.tasks[i]
-    //     console.log(action.task.id)
-    //     if (task.id === action.task.id) {
-    //       console.log("IT'S WORKING!!!!", action.task.id)
-    //       task = action.task
-    //     };
-    //   }
-    //   return newState;
+      newState = Object.assign({}, state)
+      let changed = false;
+      for (let i = 0; i < newState.ratings.length; i++){
+        let rating = newState.ratings[i]
+        if (rating.designerId === action.rating.designerId && rating.userId === action.rating.userId) {
+          newState.ratings[i] = action.rating
+          changed = true
+        } 
+      }
+      if (!changed) {
+        newState.ratings = [...state.ratings, action.rating ] 
+      }
+      newState.rating = action.ratingAvg
+      return newState
     default:
       return state;
   }

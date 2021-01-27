@@ -37,9 +37,8 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     group: 'designerId',
   })
 
-  const oldRatings = await sequelize.query(`SELECT "Ratings".id, comment, "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Ratings" JOIN "Users" ON "userId" = "Users".id WHERE "Ratings"."designerId" = ${id} ORDER BY "Ratings"."updatedAt"`);
+  const oldRatings = await sequelize.query(`SELECT "Ratings".id, comment, "designerId", "designerRating", "userId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Ratings" JOIN "Users" ON "userId" = "Users".id WHERE "Ratings"."designerId" = ${id} ORDER BY "Ratings"."updatedAt"`);
   let ratings = oldRatings[0];
-  console.log("THIS IS THE RATING OBJECT", ratings)
   if (!rating) {
     return res.json('No ratings found')
   }
@@ -50,32 +49,36 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
 /****************** POST RATINGS **************************/
 
 router.post('/', requireAuth, asyncHandler(async (req, res) => {
-  const { designerId, userId, designerRating } = req.body
+  const { designerId, userId, designerRating, comment } = req.body
   const oldRating = await Rating.findOne({
     where: {
       [Op.and]: [{userId: userId}, {designerId: designerId}]
     }
   })
-  let rating = null;
+  let ratingAvg;
   if (oldRating) {
-    return rating
-  } else {
-    rating = Rating.build({
+    await Rating.destroy({
+      where: {
+        [Op.and]: [{userId: userId}, {designerId: designerId}]
+      }
+    })
+  }
+    let rating = Rating.build({
       userId: userId,
       designerId: designerId,
-      designerRating: designerRating
+      designerRating: designerRating,
+      comment: comment
     });
     await rating.save();
-    const oldRatings = await Rating.findOne({
+    ratingAvg = await Rating.findOne({
       where: {
         designerId: designerId
       },
       attributes: ['designerId', [sequelize.fn('AVG', sequelize.col('designerRating')), 'avgRating']],
       group: 'designerId'
     })
-    ratingUpdate = { [designerId]: oldRatings.dataValues }
-  }
-  return res.json({ ratingUpdate });
+  console.log("THIS IS THE RATING AVERAGE", ratingAvg)
+  return res.json({ ratingAvg, rating });
 }))
   
 module.exports = router;

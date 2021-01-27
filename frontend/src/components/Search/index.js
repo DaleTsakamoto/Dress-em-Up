@@ -18,8 +18,6 @@ function Search() {
   const designerRatings = useSelector(state => state.ratings.ratings)
   const [keywordSearch, setKeywordSearch] = useState('')
   const [isLoaded, setIsLoaded] = useState(false);
-  const [dress, setDress] = useState(0)
-  const [hover, setHover] = useState (0)
   let id = sessionUser.id;
 
   useEffect(() => {

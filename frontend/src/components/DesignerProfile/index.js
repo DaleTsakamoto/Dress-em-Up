@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, Redirect } from 'react-router-dom'
-import { GiLargeDress } from 'react-icons/gi';
+
+import { Modal } from '../../context/Modal';
+import NewRating from '../NewRating/NewRating';
 
 import * as sessionActions from '../../store/session';
 import * as userActions from '../../store/users'
@@ -18,18 +20,7 @@ function DesignerProfile() {
   const user = useSelector(state => state.users.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoaded2, setIsLoaded2] = useState(false);
-  const [edit, setEdit] = useState(false)
-  const [firstName, setFirstName] = useState(sessionUser.firstName)
-  const [lastName, setLastName] = useState(sessionUser.lastName)
-  const [email, setEmail] = useState(sessionUser.email)
-  const [username, setUsername] = useState(sessionUser.username)
-  const [address, setAddress] = useState(sessionUser.address)
-  const [city, setCity] = useState(sessionUser.city)
-  const [state, setState] = useState(sessionUser.state)
-  const [zipCode, setZipCode] = useState(sessionUser.zipCode)
-  const [errors, setErrors] = useState([])
-  const [dress, setDress] = useState(0)
-  const [hover, setHover] = useState (0)
+  const [showModal, setShowModal] = useState(false); 
   const id = sessionUser.id
   const currentId = parseInt(window.location.pathname.split('/')[2]);
   
@@ -54,7 +45,6 @@ function DesignerProfile() {
     for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
       finalRatings.push(<img className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
     }
-    console.log("THESE ARE THE FINAL RATINGS", finalRatings)
     return finalRatings;
   }
 
@@ -80,16 +70,23 @@ function DesignerProfile() {
           }
           </div>
         <div className='designer-profile-header-info'>
+          {sessionUser.userType ?
+          <div className="designer-profile-ratings-container add-cursor" onClick={() => setShowModal(true)}>
+              <span class="designer-profile-ratings-container__hover" onClick={() => setShowModal(true)}>Leave a Review</span>
+            {userRating ? renderRating(userRating.avgRating) : null}
+          </div> 
+          :
           <div className="designer-profile-ratings-container">
-          {userRating ? renderRating(userRating.avgRating) : null}
-            </div> 
+            {userRating ? renderRating(userRating.avgRating) : null}
+          </div> 
+          }
             <h1>{user.firstName} {user.lastName}</h1>
             <h2>{user.username}</h2>
           <h2>{ user.education }</h2>
           </div>
         </div>
         <div className='designer-profile-recent-requests-title'>
-          <p>Recent Recommendations</p>
+          <p>Reviews</p>
       </div>
       <div className='designer-profile-recent-requests'>
       <div className="orders-recommendations-container">
@@ -127,6 +124,13 @@ function DesignerProfile() {
       })}
         </div>
       </div>
+      {sessionUser.userType ?
+        <Modal open={showModal} onClose={() => setShowModal(false)} >
+          <NewRating open={showModal} onClose={() => setShowModal(false)} designerId={currentId} designerName={ user.firstName }/>
+        </Modal>
+        :
+        null
+      }
       </div>
   )
 }

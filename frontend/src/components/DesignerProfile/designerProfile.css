@@ -63,7 +63,7 @@
 }
 
 .designer-profile-header-info{
-  height: 20vh;
+  height: 26vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -73,8 +73,46 @@
   color: black;
 }
 
+.designer-profile-ratings-container{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 3vh;
+  width: 40vw;
+  margin-top: -2.5vh;
+}
+
+  .add-cursor{
+    cursor: pointer;
+  }
+
+.designer-profile-ratings-container .designer-profile-ratings-container__hover{
+  position: absolute;
+  visibility: hidden;
+  width: 18vw;
+  background-color: #DD356E;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  border-radius: 15px;
+  margin-left: 52vw;
+  padding: 5px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.designer-profile-ratings-container:hover .designer-profile-ratings-container__hover{
+  visibility: visible;
+}
+
+.designer-profile-ratings-container > img{
+  height: 3vh;
+  width: 3vh;
+  margin-right: -2px;
+}
+
 .designer-profile-header-info > h1{
-  margin-top: 10vh;
+  margin-top: 11vh;
   font-size: 72px;
 }
 
@@ -214,13 +252,41 @@ width: 100vw;
     width: 100%;
     border-radius: 50%;
   }
+
+  .designer-profile-ratings-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 5vh;
+    width: 100px;
+    margin-top: -40px;
+  }
+  
+  .designer-profile-ratings-container .designer-profile-ratings-container__hover{
+    position: absolute;
+    visibility: hidden;
+    width: 10vw;
+    background-color: #DD356E;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    border-radius: 15px;
+    margin-left: 270px;
+    padding: 5px;
+    font-size: 12px;
+  }
+  
+  .designer-profile-ratings-container > img{
+    height: 28px;
+    width: 28px;
+    margin-right: -2px;
+  }
   
   .designer-profile-header-info > i{
     font-size: 45px;
   }
   
   .designer-profile-header-info > h1{
-    margin-top: 30px;
+    margin-top: 70px;
     font-size: 26px;
   }
   
@@ -309,37 +375,4 @@ width: 100vw;
   .designer-profile-main {
     height: 76vh;
   }
-}
-
-.designer-profile-ratings-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 20px;
-  width: 500px;
-  margin-top: 50px;
-}
-
-.designer-profile-ratings-container > img{
-  height: 28px;
-  width: 28px;
-  margin-right: -2px;
-}
-
-.dress-ratings {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-size: 40px;
-}
-
-.dress-ratings-radio{
-  display: none;
-}
-.on {
-  color: #000;
-}
-.off {
-  color: #ccc;
 }
