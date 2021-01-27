@@ -14,7 +14,7 @@
   left: 0; 
   right: 0; 
   bottom: 0; 
-  z-index: 3;
+  z-index: 10;
 }
 
 @-webkit-keyframes flow {
@@ -67,7 +67,7 @@
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   animation-duration: .4s;
-  z-index: 5;
+  z-index: 10;
 }
 
 @keyframes signup-slide-down {
@@ -91,11 +91,6 @@
   color: grey;
   font-size: 50px;
 }
-
-/* .signup-form-title > img{
-  height: 4vh;
-  width: 4vh;
-} */
 
 .signup-form {
   height: 100%; 

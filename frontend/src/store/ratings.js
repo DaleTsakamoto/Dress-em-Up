@@ -77,7 +77,9 @@ const ratingsReducer = (state = initialState, action) => {
       for (let i = 0; i < newState.ratings.length; i++){
         let rating = newState.ratings[i]
         if (rating.designerId === action.rating.designerId && rating.userId === action.rating.userId) {
-          newState.ratings[i] = action.rating
+          newState.ratings[i].designerRating = action.rating.designerRating
+          newState.ratings[i].id = action.rating.id
+          newState.ratings[i].comment = action.rating.comment
           changed = true
         } 
       }

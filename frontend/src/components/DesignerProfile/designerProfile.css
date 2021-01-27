@@ -83,9 +83,9 @@
   margin-top: -2.5vh;
 }
 
-  .add-cursor{
-    cursor: pointer;
-  }
+.add-cursor{
+  cursor: pointer;
+}
 
 .designer-profile-ratings-container .designer-profile-ratings-container__hover{
   position: absolute;
@@ -105,10 +105,67 @@
   visibility: visible;
 }
 
+.designer-profile-feed{
+  display: flex;
+  width: 80vw;
+  flex-direction: column;
+  margin-left: 10vw;
+}
+
+.designer-profile-feed-box{
+  min-height: 8vh;
+  font-size: 28px;
+}
+
+.designer-profile-feed-text{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1vh;
+}
+
+.designer-profile-feed-names{
+  font-weight: bold;
+  font-size: 36px;
+  color: #DD356E;
+  height: 2.5vh;
+  padding-top: 2.5vh;
+  margin-left: 1vw;
+}
+
+.designer-profile-feed-title{
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.designer-profile-feed-description{
+  margin-top: 2vh;
+  font-size: 32px;
+  line-height: 1.5;
+  margin-bottom: 1vh;
+  margin-left: 1vw;
+}
+
+.designer-profile-feed-line{
+  align-self: flex-end;
+  width: 100vw;
+  border-bottom: .5px solid #DD356E;
+  margin-top: 1vh;
+}
+
+.designer-profile-feed-spacer{
+  margin-bottom: 10vh;
+}
+
 .designer-profile-ratings-container > img{
   height: 3vh;
   width: 3vh;
   margin-right: -2px;
+}
+
+.designer-profile-ratings-container-ind > img{
+  height: 2vh;
+  width: 2vh;
+  margin-right: -1px;
 }
 
 .designer-profile-header-info > h1{
@@ -274,11 +331,62 @@ width: 100vw;
     padding: 5px;
     font-size: 12px;
   }
+
+  .designer-profile-feed{
+    width: 400px;
+    margin-left: 50px;
+  }
+
+  .designer-profile-feed-box{
+    height: 120px;
+    width: 400px;
+    font-size: 14px;
+  }
+  
+  .designer-profile-feed-text{
+    margin-bottom: 10px;
+  }
+  
+  .designer-profile-feed-names{
+    height: 30px;
+    font-size: 16px;
+    padding-top: 18px;
+    margin-left: 2px;
+  }
+  
+  .designer-profile-feed-title{
+    font-size: 14px;
+  }
+  
+  .designer-profile-feed-description{
+    margin-top: 20px;
+    font-size: 12px;
+    margin-bottom: 8px;
+    margin-left: 5px;
+  }
+
+  .designer-profile-feed-line{
+    align-self: flex-end;
+    width: 500px;
+    border-bottom: .5px solid #DD356E;
+  }
+  
+  .designer-profile-feed-spacer{
+    margin-bottom: 0px;
+    height: 100px;
+    background-color: white;
+  }
   
   .designer-profile-ratings-container > img{
     height: 28px;
     width: 28px;
     margin-right: -2px;
+  }
+
+  .designer-profile-ratings-container-ind > img{
+    height: 20px;
+    width: 20px;
+    margin-right: -4px;
   }
   
   .designer-profile-header-info > i{
@@ -333,7 +441,7 @@ width: 100vw;
   }
   
   .designer-profile-recent-requests-title > p{
-    margin-left: 50px;
+    margin-left: 25px;
     color: black;
   }
   

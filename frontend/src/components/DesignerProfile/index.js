@@ -17,6 +17,7 @@ function DesignerProfile() {
   const sessionUser = useSelector(state => state.session.user);
   const userRecommendations = useSelector(state => state.users.recommendations)
   const userRating = useSelector(state => state.ratings.rating)
+  const ratings = useSelector(state => state.ratings.ratings)
   const user = useSelector(state => state.users.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoaded2, setIsLoaded2] = useState(false);
@@ -46,14 +47,6 @@ function DesignerProfile() {
       finalRatings.push(<img className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
     }
     return finalRatings;
-  }
-
-  let hyperlinksArray;
-  let clothes;
-  let random = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   return isLoaded && isLoaded2 &&(
@@ -89,36 +82,22 @@ function DesignerProfile() {
           <p>Reviews</p>
       </div>
       <div className='designer-profile-recent-requests'>
-      <div className="orders-recommendations-container">
-        {Object.values(userRecommendations).map((rec, idx) => {
-        {
-          hyperlinksArray = rec.hyperlinks.split(',');
-          clothes = rec.apparelChoice.split(',');
-          clothes.pop();
-          hyperlinksArray.pop();
-        }
+      <div className="designer-profile-container">
+        {Object.values(ratings).map((rating, idx) => {
           return (
           <>
-          <div className='orders-recommendations-feed'>
-            <div key={ idx } className='orders-recommendations-feed-box'>
-            <div className='orders-recommendations-feed-text'>
-              <p className='orders-recommendations-feed-names'>{user.firstName} {user.lastName} recommended clothes for { rec.userFirstName } { rec.userLastName }!</p>
-              <p className='orders-recommendations-feed-title'>{rec.name}</p>
-              <p className='orders-recommendations-feed-description'>{rec.description}</p>
+          <div key={ idx } className='designer-profile-feed'>
+            <div className='designer-profile-feed-box'>
+            <div className='designer-profile-feed-text'>
+                <p className='designer-profile-feed-names'>{rating.userFirstName} {rating.userLastName.slice(0, 1).toUpperCase()}.</p>
+                <div className="designer-profile-ratings-container-ind">
+                  {renderRating(rating.designerRating)}
+                </div>
+              <p className='designer-profile-feed-description'>{rating.comment}</p>
             </div>
             </div>
-            <div className='orders-recommendations-feed-likes-comments'>
-              {hyperlinksArray.map(function (link) {
-                let item = clothes[random(0, (clothes.length - 1))]
-                  return (
-                    <a href={`${link}`}>
-                      <img src={`../images/${item}.ico`} className='orders-recommendations-feed-icons' />
-                    </a>
-                  )
-              })}
-          </div>
         </div>
-              <div className={`orders-recommendations-feed-line ${(userRecommendations.length - 1 === idx) ? 'orders-recommendations-feed-spacer' : null}`} />
+              <div className={`designer-profile-feed-line ${(ratings.length - 1 === idx) ? 'designer-profile-feed-spacer' : null}`} />
               </>
         )
       })}
