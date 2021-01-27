@@ -129,13 +129,6 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      designerRating: 3,
-      userId: 10,
-      designerId: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
       designerRating: 1,
       userId: 1,
       designerId: 8,

@@ -17,7 +17,8 @@
 
 .new-recommendation-form-holder-open {
   position: absolute;
-  background-color: #DD356E;
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+  background-size: 800%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,8 +39,8 @@
 }
 
 .scale-up-center {
-	-webkit-animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	-webkit-animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both, flow 8s ease-in-out infinite;
+          animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both, flow 8s ease-in-out infinite;
 }
 
 @-webkit-keyframes scale-up-center {
@@ -64,13 +65,39 @@
 }
 
 
+@-webkit-keyframes flow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes flow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
 .new-recommendation-form-holder-open::-webkit-scrollbar{
   display: none;
 }
 
 .new-recommendation-form-holder-close {
   /* position: absolute; */
-  background-color: #DD356E;
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+  background-size: 800%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -182,7 +209,7 @@
   height: 2.8vh; 
   width: 40vw; 
   box-sizing: border-box; 
-  border: .5px solid #DD356E;
+  border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -198,7 +225,7 @@
   margin-top: 1vh;
   width: 40vw; 
   box-sizing: border-box; 
-  border: .5px solid #DD356E;
+  border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -217,7 +244,7 @@
   height: 100%;
   margin-top: 1vh;
   box-sizing: border-box; 
-  border: .5px solid #DD356E;
+  border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -231,7 +258,7 @@
   height: 8vh; 
   width: 40vw; 
   box-sizing: border-box; 
-  border: .5px solid #DD356E;
+  border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -313,7 +340,7 @@
   border-radius: 3px; 
   box-sizing:border-box;
   background: rgba(255, 255, 255, 0.5);
-  color: #DD356E;
+  color: grey;
   font-weight:bold;
   font-size: 20pt;
   transition: background-color 0.1s;
@@ -463,7 +490,7 @@
     height: 70px; 
     width: 200px; 
     box-sizing: border-box; 
-    border: .5px solid #DD356E;
+    border: .5px solid transparent;
     padding: 10px; 
     background-color: rgba(255, 255, 255, 0.5);
   }

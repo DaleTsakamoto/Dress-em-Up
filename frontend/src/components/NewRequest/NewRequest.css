@@ -16,7 +16,10 @@
 
 .new-request-form-holder-open {
   position: absolute;
-  background-color: #DD356E;
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+	-webkit-animation: flow 8s ease-in-out infinite, signup-slide-right .3s linear 0s 1 forwards;
+          animation: flow 8s ease-in-out infinite, signup-slide-right .3s linear 0s 1 forwards;
+  background-size: 1000%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,11 +28,6 @@
   width: 100vw;
   top: 0;
   bottom: 0; 
-  animation-name: signup-slide-right;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-	animation-timing-function: linear;
-  animation-duration: .3s;
   z-index: 6;
   overflow: scroll;
 }
@@ -45,7 +43,10 @@
 
 .new-request-form-holder-close {
   position: absolute;
-  background-color: #DD356E;
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+	-webkit-animation: flow 8s ease-in-out infinite, signup-slide-left .3s linear 0s 1 forwards;
+          animation: flow 8s ease-in-out infinite, signup-slide-left .3s linear 0s 1 forwards;
+  background-size: 1000%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,11 +55,6 @@
   width: 100vw;
   top: 0;
   bottom: 0; 
-  animation-name: signup-slide-left;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear;
-  animation-duration: .3s;
   z-index: 6;
   overflow: scroll;
 }
@@ -67,6 +63,30 @@
   0%   {left: 0vw; display: flex}
   100% {left: -102vw}
   }
+
+@-webkit-keyframes flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
 .new-request-form-title{
   color: black;
@@ -164,7 +184,7 @@
   height: 8vh; 
   width: 55vw; 
   box-sizing: border-box; 
-  border: .5px solid #DD356E;
+  border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -209,6 +229,7 @@
   margin-bottom: 1vh;
   margin-top: 1vh;
   font-size: 24px;
+  color: black;
 }
 
 .new-request-clothing-type{
@@ -248,7 +269,7 @@
   border-radius: 3px; 
   box-sizing:border-box;
   background: rgba(255, 255, 255, 0.5);
-  color: #DD356E;
+  color: black;
   font-weight:bold;
   font-size: 20pt;
   transition: background-color 0.1s;
@@ -362,6 +383,7 @@
   #upload-image{
     height: 20px;
     font-size: 8px;
+    color:black
   }
 
   .upload-image-form{
@@ -400,7 +422,6 @@
     height: 70px; 
     width: 300px;
     box-sizing: border-box; 
-    border: .5px solid #DD356E;
     padding: 10px; 
     background-color: rgba(255, 255, 255, 0.5);
   }

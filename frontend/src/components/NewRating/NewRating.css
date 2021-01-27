@@ -17,7 +17,8 @@
 
 .new-rating-form-holder-open {
   position: absolute;
-  background-color: #DD356E;
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+  background-size: 800%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,8 +34,8 @@
 }
 
 .scale-up-center {
-	-webkit-animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	-webkit-animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both, flow 8s ease-in-out infinite;
+          animation: scale-up-center 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both, flow 8s ease-in-out infinite;
 }
 
 @-webkit-keyframes scale-up-center {
@@ -58,6 +59,29 @@
   }
 }
 
+@-webkit-keyframes flow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes flow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 
 .new-rating-form-holder-open::-webkit-scrollbar{
   display: none;
@@ -66,7 +90,8 @@
 .new-rating-form-holder-close {
   position: absolute;
   display: none;
-  background-color: #DD356E;
+  background: linear-gradient(-45deg, #DD356E, #23BDBC);
+  background-size: 800%;
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
@@ -188,7 +213,7 @@
   border-radius: 3px; 
   box-sizing:border-box;
   background: rgba(255, 255, 255, 0.5);
-  color: #DD356E;
+  color: black;
   font-weight:bold;
   font-size: 20pt;
   transition: background-color 0.1s;
