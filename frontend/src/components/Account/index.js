@@ -29,10 +29,10 @@ function Account() {
 
   
   function resize(e) {
-  let el = document.querySelector(".input-wrap .input");
-  let widthMachine = document.querySelector(".input-wrap .width-machine");
-  widthMachine.innerHTML = el.value;
-}
+    let el = document.querySelector(".input-wrap .input");
+    let widthMachine = document.querySelector(".input-wrap .width-machine");
+    widthMachine.innerHTML = el.value;
+  }
 
   const logout = (e) => {
     dispatch(sessionActions.logout())
@@ -46,7 +46,7 @@ function Account() {
   }
 
   const updateProfile = () => {
-    if (username !== 'Demo_user' && username !== 'Demo_designer') {
+    if (sessionUser.id === 1 || sessionUser.id === 2) {
       setEdit(false);
       setUsername(sessionUser.username)
       return setErrors(['You may not change the demo_user username!!'])

@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { Request, sequelize } = require('../../db/models');
 
 const router = express.Router();
@@ -45,25 +45,11 @@ router.post(
   }),
 );
 
-// /****************** USERS PAGE **************************/
-
-// router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-//   const userId = parseInt(req.params.id, 10)
-//   const user = await User.findByPk(userId)
-//   if (user) {
-//     return res.json({
-//       user
-//     })
-//   }
-//     return res.json('No User Found!');
-//   }))
-
 // /****************** GET USER REQUESTS **************************/
 
 router.get('/:id(\\d+)/:userType', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
   const userType = req.params.userType
-  console.log("THIS IS THE USERTYPE ON THE BACKEND", userType, typeof (userType))
   let oldRequests;
   if (userType === 'true') {
     oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );

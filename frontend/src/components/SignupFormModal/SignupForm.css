@@ -126,6 +126,7 @@
 .signup-input{
   height: 2.8vh; 
   width: 70vw; 
+  font-size: 24px;
   box-sizing: border-box; 
   border: .5px solid transparent;
   padding: 10px; 
@@ -139,6 +140,7 @@
 .signup-input-name{
   height: 2.8vh; 
   width: 34vw; 
+  font-size: 24px;
   box-sizing: border-box; 
   border: .5px solid transparent;
   padding: 10px; 

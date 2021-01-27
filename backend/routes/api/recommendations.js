@@ -3,8 +3,8 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Recommendation, Sequelize, sequelize } = require('../../db/models');
+const { requireAuth } = require('../../utils/auth');
+const { Recommendation, Sequelize, sequelize } = require('../../db/models');
 
 const router = express.Router();
 
@@ -29,38 +29,6 @@ const validateRecommendation = [
     .withMessage('Please include a name for your recommendation'),
   handleValidationErrors,
 ];
-
-/******************** NEW REQUEST **************************/
-
-// router.post(
-//   '/:id(\\d+)',
-//   validateRequest,
-//   requireAuth,
-//   asyncHandler(async (req, res) => {
-//     let { image, description, designerId, apparelChoice } = req.body;
-//     const userId = req.params.id
-//     image = image.join(',')
-//     apparelChoice = apparelChoice.join(',')
-//     const request = await Request.build({ image, description, designerId, apparelChoice, userId });
-//     await request.save();
-//     return res.json({
-//       request,
-//     });
-//   }),
-// );
-
-// /****************** USERS PAGE **************************/
-
-// router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-//   const userId = parseInt(req.params.id, 10)
-//   const user = await User.findByPk(userId)
-//   if (user) {
-//     return res.json({
-//       user
-//     })
-//   }
-//     return res.json('No User Found!');
-//   }))
 
 /******************** NEW RECOMMENDATION **************************/
 

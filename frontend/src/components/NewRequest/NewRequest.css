@@ -153,6 +153,12 @@
 
 #upload-image{
   height: 1vh;
+  color: black;
+}
+
+.upload-image-form{
+  color: black;
+  font-size: 16px;
 }
 
 .new-request-textarea-holder{
@@ -383,7 +389,6 @@
   #upload-image{
     height: 20px;
     font-size: 8px;
-    color:black
   }
 
   .upload-image-form{

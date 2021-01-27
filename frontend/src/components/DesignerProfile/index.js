@@ -15,26 +15,25 @@ function DesignerProfile() {
   const history = useHistory()
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
-  const userRecommendations = useSelector(state => state.users.recommendations)
   const userRating = useSelector(state => state.ratings.rating)
   const ratings = useSelector(state => state.ratings.ratings)
   const user = useSelector(state => state.users.user);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isLoaded2, setIsLoaded2] = useState(false);
   const [showModal, setShowModal] = useState(false); 
   const id = sessionUser.id
   const currentId = parseInt(window.location.pathname.split('/')[2]);
   
+
+
   useEffect(() => {
     dispatch(userActions.searchUser(currentId))
     dispatch(ratingActions.searchRating(currentId))
     .then(() => setIsLoaded(true))
   }, [dispatch])
 
-  useEffect(() => {
-    dispatch(userActions.searchProfileRecommendations(currentId))
-    .then(() => setIsLoaded2(true))
-  }, [dispatch])
+  const returnHome = () => {
+    history.push('/');
+  }
 
   let currentRating;
   const renderRating = (num) => {
@@ -49,8 +48,9 @@ function DesignerProfile() {
     return finalRatings;
   }
 
-  return isLoaded && isLoaded2 &&(
-      <div className="designer-profile-main pattern-cross-dots-lg">
+  return isLoaded && (
+    <div className="designer-profile-main pattern-cross-dots-lg">
+        {user.userType ? returnHome() : null}
       <div className='designer-profile-header'>
         <div className='designer-profile-header-background'>
           <img src='https://dress-em-up.s3-us-west-1.amazonaws.com/designers/background-profile/05e08f55-bb29-4002-a865-47bd55f96075.jpg'/>

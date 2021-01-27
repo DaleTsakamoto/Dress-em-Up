@@ -1,10 +1,8 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { check } = require('express-validator');
 
-const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Rating, Recommendation, Sequelize, sequelize } = require('../../db/models');
+const { requireAuth } = require('../../utils/auth');
+const { Rating, Sequelize, sequelize } = require('../../db/models');
 
 const router = express.Router();
 
@@ -40,7 +38,9 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
   const oldRatings = await sequelize.query(`SELECT "Ratings".id, comment, "designerId", "designerRating", "userId", "Users"."firstName" AS "userFirstName", "Users".avatar AS "userAvatar", "Users"."lastName" AS "userLastName" FROM "Ratings" JOIN "Users" ON "userId" = "Users".id WHERE "Ratings"."designerId" = ${id} ORDER BY "Ratings"."updatedAt"`);
   let ratings = oldRatings[0];
   for (let i = 0; i < ratings.length; i++) {
-    ratings[i].userAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${ratings[i].userAvatar}`
+    if (ratings[i].userAvatar) {
+      ratings[i].userAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${ratings[i].userAvatar}`
+    }
   }
   if (!rating) {
     return res.json('No ratings found')
@@ -53,26 +53,26 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
 
 router.post('/', requireAuth, asyncHandler(async (req, res) => {
   const { designerId, userId, designerRating, comment } = req.body
-  const oldRating = await Rating.findOne({
-    where: {
-      [Op.and]: [{userId: userId}, {designerId: designerId}]
-    }
-  })
-  let ratingAvg;
-  if (oldRating) {
+  // const oldRating = await Rating.findOne({
+  //   where: {
+  //     [Op.and]: [{userId: userId}, {designerId: designerId}]
+  //   }
+  // })
+  // let ratingAvg;
+  // if (oldRating) {
     await Rating.destroy({
       where: {
         [Op.and]: [{userId: userId}, {designerId: designerId}]
       }
     })
-  }
-    let rating = Rating.build({
+  // }
+    let rate = Rating.build({
       userId: userId,
       designerId: designerId,
       designerRating: designerRating,
       comment: comment
     });
-    await rating.save();
+    await rate.save();
     ratingAvg = await Rating.findOne({
       where: {
         designerId: designerId
@@ -80,7 +80,12 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
       attributes: ['designerId', [sequelize.fn('AVG', sequelize.col('designerRating')), 'avgRating']],
       group: 'designerId'
     })
-  console.log("THIS IS THE RATING AVERAGE", ratingAvg)
+  
+  let oldRating = await sequelize.query(`SELECT "Ratings".id, comment, "designerId", "designerRating", "userId", "Users"."firstName" AS "userFirstName", "Users".avatar AS "userAvatar", "Users"."lastName" AS "userLastName" FROM "Ratings" JOIN "Users" ON "userId" = "Users".id WHERE "Ratings"."userId" = ${userId} AND "Ratings"."designerId" = ${designerId}`);
+  let rating = oldRating[0][0]
+  if (rating.userAvatar) {
+    rating.userAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${rating.userAvatar}`
+  }
   return res.json({ ratingAvg, rating });
 }))
   

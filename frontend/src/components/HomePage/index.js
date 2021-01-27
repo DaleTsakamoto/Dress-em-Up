@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, NavLink } from 'react-router-dom'
 
-import * as sessionActions from '../../store/session';
 import * as userActions from '../../store/users';
 import * as recommendationActions from '../../store/recommendations';
 
@@ -50,7 +49,9 @@ function HomePage({showLoadScreen}) {
         return (
           <div key={ idx } className="homepage-container-inside">
             <div className='homepage-feed-box'>
-            <img className='homepage-feed-image' src={`${designers[`${rec.designerId}`].avatar}`} />
+              <NavLink className='search-my-designers-navlinks' to={`/users/${rec.designerId}`}>
+                <img className='homepage-feed-image' src={`${designers[`${rec.designerId}`].avatar}`} />
+              </NavLink>
             <div className='homepage-feed-text'>
               <p className='homepage-feed-names'>{designers[`${rec.designerId}`].firstName} {designers[`${rec.designerId}`].lastName} found clothes for {rec.userFirstName} {rec.userLastName}</p>
               <p className='homepage-feed-title'>{rec.name}</p>

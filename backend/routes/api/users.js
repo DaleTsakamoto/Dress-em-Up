@@ -53,21 +53,6 @@ const validateEdit = [
     .not()
     .isEmail()
     .withMessage('Username cannot be an email.'),
-  check('address')
-    .exists({ checkFalsy: true })
-    .withMessage('You must have an address'),
-  check('city')
-    .exists({ checkFalsy: true })
-    .withMessage('You must have a city'),
-  check('state')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 2, max: 2 })
-    .withMessage('You must have a valid state code'),
-  check('zipCode')
-    .exists({ checkFalsy: true })
-    .isNumeric()
-    .isLength({ min: 5 })
-    .withMessage('You must have a valid zip code'),
   check('firstName')
     .exists({ checkFalsy: true })
     .withMessage('You must include a first name'),
@@ -89,7 +74,9 @@ router.post(
     await setTokenCookie(res, user);
 
     // user.profileBackground = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/05e08f55-bb29-4002-a865-47bd55f96075.jpg`
-    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
+    if (user.avatar) {
+      user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
+    }
     return res.json({
       user,
     });
@@ -100,7 +87,6 @@ router.post(
 
 router.get('/:id(\\d+)/recommendations', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
-  console.log("BACKEND IS WORKING AND THIS IS USERID", userId)
   let oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "userFirstName", "Users"."lastName" AS "userLastName" FROM "Recommendations" JOIN "Users" ON "userId" = "Users".id WHERE "designerId"=${userId} ORDER BY "createdAt"`);
   let recommendations = oldRecommendations[0];
     return res.json({ recommendations });
@@ -115,13 +101,15 @@ router.put(
   asyncHandler(async (req, res) => {
     const id = req.params.id
     const { education, email, username, firstName, lastName, address, city, state, zipCode } = req.body;
-    const oldUser = await User.update({ education, email, username, firstName, lastName, address, city, state, zipCode }, {
+    await User.update({ education, email, username, firstName, lastName, address, city, state, zipCode }, {
       where: {
         id: id
       },
     });
     let user = await User.scope('currentUser').findByPk(id);
-    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
+    if (user.avatar) {
+      user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
+    }
     return res.json({
       user,
     });
@@ -134,7 +122,9 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
   const user = await User.findByPk(userId)
   if (user) {
-    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
+    if (user.avatar) {
+      user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`   
+    }
     return res.json({
       user
     })
@@ -156,7 +146,9 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     designers = {}
     for (let i = 0; i < oldDesigners.length; i++) {
       designers[oldDesigners[i].id] = oldDesigners[i]
-      oldDesigners[i].avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${oldDesigners[i].avatar}`
+      if (oldDesigners[i].avatar) {
+        oldDesigners[i].avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${oldDesigners[i].avatar}`
+      }
     } 
   } 
   else if (!req.query['q1']) {
@@ -176,7 +168,9 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
       }
     })
     for (let i = 0; i < designers.length; i++) {
-      designers[i].avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${designers[i].avatar}`
+      if (designers[i].avatar) {
+        designers[i].avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${designers[i].avatar}`
+      }
     }
   } 
   else {
@@ -212,7 +206,9 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
       }
     })
     for (let i = 0; i < designers.length; i++) {
-      designers[i].avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${designers[i].avatar}`
+      if (designers[i].avatar) {
+        designers[i].avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${designers[i].avatar}` 
+      }
     }
   }
 

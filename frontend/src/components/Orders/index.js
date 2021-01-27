@@ -65,7 +65,7 @@ function Orders() {
   return isLoaded && isLoaded2 &&(
     <>
     <div className='orders-container'>
-      <h1 className='orders-main-header'>Orders</h1>
+      <h1 className='orders-main-header'></h1>
       <div className="orders-requests-container">
         <div className='orders-requests-header-container pattern-cross-dots-lg'>
             <h1 className='orders-requests-header'>Requests</h1>
@@ -74,7 +74,6 @@ function Orders() {
           return(
         <>
               <div className="orders-request-ind" id={`orders-request-${req.id}-${req.userId}`} key={req.id}>
-                {console.log('THIS IS THE VALUE OF THE KEY!?!?!', req.id)}
                 {userType ? 
                 <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
                   :
@@ -83,6 +82,7 @@ function Orders() {
                 <p className='order-requests-ind-message'>Message:</p>
                 <p className='order-requests-ind-message-description'>{req.description}</p>
                 <div className='orders-requests-images'>
+                  <div className='orders-requests-images-container'>
                   {Array.isArray(req.imageUrl)
                     ?
                     req.imageUrl.map((img, idx) => {
@@ -95,10 +95,11 @@ function Orders() {
                 }
                 </div>
                 {!userType ? 
-                <button onClick={(e) => createRecommendation(e)}>Respond</button>
+                  <div className='orders-requests-create-modal'onClick={(e) => createRecommendation(e)}>Recommend</div>
                   :
                   null
                 }
+                </div>
           </div>
           <div className='orders-requests-line'></div>
         </>

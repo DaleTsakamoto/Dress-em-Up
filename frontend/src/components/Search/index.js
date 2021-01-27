@@ -154,10 +154,9 @@ function Search() {
             Object.values(userDesigners).map((person, idx) => {
               return (
                 <div key={idx} className='search-my-designers-individual'>
-                    <div className='search-my-designers-header'>
                   <NavLink className='search-my-designers-navlinks' to={`/users/${person.designerId}`}>
+                    <div className='search-my-designers-header'>
                       <img className='search-my-designers-image' src={person.designerAvatar} />
-                      </NavLink>
                       <div className='search-my-designers-name-rating'>
                         <h1 className='search-my-designers-name'>{person.designerFirstName} {person.designerLastName}</h1>
                       <div className={`did${designerRatings[`${person.designerId}`].designerId} search-my-designers-ratings-container`}>
@@ -165,6 +164,7 @@ function Search() {
                         </div>
                     </div>
                     </div>
+                </NavLink>
                 </div>
               )
             })

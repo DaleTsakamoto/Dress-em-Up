@@ -27,7 +27,6 @@ const validateLogin = [
 router.get('/:id(\\d+)/requests/:userType', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
   const userType = req.params.userType
-  console.log("THIS IS THE USERTYPE ON THE BACKEND", userType, typeof (userType))
   let oldRequests;
   if (userType === 'true') {
     oldRequests = await sequelize.query(`SELECT "Requests"."id", image, "isCompleted", "Requests".description, "apparelChoice", "Requests"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Requests" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"` );
@@ -55,7 +54,6 @@ router.get('/:id(\\d+)/requests/:userType', requireAuth, asyncHandler(async (req
 router.get('/:id(\\d+)/recommendations/:userType', requireAuth, asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.id, 10)
   const userType = req.params.userType
-  console.log("THIS IS THE USERTYPE ON THE BACKEND FOR RECOMMENDATIONS", userType)
   let oldRecommendations;
   if (userType === "true") {
     oldRecommendations = await sequelize.query(`SELECT "Recommendations"."id", name, "Recommendations".description, "apparelChoice", hyperlinks, "Recommendations"."createdAt", "userId", "designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName" FROM "Recommendations" JOIN "Users" ON "designerId" = "Users".id WHERE "userId"=${userId} ORDER BY "createdAt"`);
@@ -74,8 +72,10 @@ router.get('/:id(\\d+)/designers', requireAuth, asyncHandler(async (req, res) =>
   // let oldDesigners = await sequelize.query(`SELECT "Recommendations"."designerId", "Users"."firstName" AS "designerFirstName", "Users"."lastName" AS "designerLastName", "Users"."avatar" AS "designerAvatar", "Users"."bio" AS "designerBio", AVG("Ratings"."designerRating") AS ratings GROUP BY "Ratings"."designerRating" FROM "Recommendations" JOIN "Users" ON "Recommendations"."designerId" = "Users".id JOIN "Ratings" ON "Ratings"."designerId" = "Recommendations"."designerId" WHERE "Recommendations"."userId"=${userId}`);
   let designers = oldDesigners[0];
   for (let i = 0; i < designers.length; i++) {
+    if (designers[i].designerAvatar) {
       designers[i].designerAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${designers[i].designerAvatar}`
     }
+  }
     return res.json({ designers });
   }))
 
@@ -99,9 +99,9 @@ router.post(
     }
 
     await setTokenCookie(res, user);
-
-    user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
-    // user['profileBackground'] = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/05e08f55-bb29-4002-a865-47bd55f96075.jpg`
+    if (user.avatar) {
+      user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
+    }
 
     return res.json({
       user,
@@ -127,8 +127,9 @@ router.get(
   (req, res) => {
     const { user } = req;
     if (user) {
-      // user.profileBackground = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/05e08f55-bb29-4002-a865-47bd55f96075.jpg`
-      user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
+      if (user.avatar) {
+        user.avatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/${user.userType ? 'users' : 'designers'}/profile-pics/${user.avatar}`
+      }
       return res.json({
         user: user.toSafeObject()
       });

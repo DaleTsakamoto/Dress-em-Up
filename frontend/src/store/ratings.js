@@ -84,6 +84,9 @@ const ratingsReducer = (state = initialState, action) => {
         } 
       }
       if (!changed) {
+        newState.rating.designerRating = action.rating.designerRating
+        newState.rating.id = action.rating.id
+        newState.rating.comment = action.rating.comment
         newState.ratings = [...state.ratings, action.rating ] 
       }
       newState.rating = action.ratingAvg
