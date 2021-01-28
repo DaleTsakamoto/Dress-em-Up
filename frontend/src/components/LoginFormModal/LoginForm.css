@@ -252,22 +252,8 @@
     height: 50px; 
     width: 240px; 
     border-radius: 3px; 
-    border: rgba(0,0,0,0.3) 0px solid; 
-    box-sizing:border-box;
     padding:10px; 
-    background: whitesmoke;
-    color:#FFF;
-    font-weight:bold;
     font-size: 12pt;
     transition: background-color 0.4s;
-    cursor: pointer;  
-  }
-  
-  .button-modal:hover {
-    background:#da4339;
-  }
-  
-  .login-hide{
-    display: none;
   }
 }

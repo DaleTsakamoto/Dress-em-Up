@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory, Redirect } from 'react-router-dom'
-import { GiLargeDress } from 'react-icons/gi';
+import { NavLink } from 'react-router-dom'
 
 import * as sessionActions from '../../store/session';
 import * as userActions from '../../store/users'
@@ -10,7 +9,6 @@ import * as ratingActions from '../../store/ratings'
 import './Search.css';
 
 function Search() {
-  const history = useHistory()
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
   const designersSearch = useSelector(state => state.users.designers);
@@ -26,41 +24,6 @@ function Search() {
     dispatch(ratingActions.searchRatings())
     .then(() => setIsLoaded(true))
   }, [dispatch])
-  
-  // useEffect(() => {
-  //   console.log("THE RATINGS USE EFFECT IS WORKING!!")
-  //   dispatch(ratingActions.searchRatings(2))
-  // },[])
-
-  // useEffect(() => {
-  //   dispatch(userActions.designerPurge())
-  //   .then(setIsLoaded(true))
-  // },[])
-
-  // const addRating = (e) => {
-  //   let designerRating;
-  //   if (e.target.classList[1] === 'ratings-0') {
-  //     designerRating = 1;
-  //   } else if (e.target.classList[1] === 'ratings-1'){
-  //     designerRating = 2;
-  //   } else if (e.target.classList[1] === 'ratings-2') {
-  //     designerRating = 3;
-  //   } else if (e.target.classList[1] === 'ratings-3') {
-  //     designerRating = 4;
-  //   } else {
-  //     designerRating = 5;
-  //   }
-  //   // console.log("THIS IS THE TARGET!!!!?!?!?!", e.target.parentNode.classList[0].slice(3))
-  //   const designerId = parseInt(e.target.parentNode.classList[0].slice(3))
-  //   let userId = id
-  //   designerRating = parseInt(designerRating)
-  //   let designer = { userId, designerId, designerRating }
-  //   dispatch(ratingActions.ratingAdd(designer))
-  // }
-
-  // const halfRatings = (num) => {
-  //   return (Math.round(num * 2) / 2).toFixed(1)
-  // }
 
   let currentRating;
   const renderRatings = (num) => {

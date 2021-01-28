@@ -29,16 +29,35 @@ const validateRequest = [
 /******************** NEW REQUEST **************************/
 
 router.post(
-  '/:id(\\d+)',
+  '/',
   validateRequest,
   requireAuth,
   asyncHandler(async (req, res) => {
-    let { image, description, designerId, apparelChoice, isCompleted } = req.body;
-    const userId = req.params.id
+    let { image, description, designerId, apparelChoice, isCompleted, userId } = req.body;
     image = image.join(',')
     apparelChoice = apparelChoice.join(',')
     const request = await Request.build({ image, description, designerId, apparelChoice, userId, isCompleted });
     await request.save();
+    return res.json({
+      request,
+    });
+  }),
+);
+
+/******************** UPDATE REQUEST **************************/
+
+router.put(
+  '/',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    let { requestId } = req.body;
+    let isCompleted = true;
+    await Request.update({ isCompleted }, {
+      where: {
+        id: requestId
+      },
+    });
+    let request = {requestId, isCompleted}
     return res.json({
       request,
     });

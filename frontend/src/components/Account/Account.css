@@ -119,6 +119,10 @@ width: 100vw;
   cursor: pointer;
 }
 
+.account-errors{
+  font-size: 18px;
+}
+
 /********************* EDIT FORM CSS *********************/
 
 .account-form {
@@ -209,19 +213,9 @@ width: 100vw;
 .account-input-city, .account-input-state, .account-input-zipcode{
   font-size: 32px;
   border: none;
-  /* width: 10vw; */
   padding: 0;
   background-color: rgba(255, 255, 255, 0.5);
 }
-
-/* .account-input-state{
-  width: 6vw;
-}
-
-.account-input-city{
-  width: 12vw;
-} */
-
 
 
 /****************** @MEDIA QUERIES **********************/
@@ -241,12 +235,6 @@ width: 100vw;
     top: 50px;
     height: 200px;
     width: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color:white;
-    color: black;
   }
 
   .account-profile-picture{
@@ -347,13 +335,11 @@ width: 100vw;
   font-size: 26px;
   border: none;
   padding: 0;
-  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .account-input-username, .account-input-education{
   margin-top: 5px;
   font-size: 12px;
-  text-align: center;
 }
 
 .account-input-email{
@@ -363,14 +349,15 @@ width: 100vw;
 .account-input-address{
   font-size: 12px;
   border: none;
-  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .account-input-city, .account-input-state, .account-input-zipcode{
   font-size: 12px;
   border: none;
   padding: 0;
-  background-color: rgba(255, 255, 255, 0.5);
+}
+.account-errors{
+  font-size: 12px;
 }
 }
 

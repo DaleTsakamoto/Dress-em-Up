@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory, Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { Modal } from '../../context/Modal';
 import NewRating from '../NewRating/NewRating';
 
-import * as sessionActions from '../../store/session';
 import * as userActions from '../../store/users'
 import * as ratingActions from '../../store/ratings'
 
@@ -40,10 +39,10 @@ function DesignerProfile() {
     let finalRatings =[]
     currentRating = Math.round(num)
       for (let i = 0; i < currentRating; i++) {
-        finalRatings.push(<img className={`rate ratings-${i}`} src='../images/Dress-color.png' />)
+        finalRatings.push(<img alt='dress rating' className={`rate ratings-${i}`} src='../images/Dress-color.png' />)
       }
     for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
-      finalRatings.push(<img className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
+      finalRatings.push(<img alt='dress rating' className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
     }
     return finalRatings;
   }
@@ -53,11 +52,11 @@ function DesignerProfile() {
         {user.userType ? returnHome() : null}
       <div className='designer-profile-header'>
         <div className='designer-profile-header-background'>
-          <img src='https://dress-em-up.s3-us-west-1.amazonaws.com/designers/background-profile/05e08f55-bb29-4002-a865-47bd55f96075.jpg'/>
+          <img alt='user avatar' src='https://dress-em-up.s3-us-west-1.amazonaws.com/designers/background-profile/05e08f55-bb29-4002-a865-47bd55f96075.jpg'/>
         </div>
         <div className='designer-profile-profile-avatar'>
           {user.avatar ?
-            <img src={user.avatar} />
+            <img alt='user avatar' src={user.avatar} />
             :
             <i className="fas fa-user-circle"></i>
           }
@@ -85,8 +84,8 @@ function DesignerProfile() {
       <div className="designer-profile-container">
         {Object.values(ratings).map((rating, idx) => {
           return (
-          <>
-          <div key={ idx } className='designer-profile-feed'>
+          <div key={ idx }>
+          <div className='designer-profile-feed'>
             <div className='designer-profile-feed-box'>
             <div className='designer-profile-feed-text'>
                 <p className='designer-profile-feed-names'>{rating.userFirstName} {rating.userLastName.slice(0, 1).toUpperCase()}.</p>
@@ -98,7 +97,7 @@ function DesignerProfile() {
             </div>
         </div>
               <div className={`designer-profile-feed-line ${(ratings.length - 1 === idx) ? 'designer-profile-feed-spacer' : null}`} />
-              </>
+              </div>
         )
       })}
         </div>
@@ -115,27 +114,3 @@ function DesignerProfile() {
 }
 
 export default DesignerProfile;
-
-
-
-
-// {[...Array(5)].map((star, index) => {
-//   index += 1;
-//   return (
-//     <label>
-//     <input
-//       type="radio"
-//       className='dress-ratings-radio'
-//       name="rating"
-//       value={index}
-//       onClick={() => setDress(index)}
-//       />
-//       <GiLargeDress
-//         className='dress-ratings'
-//         color= {index <= (hover || dress) ? "#DD356E" : "lightgrey"}
-//         onMouseEnter={() => setHover(index)}
-//         onMouseLeave={() => setHover(dress)}
-//       />
-//     </label>
-//   );
-// })}

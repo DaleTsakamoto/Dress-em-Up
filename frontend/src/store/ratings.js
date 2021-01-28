@@ -28,7 +28,6 @@ const addRating = (ratingAvg, rating) => {
 
 export const ratingAdd = (rating) => async (dispatch) => {
   const { designerId, userId, designerRating, comment } = rating
-  console.log("RATINGS ARE MAKING IT TO THE STORE")
   const res = await fetch(`/api/ratings/`, {
     method: 'POST',
     body: JSON.stringify({

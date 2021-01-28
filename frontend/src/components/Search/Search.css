@@ -184,33 +184,6 @@
   width: 1.5vh;
   margin-right: -.75vw;
 }
-/* 
-.rate{
-  display: flex;
-  cursor: pointer;
-} */
-
-/* .ratings-4{order: 1}
-.ratings-4:hover + .ratings-3{background-color: red} */
-
-/* .ratings-4:hover ~ .rate:nth-child(n - 1) {background-color: red} */
-
-/* .rate:nth-child(-n + 5) ~ .rate:hover{
-  background-color: red;
-} */
-
-/* .rate:hover{
-  animation: dress .5s;
-}
-
-@keyframes dress{
-  0%, 100%{
-    transform: scale(1);
-  }
-  50%{
-    transform: scale(2);
-  }
-} */
 
 .search-my-designers-ratings-container > #search-my-designers-ratings-half-dress{
   height: 1.5vh;
@@ -238,7 +211,6 @@
     margin-bottom: 50px;
     width: 500px;
     height: 85vh;
-    background-color: white;
   }
 
   .search-bar-container{
@@ -256,7 +228,6 @@
   
   .search-bar-keyword{
     height: 30px;
-    box-shadow: 0px 0px 8px lightgrey;
     padding: 0 15px;
   }
   
@@ -267,8 +238,7 @@
   }
 
   .search-button{
-    margin-top: 4.5px;
-    background-color: #23BDBC;
+    margin-top: 0px;
     height: 30px;
     width: 35px;
   }
@@ -284,7 +254,6 @@
   .search-results-container{
     min-height: 40px;
     width: 500px;
-    background-color: white;
   }
 
   .search-results-image{
@@ -370,15 +339,6 @@
     width: 18px;
     margin-right: -2px;
   }
-
-  /* .rate:hover{
-    animation: none;
-    cursor: pointer;
-  }
-
-  .rate:active{
-    animation: dress .5s;
-  } */
 
   .search-my-designers-ratings-container > #search-my-designers-ratings-half-dress{
     height: 18px;

@@ -5,23 +5,19 @@ import './NewRating.css';
 import { GiLargeDress } from 'react-icons/gi';
 
 import * as ratingActions from '../../store/ratings';
-import * as recommendationActions from '../../store/recommendations';
 
 function NewRating({open, onClose, designerId, designerName}) {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const ratings = useSelector(state => state.ratings.ratings)
   const [comment, setComment] = useState('')
-  const [name, setName] = useState('')
   const [errors, setErrors] = useState([])
   const [designerRating, setDesignerRating] = useState(0)
   const [hover, setHover] = useState (0)
-  const [isLoaded, setIsLoaded] = useState(false)
   const [hidden, setHidden] = useState(true)
   const userId = sessionUser.id
 
   useEffect(() => {
-    console.log("THESE ARE THE RATINGS", ratings)
     ratings.forEach((rating) => {
       if (rating.designerId === designerId && rating.userId === userId) {
         setComment(rating.comment)
@@ -33,7 +29,6 @@ function NewRating({open, onClose, designerId, designerName}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("RATING BUTTON BEING TRIGGERED!!!!!")
     if (hidden) {
       setHidden(false)
     }
@@ -110,7 +105,6 @@ function NewRating({open, onClose, designerId, designerName}) {
             </form>
             </div>
       </div>
-      {/* </div> */}
       </div>
       </div>
 );

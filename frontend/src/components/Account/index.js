@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory, Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 import * as sessionActions from '../../store/session';
@@ -11,7 +11,6 @@ function Account() {
   const history = useHistory()
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [edit, setEdit] = useState(false)
   const [firstName, setFirstName] = useState(sessionUser.firstName)
   const [lastName, setLastName] = useState(sessionUser.lastName)
@@ -24,9 +23,6 @@ function Account() {
   const [zipCode, setZipCode] = useState(sessionUser.zipCode)
   const [errors, setErrors] = useState([])
   const id = sessionUser.id
-  
-  const [hugs, setHugs] = useState('edsafds')
-
   
   function resize(e) {
     let el = document.querySelector(".input-wrap .input");
@@ -46,10 +42,18 @@ function Account() {
   }
 
   const updateProfile = () => {
-    if (sessionUser.id === 1 || sessionUser.id === 2) {
-      setEdit(false);
-      setUsername(sessionUser.username)
-      return setErrors(['You may not change the demo_user username!!'])
+    if (sessionUser.id === 1) {
+      if (username !== 'Demo_user') {
+        setEdit(false);
+        setUsername(sessionUser.username)
+        return setErrors(['You may not change the demo_user username!!'])   
+      }
+    } else if (sessionUser.id === 2) {
+      if (username !== 'Demo_designer') {
+        setEdit(false);
+        setUsername(sessionUser.username)
+        return setErrors(['You may not change the demo_user username!!'])   
+      }
     }
     dispatch(sessionActions.userUpdate({ firstName, lastName, email, username, address, city, state, zipCode, id, education }))
       .catch(res => {
@@ -103,13 +107,6 @@ function Account() {
                         />
                     </span>
                   </div>
-                {/* <input
-                  className='account-input-last-name'
-                  value={lastName}
-                  type='text'
-                  placeholder='last'
-                  onChange={ e => setLastName(e.target.value) }
-                /> */}
                 </div>
             </div>
             <div className='account-input-username'>
@@ -160,7 +157,7 @@ function Account() {
         }
           <ul>
           {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li className='account-errors' key={idx}>{error}</li>
           ))}
         </ul>
         </div>
@@ -172,13 +169,6 @@ function Account() {
           <p className='account-places-home-header'>Primary</p>
         <div className='account-places-email'>
           {edit ? 
-            // <input
-            //   className='account-input-email'
-            //   value={email}
-            //   type='text'
-            //   placeholder='email'
-            //   onChange={ e => setEmail(e.target.value) }
-            // />
             <div className='account-input-email'>
               <span className="input-wrap">
                 <span className="width-machine" aria-hidden="true">{email}</span>

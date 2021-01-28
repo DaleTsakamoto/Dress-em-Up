@@ -10,7 +10,7 @@ module.exports = {
         apparelChoice: 'dress,other,pants,',
         userId: 1,
         designerId: 2,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -21,7 +21,7 @@ module.exports = {
         apparelChoice: 'shirt,pants,',
         userId: 4,
         designerId: 3,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -32,7 +32,7 @@ module.exports = {
         apparelChoice: 'other,dress,shirt,',
         userId: 7,
         designerId: 3,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -43,7 +43,7 @@ module.exports = {
         apparelChoice: 'pants,',
         userId: 1,
         designerId: 5,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -54,7 +54,7 @@ module.exports = {
         apparelChoice: 'dress,pants,other,',
         userId: 1,
         designerId: 11,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -65,7 +65,7 @@ module.exports = {
         apparelChoice: 'pants,shirt,',
         userId: 10,
         designerId: 2,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -76,7 +76,7 @@ module.exports = {
         apparelChoice: 'shirt,pants,outerwear,',
         userId: 9,
         designerId: 2,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -87,7 +87,7 @@ module.exports = {
         apparelChoice: 'dress,',
         userId: 4,
         designerId: 11,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -98,7 +98,7 @@ module.exports = {
         apparelChoice: 'outerwear,',
         userId: 9,
         designerId: 5,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -109,7 +109,7 @@ module.exports = {
         apparelChoice: 'outerwear,',
         userId: 9,
         designerId: 8,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -120,7 +120,7 @@ module.exports = {
         apparelChoice: 'shirt,outerwear,other,',
         userId: 6,
         designerId: 8,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -131,7 +131,7 @@ module.exports = {
         apparelChoice: 'outerwear,pants,',
         userId: 4,
         designerId: 5,
-        requestId: 1,
+        requestId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },

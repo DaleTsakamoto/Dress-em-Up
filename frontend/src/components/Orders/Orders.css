@@ -330,9 +330,7 @@ color: #DD356E;
   }
   
   .orders-recommendations-feed-line{
-    align-self: flex-end;
     width: 500px;
-    border-bottom: .5px solid #DD356E;
     margin-bottom: 15px;
   }
   

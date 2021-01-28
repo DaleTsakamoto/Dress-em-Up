@@ -304,15 +304,6 @@
 }
 
 @keyframes requestloadright {
-  /* 0%   {right: -12%}
-  4%   {right: -25%}
-  24%  {right: -25%}
-  28%  {right: -38%}
-  50%  {right: -38%}
-  54%  {right: -25%}
-  76%  {right: -25%}
-  80%  {right: -12%}
-  100% {right: -12%} */
   0%   {right: -16%}
   50%  {right: -46%}
   100% {right: -16%}
@@ -342,10 +333,6 @@
   .new-request-header{
     height: 40px;
     width: 500px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
   }
 
   .new-request-header > i {
@@ -361,8 +348,6 @@
   }
 
   .new-request-form-subtitle, .new-request-form-subtitle-2{
-    justify-self: center;
-    align-self: center;
     height: 40px;
     margin-top: 35px;
     font-size: 18px;
@@ -379,7 +364,6 @@
   .new-request-upload-container{
     margin-top: 10px;
     height: 200px;
-    color: #DD356E;
   }
 
   .new-request-upload-container > p{
@@ -392,13 +376,11 @@
   }
 
   .upload-image-form{
-    color: black;
     font-size: 10px;
   }
 
   #file-upload-button{
     font-size: 10px;
-    color: black;
   }
 
   #description-label{
@@ -426,15 +408,10 @@
     margin-top: 10px;
     height: 70px; 
     width: 300px;
-    box-sizing: border-box; 
     padding: 10px; 
-    background-color: rgba(255, 255, 255, 0.5);
   }
 
   .new-request-input-holder-ind{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     width: 100px;
     font-size: 8px;
     margin-bottom: -3px;
@@ -458,8 +435,6 @@
     height: 15px;
     width: 100px;
     font-size: 8px;
-    font-family: 'Libre Baskerville', serif;
-    background-color: rgba(255, 255, 255, 0.5);
   }
 
   .new-request-button-holder{
@@ -482,15 +457,6 @@
   }
 
   @keyframes requestloadright {
-    /* 0%   {right: -12%}
-    4%   {right: -25%}
-    24%  {right: -25%}
-    28%  {right: -38%}
-    50%  {right: -38%}
-    54%  {right: -25%}
-    76%  {right: -25%}
-    80%  {right: -12%}
-    100% {right: -12%} */
     0%   {right: -18%}
     50%  {right: -36%}
     100% {right: -18%}

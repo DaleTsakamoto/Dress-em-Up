@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import { NavLink, useHistory } from 'react-router-dom'
 import './LoginForm.css'
 
 function LoginForm({ open, hidden, setHidden }) {
-  const history = useHistory()
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [redirect, setRedirect] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();

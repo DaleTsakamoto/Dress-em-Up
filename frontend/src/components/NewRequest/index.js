@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux'
 
 import { Modal } from '../../context/Modal';
 import NewRequest from './NewRequest';
 import '../Header/Header.css'; 
 
-import * as userActions from '../../store/users';
-
 function NewRequestModal() {
-    const dispatch = useDispatch()
     const [showModal, setShowModal] = useState(false); 
     const [designerId, setDesignerId] = useState(null)
-    const [isLoaded, setIsLoaded] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
-    // const [hidden, setHidden] = useState(true);
 
     return(
         <div className='header-new-request-container'>

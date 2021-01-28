@@ -1,11 +1,7 @@
-import React, { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
-import Dropzone from "react-dropzone-uploader";
 import './NewRequest.css';
-
-import Upload from '../../imageUploader/Upload'
-import Gallery from '../../imageUploader/Gallery'
 
 import * as requestActions from '../../store/requests';
 import * as userActions from '../../store/users';
@@ -19,7 +15,6 @@ function NewRequest({open, onClose, designerId, setDesignerId}) {
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState('')
   const [apparelChoice, setApparelChoice] = useState([])
-  // const [designerId, setDesignerId] = useState(null)
   const [errors, setErrors] = useState([])
   const [message, setMessage] = useState('')
   const [file, setFile] = useState(null)
@@ -88,24 +83,11 @@ const firstUpdate = useRef(true);
   const url = `api/uploads/get-url/${image}`;
   axios.get(url).then(res => {
     const { data: getURL } = res;
-    console.log("THIS IS THE FRONTEND GETURL GOING IN!?!?", getURL)
     if (!getURL.message) {
       setImages([getURL, ...images])
     }
   })
 }, [imagesArray])
-  
-  // const findImages = async () => {
-  //   const url = `api/uploads/get-url/${image}`;
-  //   axios.get(url).then(res => {
-  //     const { data: getURL } = res;
-  //     console.log(getURL)
-  //     if (!getURL.message) {
-  //       setImages([getURL, ...images])
-  //     }
-  //   });
-  // }
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -276,7 +258,6 @@ const firstUpdate = useRef(true);
             </form>
             </div>
       </div>
-      {/* </div> */}
       </div>
 );
 }

@@ -254,11 +254,6 @@
   .new-rating-form-holder-open {
     width: 340px;
     height: 380px;
-    position: absolute;
-    background-color: #DD356E;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     border-radius: 15px;
     margin: 0 auto;
     z-index: 20;
@@ -272,10 +267,6 @@
   .new-rating-header{
     height: 40px;
     width: 340px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
   }
 
   .new-rating-header > i {
@@ -300,7 +291,6 @@
     height: 30px;
     width: 39px;
     margin-top: 30px;
-    background-color:rgba(255, 255, 255, 0.5);
     border: none;
     outline: none;
     cursor: pointer;
@@ -315,8 +305,7 @@
   .new-rating-textarea-holder > textarea{
     font-size: 12px;
     margin-top: 10px;
-    padding: 10px; 
-    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
   }
   
   .new-rating-textarea-holder > textarea::placeholder{

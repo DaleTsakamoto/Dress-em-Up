@@ -99,9 +99,9 @@
     margin-top: 70px;
     padding-top: 20px;
     margin-bottom: 70px;
+    background-color: white;
     width: 500px;
     height: 82vh;
-    background-color: white;
     z-index: 0;
   }
 
@@ -125,14 +125,11 @@
   .homepage-feed-text{
     margin-left: -40px;
     margin-right: 80px;
-    /* margin-bottom: 1vh; */
   }
 
   .homepage-feed-names{
     font-weight: bold;
     height: 35px;
-    /* padding-top: 20px; */
-    color: rgb(54, 47, 47)
   }
 
   .homepage-feed-title{
@@ -147,14 +144,14 @@
 
   .homepage-feed-likes-comments{
     height: 50px;
+    align-self: center;
     width: 400px;
-    margin-left: 72px;
+    margin-left: 48px;
     margin-top: 10px;
     margin-bottom: 10px;
   }
 
   .homepage-feed-icons{
-    /* align-self: center; */
     height: 40px;
     width: 40px;
   }
@@ -162,7 +159,6 @@
   .homepage-feed-line{
     align-self: flex-end;
     width: 500px;
-    border-bottom: .5px solid #23BDBC;
     margin-bottom: 20px;
   }
 

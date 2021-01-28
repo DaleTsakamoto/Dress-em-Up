@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './NewRecommendation.css';
 
 import * as requestActions from '../../store/requests';
-import * as userActions from '../../store/users';
 import * as recommendationActions from '../../store/recommendations';
 
 function NewRecommendation({open, onClose, requestId, setRequestId, setUserId, userId}) {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
-  const designers = useSelector(state => state.users.newRequest)
   const [description, setDescription] = useState('')
   const [name, setName] = useState('')
   const [apparelChoice, setApparelChoice] = useState([])
   const [hyperlink1, setHyperlink1] = useState('')
   const [hyperlink2, setHyperlink2] = useState('')
   const [hyperlink3, setHyperlink3] = useState('')
-  // const [designerId, setDesignerId] = useState(null)
   const [errors, setErrors] = useState([])
-  const [isLoaded, setIsLoaded] = useState(false)
   const [hidden, setHidden] = useState(true)
   const designerId = sessionUser.id
 
@@ -29,9 +25,15 @@ function NewRecommendation({open, onClose, requestId, setRequestId, setUserId, u
       setHidden(false)
     }
     let hyperlinksArray = [hyperlink1, hyperlink2, hyperlink3]
-    console.log("THIS IS THE REQUESTID!?!?!", requestId)
     dispatch(recommendationActions.recommendationAdd({ name, userId, description, designerId, apparelChoice, hyperlinksArray, requestId }))
-      .then(() => submitClear())
+      .catch(res => {
+        if (res.data && res.data.errors) {
+          setErrors(res.data.errors)
+          return errors
+        } 
+      })
+      dispatch(requestActions.requestUpdate(requestId))
+        .then(() => submitClear())
         .catch(res => {
           if (res.data && res.data.errors) {
             setErrors(res.data.errors)
@@ -39,8 +41,8 @@ function NewRecommendation({open, onClose, requestId, setRequestId, setUserId, u
             return setErrors([])
           }
         })
-    return errors;
-  };
+          return errors;
+        };
 
   const checkedApparel = (e) => {
     if (e.target.checked) {
@@ -180,7 +182,6 @@ function NewRecommendation({open, onClose, requestId, setRequestId, setUserId, u
             </form>
             </div>
       </div>
-      {/* </div> */}
       </div>
       </div>
 );

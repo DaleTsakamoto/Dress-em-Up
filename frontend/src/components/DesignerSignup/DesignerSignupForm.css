@@ -151,7 +151,6 @@
     padding-top: 20px;
     width: 500px;
     height: 90vh;
-    background-color: white;
     z-index: 0;
   }
 
@@ -189,16 +188,10 @@
   }
   
   .designer-signup-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 500px;
   }
   
   .designer-signup-names-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     width: 300px;
     margin-bottom: 10px;
   }
@@ -208,7 +201,6 @@
     margin-left: 0;
     height: 16px;
     width: 140px;
-    border: 2px solid #DD356E;
     border-radius: 5px;
   }
   
@@ -216,7 +208,6 @@
     font-size: 14px;
     height: 16px;
     width: 294px;
-    border: 2px solid #DD356E;
     border-radius: 5px;
     margin-bottom: 1vh;
   }
@@ -230,13 +221,11 @@
     font-size: 16px;
     height: 50px;
     width: 300px;
-    border: 2px solid #DD356E;
     border-radius: 5px;
     margin-bottom: 10px;
   }
 
   .designer-signup-form-resume-title{
-    text-align: center;
     font-size: 16px;
   }
   
@@ -252,16 +241,9 @@
   }
   
   .designer-signup-buttons-container{
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     width: 500px;
     height: 50px;
     bottom: 0;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: white;
     z-index: 5;
   }
   
@@ -269,13 +251,9 @@
     height: 30px;
     width: 100px;
     border-radius: 10px;
-    border: 2px solid #23BDBC;
-    box-sizing: border-box;
     padding: 4px;
     margin: 0 10px;
     font-size: 18px;
-    background-color: #23BDBC;
-    color: #FFFFFF;
     cursor: pointer;
   }
 }

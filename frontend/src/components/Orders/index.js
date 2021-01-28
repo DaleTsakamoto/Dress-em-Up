@@ -1,20 +1,15 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory, Redirect } from 'react-router-dom'
 
 import { Modal } from '../../context/Modal';
 import NewRecommendation from '../NewRecommendation/NewRecommendation';
 
-import * as sessionActions from '../../store/session';
 import * as recommendationActions from '../../store/recommendations';
 import * as requestActions from '../../store/requests';
-import Upload from '../../imageUploader/Upload'
-import Gallery from '../../imageUploader/Gallery'
 
 import './Orders.css';
 
 function Orders() {
-  const history = useHistory()
   const dispatch = useDispatch()
   let sessionUser = useSelector(state => state.session.user);
   const userRequests = useSelector(state => state.requests.requests)
@@ -46,12 +41,10 @@ function Orders() {
   }, [])
 
   const createRecommendation = (e) => {
-    let idArray = e.target.parentElement.id.split('-')
+    let idArray = e.target.parentElement.parentElement.id.split('-')
     setRequestId(parseInt(idArray[2], 10))
     setUserId(parseInt(idArray[3], 10))
     setShowModal(true)
-
-    // console.log(document.getElementById("myLI").parentElement.nodeName;
   }
 
   let hyperlinksArray;
@@ -70,9 +63,11 @@ function Orders() {
         <div className='orders-requests-header-container pattern-cross-dots-lg'>
             <h1 className='orders-requests-header'>Requests</h1>
         </div>
-        {userRequests ? Object.values(userRequests).map((req, idx) => {
+        {Object.values(userRequests).map((req, idx) => {
           return(
-        <>
+            <>
+              {!req.isCompleted ?
+                <>
               <div className="orders-request-ind" id={`orders-request-${req.id}-${req.userId}`} key={req.id}>
                 {userType ? 
                 <h2>Request to {req.designerFirstName} {req.designerLastName}</h2>
@@ -99,14 +94,16 @@ function Orders() {
                   :
                   null
                 }
-                </div>
+              </div>
           </div>
-          <div className='orders-requests-line'></div>
+              <div className='orders-requests-line'></div>
+                  </>
+              :
+              null
+        }
         </>
           )
         })
-        :
-        null
       }
       </div>
       <div className="orders-recommendations-container">
@@ -159,7 +156,6 @@ function Orders() {
         null
       }
     </>
-    // </div>
   );
 }
 

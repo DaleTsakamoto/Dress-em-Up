@@ -1,6 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
 
 import LoginFormModal from '../LoginFormModal'
 import SignupFormModal from '../SignupFormModal'
@@ -8,20 +6,7 @@ import SignupFormModal from '../SignupFormModal'
 import './SplashPage.css';
 
 function SplashPage() {
-  const history = useHistory()
-  const dispatch = useDispatch()
-  const sessionUser = useSelector(state => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
-
-//   let logInClick = () => {
-//     let path = '/login'
-//     history.push(path);
-//   }
-  
-//   let signUpClick = () => {
-//     let path = '/signup'
-//     history.push(path);
-// }
 
   return (
     <>

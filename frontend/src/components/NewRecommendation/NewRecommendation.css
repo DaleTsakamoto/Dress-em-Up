@@ -95,22 +95,14 @@
 }
 
 .new-recommendation-form-holder-close {
-  /* position: absolute; */
+  display: none;
   background: linear-gradient(-45deg, #DD356E, #23BDBC);
   background-size: 800%;
-  display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
   height: 80vh;
   width: 80vw;
-  /* top: 0;
-  bottom: 0;  */
-  /* animation-name: signup-slide-left;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear;
-  animation-duration: .3s; */
   z-index: 10;
   overflow: scroll;
 }
@@ -167,14 +159,12 @@
   height: 50vh;
   width: 80%;
   overflow: scroll;
-  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 25px; */
 }
 
 .new-recommendation-upload-container{
   margin-top: 1vh;
   height: 25vh;
   color: black;
-  /* font-size: 20px */
 }
 
 .new-recommendation-upload-container > p{
@@ -205,13 +195,18 @@
 }
 
 .new-recommendation-input-name{
-  margin-top: -2vh;
+  margin-top: 0vh;
   height: 2.8vh; 
-  width: 40vw; 
+  width: 40vw;
+  font-size: 24px; 
   box-sizing: border-box; 
   border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.new-recommendation-input-name::placeholder{
+  font-size: 24px;
 }
 
 .new-recommendation-hyperlinks-holder{
@@ -224,10 +219,15 @@
   height: 2.8vh; 
   margin-top: 1vh;
   width: 40vw; 
+  font-size: 24px; 
   box-sizing: border-box; 
   border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.new-recommendation-input-hyperlinks::placeholder{
+  font-size: 24px;
 }
 
 .new-recommendation-textarea-holder{
@@ -242,11 +242,16 @@
 .new-recommendation-textarea-holder > textarea{
   width: 100%;
   height: 100%;
+  font-size: 24px;
   margin-top: 1vh;
   box-sizing: border-box; 
   border: .5px solid transparent;
   padding: 10px; 
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.new-recommendation-textarea-holder > textarea::placeholder{
+  font-size: 24px;
 }
 
 .new-recommendation-input-holder{
@@ -270,10 +275,11 @@
   justify-content: space-between;
   width: 20vw;
   color: grey;
+  font-size: 20px;
 }
 
 .new-recommendation-input-holder > div > input{
-  width: 1vw;
+  width: 2vw;
 }
 
 .new-recommendation-input-holder > div > label{
@@ -373,15 +379,6 @@
 }
 
 @keyframes recommendationloadright {
-  /* 0%   {right: -12%}
-  4%   {right: -25%}
-  24%  {right: -25%}
-  28%  {right: -38%}
-  50%  {right: -38%}
-  54%  {right: -25%}
-  76%  {right: -25%}
-  80%  {right: -12%}
-  100% {right: -12%} */
   0%   {right: -12%}
   50%  {right: -38%}
   100% {right: -12%}
@@ -395,17 +392,8 @@
 @media screen and (min-aspect-ratio: 1/1){
   .new-recommendation-form-holder-open {
     width: 400px;
-    position: absolute;
-    background-color: #DD356E;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     border-radius: 15px;
     height: 70vh;
-    /* top: 0%;
-    left: 0%;
-    right: 0%;
-    bottom: 0%;  */
     margin: 0 auto;
     z-index: 20;
   }
@@ -418,10 +406,6 @@
   .new-recommendation-header{
     height: 40px;
     width: 400px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
   }
 
   .new-recommendation-header > i {
@@ -460,22 +444,39 @@
 
   .new-recommendation-input-name{
     margin-top: 10px;
+    font-size: 16px;
     height: 30px; 
     width: 200px; 
     border: none;
   }
+
+  .new-recommendation-input-name::placeholder{
+    font-size: 16px;
+  }
   
   .new-recommendation-input-hyperlinks{
     margin-top: 10px;
+    font-size: 16px;
     height: 30px; 
     width: 200px; 
-    box-sizing: border-box; 
     border: none;
+  }
+
+  .new-recommendation-input-hyperlinks::placeholder{
+    font-size: 16px;
   }
 
   .new-recommendation-textarea-holder{
     height: 80px;
     width: 200px;
+  }
+
+  .new-recommendation-textarea-holder > textarea{
+    font-size: 16px;
+  }
+
+  .new-recommendation-textarea-holder > textarea::placeholder{
+    font-size: 16px;
   }
 
   .new-recommendation-clothing-type{
@@ -489,10 +490,7 @@
     margin-top: 10px;
     height: 70px; 
     width: 200px; 
-    box-sizing: border-box; 
-    border: .5px solid transparent;
     padding: 10px; 
-    background-color: rgba(255, 255, 255, 0.5);
   }
 
   .new-recommendation-input-holder-ind{
@@ -534,15 +532,6 @@
   }
 
   @keyframes recommendationloadright {
-    /* 0%   {right: -12%}
-    4%   {right: -25%}
-    24%  {right: -25%}
-    28%  {right: -38%}
-    50%  {right: -38%}
-    54%  {right: -25%}
-    76%  {right: -25%}
-    80%  {right: -12%}
-    100% {right: -12%} */
     0%   {right: -22%}
     50%  {right: -88%}
     100% {right: -22%}

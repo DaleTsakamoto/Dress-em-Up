@@ -178,20 +178,6 @@
   cursor: pointer;  
 }
 
-/* .signup-form-demo-user-button, .signup-form-demo-designer-button{
-  margin-top: .5vh;
-  height: 3vh; 
-  width: 45vw; 
-  border-radius: 3px; 
-  box-sizing:border-box;
-  background:#DD356E;
-  color: white;
-  font-weight:bold;
-  font-size: 20pt;
-  transition: background-color 0.1s;
-  cursor: pointer;  
-} */
-
 .signup-button:hover, .signup-form-demo-user-button:hover, .signup-form-demo-designer-button:hover {
   background:whitesmoke;
 }
@@ -291,15 +277,9 @@
     height: 50px; 
     width: 240px; 
     border-radius: 3px; 
-    border: rgba(0,0,0,0.3) 0px solid; 
-    box-sizing:border-box;
     padding:10px; 
-    background:#f1bc8f;
-    color:#FFF;
     font-weight:bold;
     font-size: 12pt;
-    transition: background-color 0.4s;
-    cursor: pointer;  
   }
   
   .button-modal:hover {

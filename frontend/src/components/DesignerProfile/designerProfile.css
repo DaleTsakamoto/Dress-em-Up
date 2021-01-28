@@ -286,7 +286,6 @@ width: 100vw;
   .designer-profile-header-background{
     margin-top: -40px;
     height: 200px;
-    /* width: 96vw; */
     width: 500px;
   }
   
@@ -296,7 +295,6 @@ width: 100vw;
   }
   
   .designer-profile-profile-avatar{
-    position: absolute;
     margin-top: 110px;
     width: 120px;
     height: 120px;
@@ -311,21 +309,13 @@ width: 100vw;
   }
 
   .designer-profile-ratings-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     height: 5vh;
     width: 100px;
     margin-top: -40px;
   }
   
   .designer-profile-ratings-container .designer-profile-ratings-container__hover{
-    position: absolute;
-    visibility: hidden;
     width: 10vw;
-    background-color: #DD356E;
-    color: rgba(255, 255, 255, 0.5);
-    text-align: center;
     border-radius: 15px;
     margin-left: 270px;
     padding: 5px;
@@ -338,7 +328,7 @@ width: 100vw;
   }
 
   .designer-profile-feed-box{
-    height: 120px;
+    min-height: 120px;
     width: 400px;
     font-size: 14px;
   }
@@ -373,8 +363,7 @@ width: 100vw;
   
   .designer-profile-feed-spacer{
     margin-bottom: 0px;
-    height: 100px;
-    background-color: white;
+    height: 60px;
   }
   
   .designer-profile-ratings-container > img{
@@ -446,7 +435,6 @@ width: 100vw;
   }
   
   .designer-profile-recent-requests{
-    background-color: white;
     min-height: 10vh;
     width: 500px;
   }
