@@ -39,7 +39,7 @@ router.get('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
   let ratings = oldRatings[0];
   for (let i = 0; i < ratings.length; i++) {
     if (ratings[i].userAvatar) {
-      ratings[i].userAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${ratings[i].userAvatar}`
+      ratings[i].userAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/${ratings[i].userAvatar}`
     }
   }
   if (!rating) {

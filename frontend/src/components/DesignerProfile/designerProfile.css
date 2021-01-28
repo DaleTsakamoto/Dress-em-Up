@@ -113,8 +113,18 @@
 }
 
 .designer-profile-feed-box{
+  display: flex;
+  flex-direction: row;
   min-height: 8vh;
   font-size: 28px;
+}
+
+.designer-profile-users-image{
+  height: 5vh;
+  width: 5vh;
+  border-radius: 50%;
+  margin-right: 2vw;
+  margin-top: 2vh;
 }
 
 .designer-profile-feed-text{
@@ -332,6 +342,14 @@ width: 100vw;
     width: 400px;
     font-size: 14px;
   }
+
+
+.designer-profile-users-image{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
   
   .designer-profile-feed-text{
     margin-bottom: 10px;
@@ -370,6 +388,10 @@ width: 100vw;
     height: 28px;
     width: 28px;
     margin-right: -2px;
+  }
+
+  .designer-profile-ratings-container-ind{
+    margin-top: -7px;
   }
 
   .designer-profile-ratings-container-ind > img{

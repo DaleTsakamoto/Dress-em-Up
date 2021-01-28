@@ -86,7 +86,8 @@ function DesignerProfile() {
           return (
           <div key={ idx }>
           <div className='designer-profile-feed'>
-            <div className='designer-profile-feed-box'>
+          <div className='designer-profile-feed-box'>
+            <img className='designer-profile-users-image' src={rating.userAvatar} />
             <div className='designer-profile-feed-text'>
                 <p className='designer-profile-feed-names'>{rating.userFirstName} {rating.userLastName.slice(0, 1).toUpperCase()}.</p>
                 <div className="designer-profile-ratings-container-ind">
