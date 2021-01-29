@@ -84,7 +84,7 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
   let oldRating = await sequelize.query(`SELECT "Ratings".id, comment, "designerId", "designerRating", "userId", "Users"."firstName" AS "userFirstName", "Users".avatar AS "userAvatar", "Users"."lastName" AS "userLastName" FROM "Ratings" JOIN "Users" ON "userId" = "Users".id WHERE "Ratings"."userId" = ${userId} AND "Ratings"."designerId" = ${designerId}`);
   let rating = oldRating[0][0]
   if (rating.userAvatar) {
-    rating.userAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/designers/profile-pics/${rating.userAvatar}`
+    rating.userAvatar = `https://${process.env.BUCKET_NAME}.s3-${process.env.BUCKET_REGION}.amazonaws.com/users/profile-pics/${rating.userAvatar}`
   }
   return res.json({ ratingAvg, rating });
 }))
