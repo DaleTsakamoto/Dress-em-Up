@@ -31,7 +31,7 @@ function NewRequestModal() {
             }} className='header-home-category'>
               <i className="fab fa-shopify"></i>
               <p>Request</p>
-                    </div>
+            </div>
                 </>
                 :
                 null  

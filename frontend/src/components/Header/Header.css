@@ -35,6 +35,7 @@
 .fa-github{
   font-size: 48px;
   cursor: pointer;
+  color: black;
 }
 
 .github-logo-container{
@@ -42,6 +43,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  color: black;
   /* height: 100%; */
 }
 
@@ -54,18 +56,20 @@
 .header-text-logo-container{
   top: 0;
   right: 18vw;
-  left: 18vw;
-  padding-top: 2vh;
+  left: -24vw;
+  padding-top: 2.4vh;
   position: absolute;
   text-align: center;
   background-color: transparent;
+  overflow-x: hidden;
 }
 
 .header-text-logo{
   text-align: center;
   height: 8vh;
-  width: 48vw;
+  width: 85vw;
   background-color: transparent;
+  overflow:hidden;
 }
 
 .header-home-category{
@@ -79,6 +83,7 @@
   font-size: 32px;
   padding-top: .5vh;
   cursor: pointer;
+  color: black;
 }
 
 .header-description-category{
@@ -92,11 +97,13 @@
   font-size: 32px;
   padding-top: .5vh;
   cursor: pointer;
+  color: black;
 }
 
 .fa-shopify{
   font-size: 48px;
   cursor: pointer;
+  color: black;
 }
 
 .fa-sticky-note{
@@ -198,7 +205,6 @@
   .fa-shopify{
     font-size: 20px;
     margin-right: -8vw;
-    color: black;
   }
 
   .fa-sticky-note{
@@ -210,29 +216,29 @@
   .fa-github{
     font-size: 20px;
     margin-left: -8vw;
-    color: black;
   }
 
   .github-logo-container > p{
     margin-left: -8vw;
     font-size: 14px;
-    color: black
   }
 
   .header-text-logo-container{
     top: 0;
     right: 0;
     left: 0;
-    padding-top: 15px;
+    padding-top: 18px;
     text-align: center;
     background-color: transparent;
     z-index: 1;
+    overflow-x: hidden;
   }
 
   
   .header-text-logo{
-    text-align: center;
+    text-align: none;
     height: 75px;
-    width: 280px;
+    margin-left: -200px;
+    width: 420px;
   }
 }
