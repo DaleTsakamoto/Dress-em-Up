@@ -40,7 +40,7 @@ function Search() {
     //     finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${Math.floor(currentRating)}`} id='search-my-designers-ratings-half-dress' src='../images/Dress-half-color.png' />)
     // }
     for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
-      finalRatings.push(<img className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
+      finalRatings.push(<img className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress-clear.png' />)
     }
     return finalRatings;
   }
@@ -59,7 +59,7 @@ function Search() {
     //     finalRatings.push(<img onClick={ (e) => addRating(e) } className={`rate ratings-${Math.floor(currentRating)}`} id='search-my-designers-ratings-half-dress' src='../images/Dress-half-color.png' />)
     // }
     for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
-      finalRatings.push(<img className={`ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
+      finalRatings.push(<img className={`ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress-clear.png' />)
     }
     return finalRatings;
   }

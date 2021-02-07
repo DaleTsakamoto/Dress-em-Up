@@ -42,7 +42,7 @@ function DesignerProfile() {
         finalRatings.push(<img alt='dress rating' className={`rate ratings-${i}`} src='../images/Dress-color.png' />)
       }
     for (let j = 0; j < (5 - Math.ceil(currentRating)); j++) {
-      finalRatings.push(<img alt='dress rating' className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress.png' />)
+      finalRatings.push(<img alt='dress rating' className={`rate ratings-${j + Math.ceil(currentRating)}`} src='../images/Dress-clear.png' />)
     }
     return finalRatings;
   }

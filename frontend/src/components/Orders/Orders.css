@@ -206,7 +206,7 @@ color: #DD356E;
 	.orders-container {
     margin-top: 70px;
     padding-top: 20px;
-    margin-bottom: 50px;
+    padding-bottom: 100px;
     width: 500px;
     height: 82vh;
     background-color: white;
@@ -266,10 +266,10 @@ color: #DD356E;
   }
   
   .orders-requests-create-modal{
-    height: 3vh;
-    padding-top: 1vh;
+    height: 25px;
+    padding-top: 10px;
     font-size: 14px;
-    width: 12vw;
+    width: 120px;
     border-radius: 5px;
   }
   

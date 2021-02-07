@@ -327,9 +327,9 @@
   }
 
   #new-rating-load-screen-image-top{
-    margin-top: 35px;
+    padding-top: 30px;
     height: 140px;
-    width: 75vw;
+    width: 1000px;
     animation: ratingloadright 10s infinite ease-in-out;
     z-index: -1;
   }

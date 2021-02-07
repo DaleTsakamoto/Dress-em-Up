@@ -208,9 +208,9 @@
 	.search-container {
     margin-top: 50px;
     padding-top: 20px;
-    margin-bottom: 50px;
+    padding-bottom: 50px;
     width: 500px;
-    height: 85vh;
+    height: 90vh;
   }
 
   .search-bar-container{

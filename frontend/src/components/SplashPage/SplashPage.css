@@ -359,6 +359,7 @@ body{
     margin: auto;
     width: 500px;
     height: 100%;
+    overflow-y: hidden;
   }
   
   .header{
@@ -394,11 +395,6 @@ body{
   
   .about_carousel_screens{
     margin-top: 30px;
-    display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
     height: 530px;
     width: 100%;
   }
@@ -545,4 +541,28 @@ body{
   100% {right: -50%; visibility: hidden}
   }
 }
+/* 
+@media (min-height: 800px) and (min-width: 600px) {
+  .about_carousel_screens{
+    margin-top: 80px;
+    height: 600px;
+  }
 
+  .homepage-text-logo-container{
+    padding-top: 64px;
+    margin-left: 0;
+    height: 140px;
+    width: 670px;
+  }
+
+  .homepage-text-logo-container > img{
+    margin-left: -450px;
+    height: 110px;
+    width: 700px;
+  }
+
+  .carousel-top-screen{
+    height: 300px;
+  }
+}
+ */

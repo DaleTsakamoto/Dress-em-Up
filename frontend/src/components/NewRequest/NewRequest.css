@@ -450,10 +450,11 @@
   }
 
   #new-request-load-screen-image-top{
-    margin-top: 35px;
+    padding-top: 30px;
     height: 160px;
-    width: 110vw;
+    width: 1000px;
     animation: requestloadright 10s infinite ease-in-out;
+    margin-top: 0;
   }
 
   @keyframes requestloadright {

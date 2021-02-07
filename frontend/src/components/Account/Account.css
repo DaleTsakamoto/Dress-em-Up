@@ -224,9 +224,9 @@ width: 100vw;
 	.account-main {
     margin-top: 50px;
     padding-top: 20px;
-    margin-bottom: 50px;
+    padding-bottom: 100px;
     width: 500px;
-    height: 85vh;
+    height: 90vh;
   }
 
   .account-header-info{
