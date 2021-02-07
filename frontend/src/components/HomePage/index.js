@@ -63,7 +63,7 @@ function HomePage({showLoadScreen}) {
                 let item = clothes[random(0, (clothes.length - 1))]
                   return (
                     <a href={`${link}`}>
-                      <img src={`../images/${item}.ico`} className='homepage-feed-icons' />
+                      <img src={`../images/${item}.png`} className='homepage-feed-icons' />
                     </a>
                   )
               })}
