@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
+import Dropzone from "react-dropzone-uploader";
 import './NewRequest.css';
 
 import * as requestActions from '../../store/requests';
@@ -80,6 +81,7 @@ const firstUpdate = useRef(true);
       firstUpdate.current = false;
       return;
     }
+
   const url = `api/uploads/get-url/${image}`;
   axios.get(url).then(res => {
     const { data: getURL } = res;
