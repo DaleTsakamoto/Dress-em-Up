@@ -136,7 +136,7 @@ function Orders() {
                 let item = clothes[random(0, (clothes.length - 1))]
                   return (
                     <a href={`${link}`}>
-                      <img src={`../images/${item}.ico`} className='orders-recommendations-feed-icons' />
+                      <img src={`../images/${item}.png`} className='orders-recommendations-feed-icons' />
                     </a>
                   )
               })}
