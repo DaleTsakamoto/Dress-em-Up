@@ -188,7 +188,7 @@ const firstUpdate = useRef(true);
                 ))}
         </ul>
           <div className='new-request-textarea-holder'>
-          <label id='description-label' htmlFor='description'>Description</label>
+          {/* <label id='description-label' htmlFor='description'>Description</label> */}
             <textarea
             name='description'
             className='new-request-input-description'
@@ -199,14 +199,6 @@ const firstUpdate = useRef(true);
           />
         </div>
             <div className='new-request-input-holder'>
-              <div className='new-request-input-holder-ind'>
-                <label htmlFor='outerwear'>Outerwear</label>
-                <input
-                  onChange={e => checkedApparel(e)}
-                  name='outerwear'
-                  type='checkbox'
-                />
-              </div>
               <div className='new-request-input-holder-ind'>
                 <label htmlFor='dress'>Dress</label>
                 <input
@@ -228,6 +220,14 @@ const firstUpdate = useRef(true);
                 <input
                   onChange={e => checkedApparel(e)}
                   name='shirt'
+                  type='checkbox'
+                />
+              </div>
+              <div className='new-request-input-holder-ind'>
+                <label htmlFor='outerwear'>Outerwear</label>
+                <input
+                  onChange={e => checkedApparel(e)}
+                  name='outerwear'
                   type='checkbox'
                 />
               </div>
