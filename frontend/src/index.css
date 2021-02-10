@@ -196,3 +196,7 @@ table {
 		100% {right: -18%}
 	}
 }
+
+.linked-in-image-show{
+	display: none;
+}
