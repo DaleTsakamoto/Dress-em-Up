@@ -12,6 +12,7 @@ import Account from './components/Account'
 import Header from './components/Header'
 import DesignerSignup from './components/DesignerSignup'
 import DesignerProfile from './components/DesignerProfile'
+import UploadTest from './components/UploadTest'
 
 
 function App({ hideLoadScreen, showLoadScreen }) {
@@ -28,6 +29,10 @@ function App({ hideLoadScreen, showLoadScreen }) {
   return isLoaded &&(
     <>
       <Switch>
+      <Route path="/uploads">
+          <UploadTest />
+          <Navigation />
+        </Route>
         <Route path="/designer-signup">
         {sessionUser ? 
             <>
