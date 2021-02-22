@@ -33,3 +33,5 @@ const Chatroom = ({ messages, handleSendMessage, handleLeave }) => {
     </div>
   )
 }
+
+export default Chatroom;

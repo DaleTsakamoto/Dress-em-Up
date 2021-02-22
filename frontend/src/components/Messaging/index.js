@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import uuid from 'uuid'
+// import uuid from 'uuid'
 
+import Chatroom from '../ChatRoom'
 import './Messaging.css';
 
 function Messaging() {
@@ -13,8 +14,8 @@ function Messaging() {
   }
 
   const handleSendMessage = (message) => {
-    const newMessage = {
-      id: uuid(),
+    const newMessages = {
+      id: 10,
       message,
       created:new Date()
     }
@@ -30,6 +31,7 @@ function Messaging() {
   return (
     <div>
       <h1>Messaging</h1>
+      <Chatroom messages={messages} handleSendMessage={handleSendMessage} handleLeave={handleLeave} />
     </div>
   )
 }
