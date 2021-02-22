@@ -22,11 +22,14 @@ const Chatroom = ({ messages, handleSendMessage, handleLeave }) => {
     <div className={styles.wrapper}>
       <div className={styles.chat_room}>
         <input type='text' value={message} onChange={handleOnChange} />
-        <button type='button' onLick={handleSendOnClick}>Send</button>
-        <button type='button' onLick={handleLeaveOnClick}>Leave</button>
+        <button type='button' onClick={handleSendOnClick}>Send</button>
+        <button type='button' onClick={handleLeaveOnClick}>Leave</button>
         <div className={styles.messages}>
           {messages.map(m => (
-            <p key={m.id}>({m.created.toLocaleTimeString()})</p>
+            <div className='message-info-ind-container'>
+              <p key={m.id}>({m.created.toLocaleTimeString()})</p>
+              <p>{m.message}</p>
+            </div>
           ))}
         </div>
       </div>

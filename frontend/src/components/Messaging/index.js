@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import uuid from 'uuid'
+import { v4 as uuid } from 'uuid'
 
 import Chatroom from '../ChatRoom'
 import './Messaging.css';
@@ -7,20 +7,20 @@ import './Messaging.css';
 function Messaging() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [username, setUsername] = useState('');
-  const [messages, setMessages] = useState('hello')
+  const [messages, setMessages] = useState([{ id: 1, message: 'hello' , created: new Date()}])
 
   const updateUsername = (username) => {
     setUsername(username);
   }
 
   const handleSendMessage = (message) => {
-    const newMessages = {
-      id: 10,
+    const newMessage = {
+      id: uuid(),
       message,
       created:new Date()
     }
 
-    setMessages([newMessages, ...messages])
+    setMessages([newMessage, ...messages])
   }
 
   const handleLeave = () => {
@@ -29,7 +29,7 @@ function Messaging() {
 
 
   return (
-    <div>
+    <div className='messaging-container'>
       <h1>Messaging</h1>
       <Chatroom messages={messages} handleSendMessage={handleSendMessage} handleLeave={handleLeave} />
     </div>

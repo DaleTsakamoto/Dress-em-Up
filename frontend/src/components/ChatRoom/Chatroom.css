@@ -1,0 +1,6 @@
+.message-info-ind-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 6px 6px;
+}
