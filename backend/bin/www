@@ -7,9 +7,9 @@ const db = require('../db/models');
 const WebSocket = require("ws")
 const {createServer} = require('http')
 
-const server = createServer(app)
+// const server = createServer(app)
 
-const wss = new WebSocket.Server({ server })
+const wss = new WebSocket.Server({ port: 2000 })
 
 // Check the database connection before starting the app
 db.sequelize

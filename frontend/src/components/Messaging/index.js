@@ -17,7 +17,7 @@ function Messaging() {
       return;
     }
 
-    const ws = new WebSocket('ws://localhost:5000')
+    const ws = new WebSocket('ws://localhost:2000')
 
     ws.onopen = (e) => {
       console.log(`Connection open: ${e}`)
