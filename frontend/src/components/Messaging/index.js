@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuid } from 'uuid'
+
 
 import Chatroom from '../ChatRoom'
 import './Messaging.css';
@@ -7,7 +8,7 @@ import './Messaging.css';
 function Messaging() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [username, setUsername] = useState('');
-  const [messages, setMessages] = useState([{ id: 1, message: 'hello' , created: new Date()}])
+  const [messages, setMessages] = useState([])
 
   const updateUsername = (username) => {
     setUsername(username);

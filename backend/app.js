@@ -5,6 +5,7 @@ const csurf = require("csurf");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const { ValidationError } = require("sequelize");
+const WebSocket = require("ws")
 
 const routes = require("./routes");
 const { environment } = require("./config");
@@ -16,6 +17,18 @@ app.use(morgan("dev"));
 
 app.use(cookieParser());
 app.use(express.json());
+
+const wss = new WebSocket.Server({ server })
+
+wss.on('connection', (ws) => {
+  ws.on('message', (jsonData) => {
+    console.log(`Processing incoming message${jsonData}...`)
+  })
+
+  ws.on('close', (e) => {
+    console.log(e)
+  })
+})
 
 // Security Middleware
 if (!isProduction) {
