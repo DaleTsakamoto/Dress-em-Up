@@ -15,5 +15,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DaleTsakamoto/Dress-em-up"
+  },
+  "dependencies": {
+    "react-redux": "^7.2.2",
+    "redux-thunk": "^2.3.0"
   }
 }
