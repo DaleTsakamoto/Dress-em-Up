@@ -13,6 +13,7 @@ import Header from './components/Header'
 import DesignerSignup from './components/DesignerSignup'
 import DesignerProfile from './components/DesignerProfile'
 import UploadTest from './components/UploadTest'
+import Messaging from './components/Messaging'
 
 
 function App({ hideLoadScreen, showLoadScreen }) {
@@ -58,6 +59,16 @@ function App({ hideLoadScreen, showLoadScreen }) {
         <Route path='/account'>
           <Header />
           <Account />
+          <Navigation />
+          </Route>
+          :
+          null
+          
+        }
+        {sessionUser ? 
+        <Route path='/messaging-test'>
+          <Header />
+          <Messaging />
           <Navigation />
           </Route>
           :
